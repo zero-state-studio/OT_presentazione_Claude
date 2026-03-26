@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://mcp.so)",
+      "Bash(curl -s https://www.anthropic.com/partners)",
+      "Bash(curl -s https://docs.anthropic.com/en/docs/claude-code/overview)",
+      "Bash(curl -s https://anthropic.skilljar.com)",
+      "Bash(curl -s https://docs.anthropic.com/en/docs/claude-code/memory)",
+      "Bash(curl -s https://glama.ai/mcp/servers)",
+      "Bash(curl -s https://www.anthropic.com/research -L)",
+      "Bash(curl -s https://docs.anthropic.com/en/docs/claude-code/settings)",
+      "Bash(curl -s https://docs.anthropic.com/en/docs/claude-code/mcp)",
+      "WebSearch",
+      "WebFetch(domain:support.atlassian.com)",
+      "WebFetch(domain:help.splunk.com)",
+      "Bash(curl -s https://www.anthropic.com/news/claude-partner-network -L)",
+      "Bash(sips -g all /Users/gianlucaricaldone/Progetti/presentazione_claude/public/OT.png)",
+      "Bash(python3 -c \"from PIL import Image; print\\(''PIL available''\\)\")",
+      "Bash(python3 -c \"import importlib; importlib.import_module\\(''PIL''\\); print\\(''PIL available''\\)\")",
+      "Bash(python3:*)",
+      "Bash(md5)",
+      "Bash(curl:*)",
+      "Bash(ls -la avatar_*.jpg)",
+      "WebFetch(domain:claude.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:openai.com)",
+      "WebFetch(domain:gemini.google)",
+      "Bash(perl:*)",
+      "Bash(git init:*)",
+      "Bash(git remote:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
