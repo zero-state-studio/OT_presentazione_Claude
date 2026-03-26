@@ -749,43 +749,71 @@
 
     <!-- SLIDE 12: ROI -->
     <div class="slide content-slide" data-slide="12">
-      <h2 class="slide-title anim d1">ROI concreto e misurabile</h2>
-      <div class="metrics anim d2" style="justify-content:flex-start;margin-top:1rem">
-        <div class="metric">
-          <div class="value">-70%</div>
-          <div class="label">Context-switching *</div>
+      <h2 class="slide-title anim d1">ROI concreto: anatomia di una feature</h2>
+      <p class="section-desc anim d2">Tempo stimato per sviluppare una feature media (CRUD + API + test + deploy) — confronto fase per fase, con e senza Claude Code.</p>
+
+      <div class="compare anim d3" style="max-width:1100px">
+        <div class="compare-row header">
+          <div class="compare-cell">Fase</div>
+          <div class="compare-cell">Senza Claude</div>
+          <div class="compare-cell">Con Claude Code</div>
+          <div class="compare-cell">Risparmio</div>
         </div>
-        <div class="metric">
-          <div class="value">-50%</div>
-          <div class="label">Tempo review ciclo *</div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Analisi codebase</div>
+          <div class="compare-cell"><span class="badge bad">2-3 ore</span></div>
+          <div class="compare-cell"><span class="badge good">20-30 min</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">~85%</span></div>
         </div>
-        <div class="metric">
-          <div class="value">+40%</div>
-          <div class="label">Velocità delivery *</div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Implementazione codice</div>
+          <div class="compare-cell"><span class="badge bad">6-8 ore</span></div>
+          <div class="compare-cell"><span class="badge good">2 ore</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">~72%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Test + coverage</div>
+          <div class="compare-cell"><span class="badge bad">2-3 ore</span></div>
+          <div class="compare-cell"><span class="badge good">1 ora</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">~60%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>PR + Code Review</div>
+          <div class="compare-cell"><span class="badge bad">1-2 ore</span></div>
+          <div class="compare-cell"><span class="badge good">15-20 min</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">~80%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg>Deploy + update ticket</div>
+          <div class="compare-cell"><span class="badge bad">30-45 min</span></div>
+          <div class="compare-cell"><span class="badge good">10 min</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">~75%</span></div>
+        </div>
+        <div class="compare-row" style="background:var(--surface);border-top:2px solid var(--accent)">
+          <div class="compare-cell feature" style="font-weight:900;color:var(--text)">TOTALE FEATURE</div>
+          <div class="compare-cell"><span class="badge bad" style="font-weight:800">~13-17 ore</span></div>
+          <div class="compare-cell"><span class="badge good" style="font-weight:800">~4-4.5 ore</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:900;font-size:.85rem">~70%</span></div>
         </div>
       </div>
-      <div class="bench-note" style="margin-top:.25rem;font-style:italic">* Stime interne basate su osservazioni degli
-        Ambassador durante il periodo di test. Non derivate da studi pubblicati.</div>
-      <div class="card-grid anim d3">
-        <div class="card">
-          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
-          <h3>Meno tool, meno costi</h3>
-          <p>Un unico sistema sostituisce Copilot + plugin Jira + dashboard Splunk manuali. Consolidamento licenze e
-            flussi.</p>
+
+      <div style="display:flex;gap:1.5rem;margin-top:1rem;align-items:center;flex-wrap:wrap" class="anim d4">
+        <div class="metric">
+          <div class="value" style="font-size:clamp(1.8rem,3.5vw,2.8rem)">3x</div>
+          <div class="label">Feature / settimana</div>
         </div>
-        <div class="card">
-          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-          <h3>Onboarding 10x più veloce</h3>
-          <p>CLAUDE.md + Skills = ogni nuovo dev è operativo dal giorno 1. Lo standard del progetto è embedded nel tool,
-            non in wiki obsolete.</p>
+        <div class="metric">
+          <div class="value" style="font-size:clamp(1.8rem,3.5vw,2.8rem)">~70%</div>
+          <div class="label">Tempo risparmiato</div>
         </div>
-        <div class="card">
-          <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-          <h3>Standard garantiti</h3>
-          <p>Le Skills enterprise impongono code quality, pattern architetturali e security check. Impossibile
-            bypassarli — sono nel DNA del tool.</p>
+        <div class="metric">
+          <div class="value" style="font-size:clamp(1.8rem,3.5vw,2.8rem)">1 dev</div>
+          <div class="label">= output di 3 dev</div>
         </div>
       </div>
+
+      <div class="bench-note anim d5" style="margin-top:.5rem"><strong style="color:var(--accent)">Effetto leva:</strong> il vantaggio cresce con il volume. Su iniziative complesse con migliaia di righe, Claude Code lavora con sub-agent paralleli su worktree isolati — task che richiederebbero giorni si completano in ore.</div>
+      <div class="bench-note" style="margin-top:.3rem;font-style:italic">* Stime interne basate su osservazioni degli Ambassador durante il periodo di test su feature CRUD + API + test + deploy. Non derivate da studi pubblicati.</div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
