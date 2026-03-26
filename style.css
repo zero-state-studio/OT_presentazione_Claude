@@ -998,6 +998,10 @@ body {
   letter-spacing: .05em;
 }
 
+img.avatar-inner {
+  object-fit: cover;
+}
+
 .ambassador .ch-name {
   font-weight: 700;
   font-size: 1rem;
