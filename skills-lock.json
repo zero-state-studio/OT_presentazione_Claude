@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "better-icons": {
+      "source": "better-auth/better-icons",
+      "sourceType": "github",
+      "computedHash": "ec859a92bcb6fef5ae1fe8ab1d4b10c1d76fae7a809101c9bce1230944af1b0e"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
+    "pptx": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "6b8b859d26f93aa059c9870d1ab76b44ab69e3d6757ce4a03cc94cb760888073"
+    }
+  }
+}

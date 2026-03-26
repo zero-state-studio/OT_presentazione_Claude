@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Ecosystem — OT Consulting</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface2: #eeeeee;
+      --border: #e0e0e0;
+      --text: #1a1a1a;
+      --muted: #555555;
+      --accent: #E60000;
+      --accent2: #FF3300;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --purple: #7c3aed;
+      --red: #E60000;
+      --gradient: linear-gradient(135deg, #E60000, #FF4400);
+    }
+
+    html {
+      font-size: 16px
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 4rem 4.5rem;
+      opacity: 0;
+      pointer-events: none;
+      overflow-y: auto;
+      transition: opacity .45s ease, transform .45s cubic-bezier(.4, 0, .2, 1);
+      transform: translateX(60px);
+    }
+
+    .slide>*:first-child {
+      margin-top: auto
+    }
+
+    .slide>*:last-child {
+      margin-bottom: auto
+    }
+
+    .slide.before {
+      transform: translateX(-60px)
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto
+    }
+
+    /* Content slides: left-aligned with title bar */
+    .slide.content-slide {
+      align-items: flex-start;
+      padding: 1.25rem 4rem 3.5rem;
+    }
+
+    .slide.content-slide>*:first-child {
+      margin-top: 0
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gradient);
+      transition: width .4s ease;
+      z-index: 100;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .5rem 1.5rem;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+    }
+
+    .nav button {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: .25rem .5rem;
+      transition: color .2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav button:hover {
+      color: var(--accent)
+    }
+
+    .nav button:disabled {
+      opacity: .3;
+      cursor: default
+    }
+
+    .nav .counter {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      color: var(--muted);
+      min-width: 4rem;
+      text-align: center;
+    }
+
+    .dots {
+      display: flex;
+      gap: .4rem
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all .3s;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      width: 20px;
+      border-radius: 3px
+    }
+
+    /* OT Consulting footer for content slides */
+    .slide-footer {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      pointer-events: none;
+    }
+
+    .slide-footer .copyright {
+      font-size: .72rem;
+      color: var(--muted);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .slide-footer .ot-logo {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-left: auto;
+    }
+
+    .slide-footer .ot-logo .ot-circle {
+      width: 18px;
+      height: 18px;
+    }
+
+    .slide-footer .ot-logo .ot-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .slide-footer .ot-logo .ot-name {
+      font-weight: 700;
+      font-size: .82rem;
+      color: var(--text);
+    }
+
+    /* Slide title with red bar underneath */
+    .slide-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      position: relative;
+      padding-bottom: .4rem;
+      margin-bottom: .75rem;
+    }
+
+    .slide-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: clamp(200px, 35%, 420px);
+      height: 6px;
+      background: linear-gradient(90deg, #E60000 60%, #FF4400);
+      border-radius: 1px;
+    }
+
+    /* Cover slide decorations */
+    .cover-deco-tl {
+      position: absolute;
+      top: -80px;
+      left: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: var(--accent);
+      z-index: 0;
+    }
+
+    .cover-deco-br {
+      position: absolute;
+      bottom: -120px;
+      right: -60px;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: var(--accent);
+      z-index: 0;
+    }
+
+    .cover-dot-grid {
+      position: absolute;
+      top: 2rem;
+      right: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+      z-index: 1;
+    }
+
+    .cover-dot-grid span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1a1a1a;
+    }
+
+    .cover-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40%;
+      height: 1px;
+      background: #ccc;
+      transform: rotate(-15deg);
+      transform-origin: bottom left;
+      z-index: 0;
+    }
+
+    /* Closing slide decorations */
+    .close-hex {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      z-index: 1;
+    }
+
+    .close-hex-filled {
+      width: 80px;
+      height: 80px;
+      background: var(--accent);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+    .close-hex-outline {
+      width: 70px;
+      height: 70px;
+      border: 2px solid #1a1a1a;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      position: absolute;
+      top: 20px;
+      right: -15px;
+    }
+
+    .close-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 1px;
+      background: #ccc;
+      transform: rotate(-25deg);
+      transform-origin: top left;
+      z-index: 0;
+    }
+
+    /* Hero / cover title */
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      text-align: left;
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title .highlight {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      text-align: left;
+      max-width: 640px;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      max-width: 800px;
+    }
+
+    .section-title .highlight {
+      color: var(--accent)
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.5;
+      max-width: 700px;
+      margin-top: .4rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(230, 0, 0, .08)
+    }
+
+    .card .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: .4rem;
+    }
+
+    .card .icon.orange {
+      background: rgba(230, 0, 0, .08);
+      color: var(--accent)
+    }
+
+    .card .icon.blue {
+      background: rgba(37, 99, 235, .08);
+      color: var(--blue)
+    }
+
+    .card .icon.green {
+      background: rgba(22, 163, 74, .08);
+      color: var(--green)
+    }
+
+    .card .icon.purple {
+      background: rgba(124, 58, 237, .08);
+      color: var(--purple)
+    }
+
+    .card .icon.red {
+      background: rgba(230, 0, 0, .08);
+      color: var(--red)
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+      color: var(--text)
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.6
+    }
+
+    .compare {
+      width: 100%;
+      max-width: 900px;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-row:last-child {
+      border-bottom: none
+    }
+
+    .compare-row.header {
+      background: var(--surface)
+    }
+
+    .compare-cell {
+      padding: .85rem 1.1rem;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .compare-row.header .compare-cell {
+      font-weight: 700;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+
+    .compare-cell.feature {
+      font-weight: 600
+    }
+
+    /* Pricing table: 6 columns */
+    .compare.pricing .compare-row {
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 44px;
+    }
+
+    /* Workflow table: 4 columns */
+    .compare.workflow .compare-row {
+      grid-template-columns: .8fr 2fr 1fr 1fr;
+    }
+
+    .compare.pricing .compare-cell {
+      padding: .55rem .7rem;
+      font-size: .78rem;
+    }
+
+    .compare.pricing .compare-row.header .compare-cell {
+      font-size: .68rem;
+    }
+
+    .diff-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid #555;
+      background: rgba(80,80,80,.08);
+      color: #555;
+      font-weight: 800;
+      font-size: .8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      line-height: 1;
+    }
+
+    .diff-btn:hover {
+      background: #444;
+      color: #fff;
+      border-color: #444;
+      transform: scale(1.1);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      max-width: 560px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      transform: translateY(20px);
+      transition: transform .25s;
+    }
+
+    .modal-overlay.open .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-box h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: .75rem;
+      color: var(--text);
+    }
+
+    .modal-box h3::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-top: .4rem;
+    }
+
+    .modal-box ul {
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: .85rem;
+      line-height: 1.7;
+    }
+
+    .modal-box ul li {
+      margin-bottom: .3rem;
+    }
+
+    .modal-box ul li strong {
+      color: var(--text);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: .75rem;
+      right: .75rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: all .2s;
+    }
+
+    .modal-close:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: .2rem .65rem;
+      border-radius: 6px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    .badge.good {
+      background: rgba(22, 163, 74, .1);
+      color: var(--green)
+    }
+
+    .badge.mid {
+      background: rgba(202, 138, 4, .1);
+      color: #b45309
+    }
+
+    .badge.bad {
+      background: rgba(230, 0, 0, .08);
+      color: var(--red)
+    }
+
+    .badge.best {
+      background: rgba(230, 0, 0, .1);
+      color: var(--accent)
+    }
+
+    .bench-table {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg);
+      font-size: .82rem;
+    }
+
+    .bench-table .brow {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(5, 1fr);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .bench-table .brow:last-child {
+      border-bottom: none
+    }
+
+    .bench-table .brow.bheader {
+      background: var(--surface)
+    }
+
+    .bench-table .bcell {
+      padding: .7rem .8rem;
+      display: flex;
+      align-items: center
+    }
+
+    .bench-table .brow.bheader .bcell {
+      font-weight: 700;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+
+    .bcell.bname {
+      font-weight: 600
+    }
+
+    .bval {
+      display: inline-flex;
+      padding: .15rem .55rem;
+      border-radius: 5px;
+      font-size: .72rem;
+      font-weight: 700;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .bval.gold {
+      background: rgba(22, 163, 74, .1);
+      color: var(--green)
+    }
+
+    .bval.silver {
+      background: rgba(202, 138, 4, .1);
+      color: #b45309
+    }
+
+    .bval.bronze {
+      background: rgba(230, 0, 0, .08);
+      color: var(--red)
+    }
+
+    .bval.normal {
+      background: rgba(100, 100, 100, .06);
+      color: var(--muted)
+    }
+
+    .bench-note {
+      color: var(--muted);
+      font-size: .7rem;
+      margin-top: .75rem;
+      font-style: italic;
+      max-width: 800px;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .flow-node {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      min-width: 140px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+    }
+
+    .flow-node .fn-icon {
+      font-size: 1.5rem;
+      margin-bottom: .35rem
+    }
+
+    .flow-node .fn-label {
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--text)
+    }
+
+    .flow-node .fn-sub {
+      color: var(--muted);
+      font-size: .72rem;
+      margin-top: .2rem
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: 700
+    }
+
+    .code-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .85rem 1rem;
+      margin-top: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      line-height: 1.55;
+      max-width: 700px;
+      width: 100%;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--muted);
+    }
+
+    .slide-body {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      max-width: 1100px;
+      margin-top: .75rem;
+      align-items: stretch;
+    }
+
+    .slide-body .card-grid {
+      flex: 1;
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .slide-body .card {
+      padding: .75rem 1rem
+    }
+
+    .slide-body .card h3 {
+      font-size: .9rem;
+      margin-bottom: .15rem
+    }
+
+    .slide-body .card p {
+      font-size: .78rem;
+      line-height: 1.4
+    }
+
+    .slide-body .code-block {
+      flex: 1;
+      margin-top: 0;
+      max-width: none;
+      min-width: 0;
+    }
+
+    .code-block .kw {
+      color: var(--purple)
+    }
+
+    .code-block .str {
+      color: var(--green)
+    }
+
+    .code-block .cm {
+      color: #999
+    }
+
+    .code-block .fn {
+      color: var(--blue)
+    }
+
+    .code-block .acc {
+      color: var(--accent)
+    }
+
+    .metrics {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .metric {
+      text-align: center
+    }
+
+    .metric .value {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .metric .label {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: .25rem
+    }
+
+    .timeline {
+      display: flex;
+      gap: 0;
+      margin-top: 1.5rem;
+      max-width: 900px;
+      width: 100%
+    }
+
+    .tl-step {
+      flex: 1;
+      position: relative;
+      padding: 1.5rem 1.25rem;
+      border-top: 3px solid var(--border);
+    }
+
+    .tl-step::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 1.25rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--bg);
+    }
+
+    .tl-step.current {
+      border-top-color: var(--accent)
+    }
+
+    .tl-step.current::before {
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(230, 0, 0, .3)
+    }
+
+    .tl-step .tl-week {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .tl-step .tl-title {
+      font-weight: 700;
+      font-size: .95rem;
+      margin-top: .35rem;
+      color: var(--text)
+    }
+
+    .tl-step .tl-desc {
+      color: var(--muted);
+      font-size: .78rem;
+      margin-top: .3rem;
+      line-height: 1.5
+    }
+
+    .ambassadors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .ambassador {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+    }
+
+    .ambassador:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px)
+    }
+
+    .ambassador .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ambassador .avatar::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: var(--gradient);
+      z-index: 0;
+    }
+
+    .ambassador .avatar .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .05em;
+    }
+
+    .ambassador .ch-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: .2rem;
+      color: var(--text)
+    }
+
+    .ambassador .ch-role {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.4
+    }
+
+    .ambassador .ch-badge {
+      display: inline-flex;
+      margin-top: .6rem;
+      padding: .2rem .7rem;
+      border-radius: 6px;
+      font-size: .68rem;
+      font-weight: 600;
+      background: rgba(230, 0, 0, .08);
+      color: var(--accent);
+    }
+
+    /* OT Consulting logo bar (cover only) */
+    .logo-bar {
+      position: absolute;
+      bottom: 8rem;
+      left: 4rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      z-index: 10;
+    }
+
+    .logo-bar .ot-mark {
+      width: 28px;
+      height: 28px;
+    }
+
+    .logo-bar .ot-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo-bar .ot-company {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .slide.active .anim {
+      animation: fadeUp .6s ease forwards;
+      opacity: 0
+    }
+
+    .slide.active .anim.d1 {
+      animation-delay: .1s
+    }
+
+    .slide.active .anim.d2 {
+      animation-delay: .2s
+    }
+
+    .slide.active .anim.d3 {
+      animation-delay: .3s
+    }
+
+    .slide.active .anim.d4 {
+      animation-delay: .4s
+    }
+
+    .slide.active .anim.d5 {
+      animation-delay: .5s
+    }
+
+    @media(max-width:768px) {
+      .slide {
+        padding: 2rem 1.5rem 4.5rem
+      }
+
+      .slide.content-slide {
+        padding: 2rem 1.5rem 5rem
+      }
+
+      .slide-body {
+        flex-direction: column
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr
+      }
+
+      .compare-row {
+        grid-template-columns: 1.2fr repeat(3, 1fr)
+      }
+
+      .compare-cell {
+        padding: .65rem .5rem;
+        font-size: .72rem
+      }
+
+      .bench-table .brow {
+        grid-template-columns: 1.4fr repeat(5, 1fr)
+      }
+
+      .bench-table .bcell {
+        padding: .5rem .4rem;
+        font-size: .68rem
+      }
+
+      .timeline {
+        flex-direction: column
+      }
+
+      .tl-step {
+        border-top: none;
+        border-left: 3px solid var(--border);
+        padding-left: 1.5rem
+      }
+
+      .tl-step::before {
+        top: 1.5rem;
+        left: -7px
+      }
+
+      .tl-step.current {
+        border-left-color: var(--accent)
+      }
+
+      .flow {
+        flex-direction: column
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg)
+      }
+
+      .ambassadors {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .cover-deco-tl {
+        width: 180px;
+        height: 180px;
+        top: -50px;
+        left: -50px
+      }
+
+      .cover-deco-br {
+        width: 220px;
+        height: 220px;
+        bottom: -80px;
+        right: -40px
+      }
+
+      .slide-footer {
+        padding: 0 1.5rem
+      }
+    }
+
+    .kbd-hint {
+      position: fixed;
+      bottom: 4.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .65rem;
+      color: #ccc;
+      font-family: 'Space Mono', monospace;
+      z-index: 90;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="deck" id="deck">
+
+    <!-- SLIDE 0: COVER -->
+    <div class="slide active" data-slide="0" style="align-items:flex-start;justify-content:center;padding:4rem">
+      <div class="cover-deco-tl"></div>
+      <div class="cover-deco-br"></div>
+      <div class="cover-dot-grid">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <h1 class="hero-title anim d1">
+        L'ecosistema <span class="highlight">Claude</span><br>per accelerare lo sviluppo
+      </h1>
+      <p class="subtitle anim d2">
+        Proposta di adozione enterprise — Perché Claude Code e il protocollo MCP rappresentano un salto qualitativo
+        rispetto a Copilot e Gemini.
+      </p>
+      <div class="metrics anim d3" style="justify-content:flex-start;margin-top:2rem">
+        <div class="metric">
+          <div class="value">1M</div>
+          <div class="label">Token di contesto</div>
+        </div>
+        <div class="metric">
+          <div class="value">10.000+</div>
+          <div class="label">MCP Server disponibili</div>
+        </div>
+        <div class="metric">
+          <div class="value">&infin;</div>
+          <div class="label">Skills personalizzabili</div>
+        </div>
+      </div>
+      <div class="logo-bar anim d4">
+        <div class="ot-mark"><img src="public/OT.png" alt="OT"></div>
+        <div class="ot-company">otconsulting</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 1: AMBASSADORS -->
+    <div class="slide content-slide" data-slide="1">
+      <h2 class="slide-title anim d1">Il team che guida l'adozione</h2>
+      <p class="section-desc anim d2">Gli Ambassador interni che hanno testato Claude Code in produzione e promuovono
+        l'integrazione a livello aziendale in <strong>OT Consulting</strong>.</p>
+      <div class="ambassadors anim d3">
+        <div class="ambassador">
+          <div class="avatar">
+            <div class="avatar-inner">GR</div>
+          </div>
+          <div class="ch-name">Ricaldone Gianluca</div>
+          <div class="ch-role">gianluca.ricaldone@otconsulting.com</div>
+          <div class="ch-badge">Ambassador</div>
+        </div>
+        <div class="ambassador">
+          <div class="avatar">
+            <div class="avatar-inner">LT</div>
+          </div>
+          <div class="ch-name">Torella Leonardo</div>
+          <div class="ch-role">leonardo.torella@otconsulting.com</div>
+          <div class="ch-badge">Ambassador</div>
+        </div>
+        <div class="ambassador">
+          <div class="avatar">
+            <div class="avatar-inner">CL</div>
+          </div>
+          <div class="ch-name">Cristian Leonardi</div>
+          <div class="ch-role">cristian.leonardi@otconsulting.com</div>
+          <div class="ch-badge">Ambassador</div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: IL PROBLEMA -->
+    <div class="slide content-slide" data-slide="2">
+      <h2 class="slide-title anim d1">I limiti di Copilot e Gemini nei workflow aziendali</h2>
+      <div class="card-grid anim d2">
+        <div class="card">
+          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+          <h3>Contesto limitato</h3>
+          <p>Copilot vede solo il file corrente o pochi file aperti. Non comprende l'architettura del progetto, le
+            convenzioni del team, o il perché dietro le scelte tecniche.</p>
+        </div>
+        <div class="card">
+          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="16" y1="19" x2="16" y2="22"/><line x1="19" y1="16" x2="22" y2="16"/></svg></div>
+          <h3>Zero integrazione tool</h3>
+          <p>Nessuna connessione nativa a Jira, Splunk, Confluence. Lo sviluppatore continua a fare context-switching
+            tra IDE, browser e terminale.</p>
+        </div>
+        <div class="card">
+          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="10" y1="12" x2="14" y2="16"/><line x1="14" y1="12" x2="10" y2="16"/></svg></div>
+          <h3>Nessuno standard codificato</h3>
+          <p>Impossibile insegnare al tool le convenzioni specifiche del progetto, gli stili di codice, i pattern
+            architetturali. Ogni suggerimento è generico.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: ECOSYSTEM -->
+    <div class="slide content-slide" data-slide="3">
+      <h2 class="slide-title anim d1">Un sistema integrato, non un semplice autocomplete</h2>
+      <p class="section-desc anim d2">Claude Code è un assistente agentico a riga di comando con accesso completo al
+        codebase, capacità di eseguire comandi, e un protocollo aperto per connettersi a qualsiasi tool aziendale.</p>
+      <div class="flow anim d3" style="justify-content:flex-start">
+        <div class="flow-node">
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+          <div class="fn-label">Claude Code</div>
+          <div class="fn-sub">CLI agentico nel terminale</div>
+        </div>
+        <div class="flow-arrow">&#x27F6;</div>
+        <div class="flow-node">
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <div class="fn-label">MCP Protocol</div>
+          <div class="fn-sub">Connessione a 10.000+ tool</div>
+        </div>
+        <div class="flow-arrow">&#x27F6;</div>
+        <div class="flow-node">
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+          <div class="fn-label">Skills</div>
+          <div class="fn-sub">Standard codificati</div>
+        </div>
+        <div class="flow-arrow">&#x27F6;</div>
+        <div class="flow-node">
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <div class="fn-label">CLAUDE.md</div>
+          <div class="fn-sub">Cervello del progetto</div>
+        </div>
+      </div>
+      <div class="card-grid anim d4" style="margin-top:1.5rem">
+        <div class="card">
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <h3>Agentic, non passivo</h3>
+          <p>Legge il codebase, esegue test, crea branch, fa commit. Non si limita a suggerire — agisce.</p>
+        </div>
+        <div class="card">
+          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3>Open Standard</h3>
+          <p>MCP è un protocollo aperto (come USB-C per l'AI): qualsiasi tool può connettersi, senza vendor lock-in.</p>
+        </div>
+        <div class="card">
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          <h3>Multi-scope config</h3>
+          <p>4 livelli: Managed (enterprise), User, Project e Local. Le policy aziendali hanno sempre priorità.
+            Condivisibili via version control.</p>
+        </div>
+      </div>
+      <div class="bench-note anim d5">Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)"
+          target="_blank" rel="noopener">Claude Code MCP</a> · <a href="https://claude.com/blog/1m-context-ga"
+          style="color:var(--accent)" target="_blank" rel="noopener">1M context GA</a> · <a
+          href="https://code.claude.com/docs/en/settings" style="color:var(--accent)" target="_blank"
+          rel="noopener">Settings (4 livelli)</a></div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: MCP ECOSYSTEM -->
+    <div class="slide content-slide" data-slide="4">
+      <h2 class="slide-title anim d1">Un protocollo. Migliaia di integrazioni.</h2>
+      <p class="section-desc anim d2">MCP è stato creato da Anthropic nel Nov 2024, adottato da OpenAI (Mar 2025) e
+        Google (Apr 2025), e donato all'Agentic AI Foundation sotto la Linux Foundation (Dic 2025). A Marzo 2026,
+        l'ecosistema conta oltre 10.000 server.</p>
+      <div class="metrics anim d2" style="margin-top:1rem;justify-content:flex-start">
+        <div class="metric">
+          <div class="value">10.000+</div>
+          <div class="label">MCP Server registrati *</div>
+        </div>
+        <div class="metric">
+          <div class="value">97M</div>
+          <div class="label">Download SDK mensili *</div>
+        </div>
+      </div>
+      <div class="bench-note" style="margin-top:.5rem">* Fonti: <a href="https://www.pulsemcp.com/servers"
+          style="color:var(--accent)" target="_blank" rel="noopener">pulsemcp.com</a>, <a
+          href="https://www.mcpevals.io/blog/mcp-statistics" style="color:var(--accent)" target="_blank"
+          rel="noopener">mcpevals.io</a>, <a
+          href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation"
+          style="color:var(--accent)" target="_blank" rel="noopener">anthropic.com</a></div>
+      <div class="card-grid anim d3"
+        style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));max-width:1100px;margin-top:1rem">
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/atlassian.svg" alt="Atlassian"
+              style="width:1.8rem;height:1.8rem"></div>
+          <h3 style="font-size:.85rem">Atlassian</h3>
+          <p style="font-size:.72rem">Jira · Confluence · Compass</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/splunk.svg" alt="Splunk" style="width:1.8rem;height:1.8rem">
+          </div>
+          <h3 style="font-size:.85rem">Splunk</h3>
+          <p style="font-size:.72rem">Search · Index · KV Store</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/github.svg" alt="GitHub" style="width:1.8rem;height:1.8rem">
+          </div>
+          <h3 style="font-size:.85rem">GitHub</h3>
+          <p style="font-size:.72rem">Repos · Issues · PR · Actions</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/slack.svg" alt="Slack" style="width:1.8rem;height:1.8rem">
+          </div>
+          <h3 style="font-size:.85rem">Slack</h3>
+          <p style="font-size:.72rem">Messaggi · Canali · Search</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/postgresql.svg" alt="PostgreSQL"
+              style="width:1.8rem;height:1.8rem"></div>
+          <h3 style="font-size:.85rem">PostgreSQL</h3>
+          <p style="font-size:.72rem">Query · Schema · Migration</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/aws.svg" alt="AWS" style="width:1.8rem;height:1.8rem"></div>
+          <h3 style="font-size:.85rem">AWS</h3>
+          <p style="font-size:.72rem">ECS · EKS · Serverless</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/salesforce.svg" alt="Salesforce"
+              style="width:1.8rem;height:1.8rem"></div>
+          <h3 style="font-size:.85rem">Salesforce</h3>
+          <p style="font-size:.72rem">CRM · Leads · Pipeline</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/figma.svg" alt="Figma" style="width:1.8rem;height:1.8rem">
+          </div>
+          <h3 style="font-size:.85rem">Figma</h3>
+          <p style="font-size:.72rem">Design · Components · Inspect</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/playwright.svg" alt="Playwright"
+              style="width:1.8rem;height:1.8rem"></div>
+          <h3 style="font-size:.85rem">Playwright</h3>
+          <p style="font-size:.72rem">Browser · Test · Scraping</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/notion.svg" alt="Notion" style="width:1.8rem;height:1.8rem">
+          </div>
+          <h3 style="font-size:.85rem">Notion</h3>
+          <p style="font-size:.72rem">Pages · Database · Wiki</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/terraform.svg" alt="Terraform"
+              style="width:1.8rem;height:1.8rem"></div>
+          <h3 style="font-size:.85rem">Terraform</h3>
+          <p style="font-size:.72rem">IaC · Plan · Apply · State</p>
+        </div>
+        <div class="card" style="padding:1rem;text-align:center">
+          <div style="margin-bottom:.4rem"><img src="logo/gmail.svg" alt="Gmail" style="width:1.8rem;height:1.8rem">
+          </div>
+          <h3 style="font-size:.85rem">Gmail / GCal</h3>
+          <p style="font-size:.72rem">Email · Calendar · Drive</p>
+        </div>
+      </div>
+      <div class="bench-note anim d4">
+        Atlassian e Splunk sono già nel vostro stack. L'integrazione richiede un singolo comando CLI.<br>
+        L'ecosistema include anche: Stripe, HubSpot, Zapier, Datadog, Sentry, MongoDB, Redis, Docker, Kubernetes, e
+        centinaia di altri.<br>
+        Fonti timeline: <a
+          href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation"
+          style="color:var(--accent)" target="_blank" rel="noopener">Anthropic (AAIF)</a> · <a
+          href="https://en.wikipedia.org/wiki/Model_Context_Protocol" style="color:var(--accent)" target="_blank"
+          rel="noopener">Wikipedia MCP</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: BENCHMARKS -->
+    <div class="slide content-slide" data-slide="5">
+      <h2 class="slide-title anim d1">I modelli sono alla pari. L'ecosistema fa la differenza.</h2>
+      <p class="section-desc anim d2">I top model sono entro 1-2 punti sui benchmark principali. Il vero differenziale
+        non è il punteggio del modello — è il tooling agentico, l'integrazione enterprise e il costo per task.</p>
+      <div class="bench-table anim d3">
+        <div class="brow bheader">
+          <div class="bcell">Modello / Agente</div>
+          <div class="bcell">SWE-bench Verified</div>
+          <div class="bcell">VibeCodeBench</div>
+          <div class="bcell">Terminal-Bench</div>
+          <div class="bcell">Contesto</div>
+          <div class="bcell">Costo /M tok</div>
+        </div>
+        <div class="brow" style="background:rgba(230,0,0,.04);border-left:3px solid var(--accent)">
+          <div class="bcell bname" style="color:var(--accent)">Claude Code (agente)</div>
+          <div class="bcell"><span class="bval gold">80.9%</span></div>
+          <div class="bcell"><span class="bval normal">—</span></div>
+          <div class="bcell"><span class="bval normal">—</span></div>
+          <div class="bcell"><span class="bval gold">1M</span></div>
+          <div class="bcell"><span class="bval normal">MCP + Skills</span></div>
+        </div>
+        <div class="brow">
+          <div class="bcell bname">Claude Opus 4.6</div>
+          <div class="bcell"><span class="bval gold">80.8%</span></div>
+          <div class="bcell"><span class="bval silver">57.6%</span></div>
+          <div class="bcell"><span class="bval silver">69.9%</span></div>
+          <div class="bcell"><span class="bval gold">1M</span></div>
+          <div class="bcell"><span class="bval bronze">$5 / $25</span></div>
+        </div>
+        <div class="brow">
+          <div class="bcell bname">Claude Sonnet 4.6</div>
+          <div class="bcell"><span class="bval silver">79.6%</span></div>
+          <div class="bcell"><span class="bval normal">~51%</span></div>
+          <div class="bcell"><span class="bval normal">~62%</span></div>
+          <div class="bcell"><span class="bval gold">1M</span></div>
+          <div class="bcell"><span class="bval silver">$3 / $15</span></div>
+        </div>
+        <div class="brow">
+          <div class="bcell bname">GPT-5.4</div>
+          <div class="bcell"><span class="bval silver">~80%</span></div>
+          <div class="bcell"><span class="bval gold">67.4%</span></div>
+          <div class="bcell"><span class="bval gold">75.1%</span></div>
+          <div class="bcell"><span class="bval silver">1M (Codex)</span></div>
+          <div class="bcell"><span class="bval silver">$2.5 / $15</span></div>
+        </div>
+        <div class="brow">
+          <div class="bcell bname">Gemini 3.1 Pro</div>
+          <div class="bcell"><span class="bval silver">80.6%</span></div>
+          <div class="bcell"><span class="bval bronze">~48%</span></div>
+          <div class="bcell"><span class="bval silver">68.5%</span></div>
+          <div class="bcell"><span class="bval gold">1M</span></div>
+          <div class="bcell"><span class="bval silver">$2 / $12</span></div>
+        </div>
+        <div class="brow">
+          <div class="bcell bname">DeepSeek V3.2</div>
+          <div class="bcell"><span class="bval bronze">~73%</span></div>
+          <div class="bcell"><span class="bval bronze">~42%</span></div>
+          <div class="bcell"><span class="bval bronze">~55%</span></div>
+          <div class="bcell"><span class="bval bronze">128K</span></div>
+          <div class="bcell"><span class="bval gold">$0.3 / $1.2</span></div>
+        </div>
+      </div>
+      <div class="bench-note anim d4">
+        <strong style="color:var(--accent)" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> I punteggi in tabella vanno
+          verificati sui leaderboard live prima della presentazione:</strong><br>
+        <a href="https://www.swebench.com" style="color:var(--accent)" target="_blank" rel="noopener">swebench.com</a> ·
+        <a href="https://valsai.com" style="color:var(--accent)" target="_blank" rel="noopener">valsai.com
+          (VibeCodeBench)</a> · <a href="https://morphllm.com" style="color:var(--accent)" target="_blank"
+          rel="noopener">morphllm.com (Terminal-Bench)</a><br>
+        <strong>Lettura chiave:</strong> il tooling conta più del punteggio raw del modello. Nessun competitor offre MCP
+        nativo + Skills + CLAUDE.md + config enterprise a 4 livelli.
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: ATLASSIAN -->
+    <div class="slide content-slide" data-slide="6">
+      <h2 class="slide-title anim d1">Jira integrato nel terminale</h2>
+      <p class="section-desc anim d2">L'MCP Server ufficiale Atlassian Rovo connette Claude Code a Jira, Confluence e
+        Compass. Ricerca issue, crea ticket, transiziona stati — tutto in linguaggio naturale.</p>
+      <div class="slide-body anim d3">
+        <div class="card-grid">
+          <div class="card">
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <h3>Query in linguaggio naturale</h3>
+            <p>"Mostrami i bug critici assegnati a me nello sprint corrente" — Claude traduce in JQL e restituisce i
+              risultati.</p>
+          </div>
+          <div class="card">
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+            <h3>CRUD completo su Issue</h3>
+            <p>Crea story, bug, task con tutti i campi. Aggiorna status, aggiunge commenti, assegna priorità. Tutto dal
+              terminale.</p>
+          </div>
+          <div class="card">
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <h3>Workflow automation</h3>
+            <p>Converti meeting notes in ticket Jira. Trasforma spec Confluence in backlog strutturati con gerarchia
+              Epic.</p>
+          </div>
+        </div>
+        <div class="code-block"><span class="cm"># Setup: un solo comando</span>
+          <span class="fn">claude</span> mcp add --transport http atlassian \
+          https://mcp.atlassian.com/v1/mcp
+
+          <span class="cm"># Poi, nel terminale:</span>
+          <span class="acc">"Implementa la feature descritta in JIRA-4521</span>
+          <span class="acc"> e crea una PR su GitHub"</span>
+          <span class="cm"># → Claude legge il ticket, scrive il codice, apre la PR</span>
+        </div>
+      </div>
+      <div class="bench-note anim d4">Fonte: <a
+          href="https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/"
+          style="color:var(--accent)" target="_blank" rel="noopener">Atlassian Rovo MCP Server — Getting Started</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: SPLUNK -->
+    <div class="slide content-slide" data-slide="7">
+      <h2 class="slide-title anim d1">Interroga Splunk senza scrivere SPL</h2>
+      <p class="section-desc anim d2">L'MCP Server per Splunk Cloud trasforma l'istanza in una piattaforma AI-native con
+        13 tool, ricerche in linguaggio naturale e rispetto dei permessi esistenti.</p>
+      <div class="slide-body anim d3">
+        <div class="card-grid">
+          <div class="card">
+            <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <h3>Query Naturali</h3>
+            <p>"Quanti login falliti nelle ultime 24 ore?" — Claude genera l'SPL, esegue la query, e restituisce
+              un'analisi in italiano.</p>
+          </div>
+          <div class="card">
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <h3>Index & KV Store</h3>
+            <p>Gestione index, ispezione metadata, operazioni CRUD su KV Store collections. Tutto via linguaggio
+              naturale.</p>
+          </div>
+          <div class="card">
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Sicurezza enterprise</h3>
+            <p>Rispetta autenticazione e ACL esistenti. Logging completo per audit. Nessun dato esposto fuori dal
+              network aziendale.</p>
+          </div>
+        </div>
+        <div class="code-block"><span class="cm"># Scenario reale: Threat Hunting</span>
+          <span class="acc">"Analizza le attività sospette dell'ultima ora</span>
+          <span class="acc"> nell'index security e correla con gli alert"</span>
+
+          <span class="cm"># Claude:</span>
+          <span class="cm"># 1. Traduce in SPL ottimizzato</span>
+          <span class="cm"># 2. Esegue la query via MCP</span>
+          <span class="cm"># 3. Analizza e sintetizza i risultati</span>
+          <span class="cm"># 4. Propone azioni di remediation</span>
+        </div>
+      </div>
+      <div class="bench-note anim d4">Fonte: <a
+          href="https://help.splunk.com/en/splunk-cloud-platform/mcp-server-for-splunk-platform/mcp-server-tools"
+          style="color:var(--accent)" target="_blank" rel="noopener">Splunk MCP Server — Tools Reference</a> (9 tool
+        core + 4 AI Assistant SPL)</div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: GITHUB PR -->
+    <div class="slide content-slide" data-slide="8">
+      <h2 class="slide-title anim d1">Pull Request automatiche su GitHub</h2>
+      <p class="section-desc anim d2">Claude Code si integra nativamente con GitHub: crea PR, revisiona codice con agenti multi-livello, e risponde a menzioni <code>@claude</code> direttamente nelle issue e PR.</p>
+      <div class="slide-body anim d3">
+        <div class="card-grid">
+          <div class="card">
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div>
+            <h3>PR da conversazione</h3>
+            <p>"Implementa la feature JIRA-123 e apri una PR" — Claude scrive il codice, crea il branch, e apre la Pull Request con descrizione strutturata.</p>
+          </div>
+          <div class="card">
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <h3>Code Review multi-agente</h3>
+            <p>Una flotta di agenti specializzati analizza le modifiche nel contesto dell'intero codebase. Trova bug, vulnerabilità e regressioni con severity tagging.</p>
+          </div>
+          <div class="card">
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg></div>
+            <h3>@claude nelle PR e Issue</h3>
+            <p>Menziona <code>@claude</code> in qualsiasi commento GitHub per chiedere fix, implementazioni o spiegazioni. Rispetta le regole in CLAUDE.md.</p>
+          </div>
+        </div>
+        <div class="code-block"><span class="cm"># Setup GitHub Action</span>
+<span class="kw">- uses:</span> anthropics/claude-code-action@v1
+  <span class="kw">with:</span>
+    <span class="str">anthropic_api_key</span>: ${{ secrets.ANTHROPIC_API_KEY }}
+
+<span class="cm"># Poi, in qualsiasi PR o Issue:</span>
+<span class="acc">@claude fix the TypeError in the dashboard</span>
+<span class="acc">@claude review this PR</span>
+<span class="cm"># → Claude analizza, implementa, commenta inline</span>
+        </div>
+      </div>
+      <div class="bench-note anim d4">
+        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro ($20/mo). GitHub Action con API key (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
+        Fonti: <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank" rel="noopener">GitHub Actions Docs</a> · <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank" rel="noopener">Code Review Docs</a> · <a href="https://github.com/anthropics/claude-code-action" style="color:var(--accent)" target="_blank" rel="noopener">claude-code-action repo</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: SKILLS -->
+    <div class="slide content-slide" data-slide="9">
+      <h2 class="slide-title anim d1">Insegna a Claude le regole del tuo team</h2>
+      <p class="section-desc anim d2">Le Skills sono moduli riutilizzabili che codificano conoscenza di dominio,
+        workflow e best practice. Si attivano automaticamente quando servono, si condividono via Git.</p>
+      <div class="slide-body anim d3">
+        <div class="card-grid">
+          <div class="card">
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+            <h3>Struttura modulare</h3>
+            <p>Ogni Skill è una directory con SKILL.md + script + template. Attivazione automatica basata sul contesto —
+              nessun invoke manuale.</p>
+          </div>
+          <div class="card">
+            <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="18"/><line x1="15" y1="22" x2="15" y2="18"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/></svg></div>
+            <h3>Gerarchia enterprise</h3>
+            <p>4 livelli: Managed → User → Project → Local. Le policy aziendali hanno sempre la priorità. Configurabili
+              dal team IT centrale.</p>
+          </div>
+          <div class="card">
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <h3>Versionati in Git</h3>
+            <p>Le Skills vivono in <code>.claude/skills/</code> nel repo. Ogni dev ha gli stessi standard. Cambio? Un
+              commit e tutti sono allineati.</p>
+          </div>
+        </div>
+        <div class="code-block"><span class="cm"># Esempio: Skill per standard Python OT Consulting</span>
+          <span class="kw">.claude/skills/ot-python-standard/</span>
+          ├── <span class="str">SKILL.md</span> <span class="cm"># Regole codice, pattern, naming</span>
+          ├── <span class="str">templates/</span> <span class="cm"># Boilerplate per nuovi moduli</span>
+          ├── <span class="str">scripts/</span>
+          │ └── <span class="str">validate.sh</span> <span class="cm"># Linting + type check automatico</span>
+          └── <span class="str">examples/</span> <span class="cm"># Output di riferimento</span>
+
+          <span class="cm"># Claude lo carica automaticamente quando lavori su .py</span>
+          <span class="cm"># e applica le convenzioni OT Consulting</span>
+        </div>
+      </div>
+      <div class="bench-note anim d4">Fonti: <a href="https://code.claude.com/docs/en/skills"
+          style="color:var(--accent)" target="_blank" rel="noopener">code.claude.com/docs/skills</a> · <a
+          href="https://github.com/anthropics/skills" style="color:var(--accent)" target="_blank"
+          rel="noopener">github.com/anthropics/skills</a> · <a href="https://code.claude.com/docs/en/settings"
+          style="color:var(--accent)" target="_blank" rel="noopener">code.claude.com/docs/settings</a></div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: CLAUDE.md -->
+    <div class="slide content-slide" data-slide="10">
+      <h2 class="slide-title anim d1">Onboarding istantaneo su ogni repository</h2>
+      <p class="section-desc anim d2">CLAUDE.md è un file alla root del progetto che insegna a Claude il WHY, WHAT e HOW
+        del codebase. Come un senior engineer che conosce tutto il progetto — disponibile dal giorno 1.</p>
+      <div class="card-grid anim d3">
+        <div class="card">
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+          <h3>WHY — Scopo del progetto</h3>
+          <p>Perché esiste questo repo? Quali problemi risolve? Quali sono i vincoli di business? Claude comprende il
+            contesto strategico.</p>
+        </div>
+        <div class="card">
+          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+          <h3>WHAT — Mappa del codebase</h3>
+          <p>Struttura directory, tech stack, dipendenze, architettura. Claude sa dove cercare e come navigare il
+            progetto.</p>
+        </div>
+        <div class="card">
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3>HOW — Come lavorare</h3>
+          <p>Comandi di build/test, convenzioni di naming, git workflow, deploy. Claude lavora come farebbe un membro
+            del team.</p>
+        </div>
+      </div>
+      <div class="bench-note anim d4">Fonte: <a href="https://code.claude.com/docs/en/memory"
+          style="color:var(--accent)" target="_blank" rel="noopener">code.claude.com/docs/memory</a> — How Claude
+        remembers your project</div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: ENTERPRISE WORKFLOW -->
+    <div class="slide content-slide" data-slide="11">
+      <h2 class="slide-title anim d1">Il workflow Enterprise con l'ecosistema Claude</h2>
+      <p class="section-desc anim d2">Dalla pianificazione alla chiusura progetto — come una società di consulenza enterprise gestisce l'intero ciclo di vita, incluse change request e ticketing AM, con Claude.</p>
+
+      <div class="flow anim d3" style="margin-top:.75rem;gap:.5rem">
+        <div class="flow-node" style="border-color:var(--accent);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="16" y1="11" x2="8" y2="11"/><line x1="16" y1="15" x2="8" y2="15"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Plan</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:var(--purple);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Design</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:var(--blue);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Code</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:var(--green);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Test & Review</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:var(--orange);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Deploy</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:var(--muted);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Monitor & AM</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:#b45309;min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Change Req</div>
+        </div>
+        <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
+        <div class="flow-node" style="border-color:var(--accent);min-width:110px;padding:.6rem .8rem">
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <div class="fn-label" style="font-size:.75rem">Chiusura</div>
+        </div>
+      </div>
+
+      <div class="compare workflow anim d4" style="margin-top:.75rem;max-width:100%">
+        <div class="compare-row header">
+          <div class="compare-cell">Fase</div>
+          <div class="compare-cell">Azione</div>
+          <div class="compare-cell">Strumento</div>
+          <div class="compare-cell">Integrazione</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="16" y1="11" x2="8" y2="11"/><line x1="16" y1="15" x2="8" y2="15"/></svg>Plan</div>
+          <div class="compare-cell" style="font-size:.72rem">PM crea epic su Jira. Claude analizza i requisiti e genera story strutturate con criteri di accettazione.</div>
+          <div class="compare-cell"><span class="badge mid">Claude Desktop</span></div>
+          <div class="compare-cell"><span class="badge good">Jira MCP</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>Design</div>
+          <div class="compare-cell" style="font-size:.72rem">Da wireframe o descrizione, Claude genera un mockup interattivo funzionante (HTML/JS) come Artifact.</div>
+          <div class="compare-cell"><span class="badge mid">Artifacts</span></div>
+          <div class="compare-cell"><span class="badge good">Figma MCP</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</div>
+          <div class="compare-cell" style="font-size:.72rem">Dev chiede a Claude Code di implementare la feature. Sub-agent paralleli su worktree isolati. Rispetta CLAUDE.md e Skills.</div>
+          <div class="compare-cell"><span class="badge mid">Claude Code CLI</span></div>
+          <div class="compare-cell"><span class="badge good">Skills + CLAUDE.md</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Test & Review</div>
+          <div class="compare-cell" style="font-size:.72rem">Claude genera test, esegue la suite, apre la PR. Code Review multi-agente analizza il diff e commenta inline.</div>
+          <div class="compare-cell"><span class="badge mid">Code Review</span></div>
+          <div class="compare-cell"><span class="badge good">GitHub Actions</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg>Deploy</div>
+          <div class="compare-cell" style="font-size:.72rem">CI/CD in headless mode: changelog automatico, migration check, deploy. Hook post-commit per notifiche Slack.</div>
+          <div class="compare-cell"><span class="badge mid">Headless CI/CD</span></div>
+          <div class="compare-cell"><span class="badge good">Hooks + Slack</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Monitor & AM</div>
+          <div class="compare-cell" style="font-size:.72rem">Splunk per threat hunting, Sentry per errori prod. Ticket AM gestiti via Jira MCP: triage, assegnazione e SLA tracking automatizzati.</div>
+          <div class="compare-cell"><span class="badge mid">Channels + /loop</span></div>
+          <div class="compare-cell"><span class="badge good">Splunk + Sentry + Jira MCP</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Change Request</div>
+          <div class="compare-cell" style="font-size:.72rem">CR ricevuta dal cliente: Claude analizza l'impatto sul codebase, stima effort, genera le story su Jira e avvia l'implementazione. Ciclo Code → Review → Deploy integrato.</div>
+          <div class="compare-cell"><span class="badge mid">Claude Code CLI</span></div>
+          <div class="compare-cell"><span class="badge good">Jira + GitHub MCP</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Chiusura</div>
+          <div class="compare-cell" style="font-size:.72rem">Claude genera il report di completamento: summary delle PR, copertura test, metriche di qualità. Chiude le epic su Jira, archivia la documentazione su Confluence e consegna il deliverable al PM.</div>
+          <div class="compare-cell"><span class="badge mid">Claude Desktop</span></div>
+          <div class="compare-cell"><span class="badge good">Jira + Confluence MCP</span></div>
+        </div>
+      </div>
+
+      <div class="bench-note anim d5">
+        Fonti: <a href="https://code.claude.com/docs/en/overview" style="color:var(--accent)" target="_blank" rel="noopener">Claude Code Overview</a> ·
+        <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank" rel="noopener">GitHub Actions</a> ·
+        <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank" rel="noopener">Code Review</a> ·
+        <a href="https://code.claude.com/docs/en/hooks-guide" style="color:var(--accent)" target="_blank" rel="noopener">Hooks</a> ·
+        <a href="https://code.claude.com/docs/en/sub-agents" style="color:var(--accent)" target="_blank" rel="noopener">Sub-agents</a> ·
+        <a href="https://code.claude.com/docs/en/headless" style="color:var(--accent)" target="_blank" rel="noopener">Headless CI/CD</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: ROI -->
+    <div class="slide content-slide" data-slide="12">
+      <h2 class="slide-title anim d1">ROI concreto e misurabile</h2>
+      <div class="metrics anim d2" style="justify-content:flex-start;margin-top:1rem">
+        <div class="metric">
+          <div class="value">-70%</div>
+          <div class="label">Context-switching *</div>
+        </div>
+        <div class="metric">
+          <div class="value">-50%</div>
+          <div class="label">Tempo review ciclo *</div>
+        </div>
+        <div class="metric">
+          <div class="value">+40%</div>
+          <div class="label">Velocità delivery *</div>
+        </div>
+      </div>
+      <div class="bench-note" style="margin-top:.25rem;font-style:italic">* Stime interne basate su osservazioni degli
+        Ambassador durante il periodo di test. Non derivate da studi pubblicati.</div>
+      <div class="card-grid anim d3">
+        <div class="card">
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+          <h3>Meno tool, meno costi</h3>
+          <p>Un unico sistema sostituisce Copilot + plugin Jira + dashboard Splunk manuali. Consolidamento licenze e
+            flussi.</p>
+        </div>
+        <div class="card">
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          <h3>Onboarding 10x più veloce</h3>
+          <p>CLAUDE.md + Skills = ogni nuovo dev è operativo dal giorno 1. Lo standard del progetto è embedded nel tool,
+            non in wiki obsolete.</p>
+        </div>
+        <div class="card">
+          <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <h3>Standard garantiti</h3>
+          <p>Le Skills enterprise impongono code quality, pattern architetturali e security check. Impossibile
+            bypassarli — sono nel DNA del tool.</p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: COMPARISON -->
+    <div class="slide content-slide" data-slide="13">
+      <h2 class="slide-title anim d1">Claude vs Copilot vs Gemini</h2>
+      <div class="compare anim d2">
+        <div class="compare-row header">
+          <div class="compare-cell">Capacità</div>
+          <div class="compare-cell">Claude Code</div>
+          <div class="compare-cell">GitHub Copilot</div>
+          <div class="compare-cell">Gemini Code</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Contesto codebase</div>
+          <div class="compare-cell"><span class="badge good">1M token</span></div>
+          <div class="compare-cell"><span class="badge bad">File aperto</span></div>
+          <div class="compare-cell"><span class="badge good">1M token</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">MCP Protocol (Jira, Splunk)</div>
+          <div class="compare-cell"><span class="badge good">Nativo</span></div>
+          <div class="compare-cell"><span class="badge mid">VS Code GA</span></div>
+          <div class="compare-cell"><span class="badge mid">Agent mode</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Skills / Standard codificati</div>
+          <div class="compare-cell"><span class="badge good">SKILL.md</span></div>
+          <div class="compare-cell"><span class="badge mid">.github/copilot</span></div>
+          <div class="compare-cell"><span class="badge mid">.gemini/skills</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Esecuzione agentica</div>
+          <div class="compare-cell"><span class="badge good">CLI completa</span></div>
+          <div class="compare-cell"><span class="badge bad">Solo IDE</span></div>
+          <div class="compare-cell"><span class="badge mid">CLI + IDE</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Config enterprise multi-scope</div>
+          <div class="compare-cell"><span class="badge good">4 livelli</span></div>
+          <div class="compare-cell"><span class="badge mid">Org policy</span></div>
+          <div class="compare-cell"><span class="badge bad">No</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">SWE-bench Verified</div>
+          <div class="compare-cell"><span class="badge good">80.8%</span></div>
+          <div class="compare-cell"><span class="badge mid">Vari modelli</span></div>
+          <div class="compare-cell"><span class="badge mid">80.6%</span></div>
+        </div>
+      </div>
+      <div class="bench-note anim d3" style="margin-top:.75rem">
+        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank"
+          rel="noopener">Claude Code MCP</a> · <a
+          href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp"
+          style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP (GA lug 2025)</a> · <a
+          href="https://geminicli.com/docs/cli/skills/" style="color:var(--accent)" target="_blank"
+          rel="noopener">Gemini Skills</a> · <a href="https://code.claude.com/docs/en/settings"
+          style="color:var(--accent)" target="_blank" rel="noopener">Claude Settings (4 livelli)</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: CONTEXT ROT -->
+    <div class="slide content-slide" data-slide="14">
+      <h2 class="slide-title anim d1">1M di contesto, senza perdere il filo</h2>
+      <p class="section-desc anim d2">Il <strong>context rot</strong> è il degrado delle prestazioni all'aumentare del contesto. A 1M di token, Opus 4.6 mantiene il <strong>78.3%</strong> di accuratezza — GPT-5.4 crolla al 36.6%, Gemini 3.1 Pro al 25.9%.</p>
+      <div class="slide-body anim d3" style="align-items:center">
+        <div class="card-grid" style="flex:0 0 320px">
+          <div class="card">
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+            <h3>Retrieval a 1M token</h3>
+            <p>Sul benchmark MRCR v2 (8-needle), Opus 4.6 recupera informazioni distribuite in tutto il contesto con il <strong>78.3%</strong> di match ratio — il doppio di GPT-5.4.</p>
+          </div>
+          <div class="card">
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+            <h3>Il problema dei competitor</h3>
+            <p>GPT-5.4 parte da ~80% a 128K ma crolla a <strong>36.6%</strong> a 1M. Gemini 3.1 Pro scende a <strong>25.9%</strong>. Sonnet 4.5 è inutilizzabile (18.5%).</p>
+          </div>
+          <div class="card">
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h3>Impatto pratico</h3>
+            <p>Codebase grandi, log estesi, documentazione complessa — Claude mantiene coerenza dove gli altri "dimenticano" le informazioni iniziali.</p>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center">
+          <img src="public/context_rot.webp" alt="MRCR v2 benchmark — Long context retrieval" style="width:100%;max-width:640px;border-radius:10px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.06)">
+        </div>
+      </div>
+      <div class="bench-note anim d4">
+        Benchmark: MRCR v2, 8-needle. Gemini misurato da Context Arena sullo stesso benchmark, non self-report Google. Score OpenAI è media 128K–256K.<br>
+        Fonte: <a href="https://www.anthropic.com/news/claude-model-spec-spec" style="color:var(--accent)" target="_blank" rel="noopener">Anthropic — Claude 4.6 Model Card</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: ARTIFACTS INTERATTIVI -->
+    <div class="slide content-slide" data-slide="15">
+      <h2 class="slide-title anim d1">Mockup interattivi, non immagini statiche</h2>
+      <p class="section-desc anim d2">Claude Desktop genera <strong>artifacts interattivi</strong> — vero codice HTML,
+        CSS e JavaScript eseguito live nel browser. Gemini genera un'immagine statica non modificabile.</p>
+      <div class="slide-body anim d3">
+        <div class="card-grid" style="flex:1">
+          <div class="card" style="border-color:var(--green);border-width:2px">
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h3 style="color:var(--green)">Claude Desktop — Artifact</h3>
+            <p>Genera <strong>codice reale</strong> (HTML + JS) che gira dentro la chat. Mockup interattivo:
+              cliccabile, navigabile, con stato e animazioni. Iterabile e scaricabile.</p>
+            <ul style="margin-top:.3rem;font-size:.75rem;color:var(--muted);line-height:1.45;padding-left:1.1rem">
+              <li>Codice sorgente visibile e modificabile</li>
+              <li>Esportabile come file .html standalone</li>
+              <li>Iterazione conversazionale sul design</li>
+              <li>React, Chart.js, D3, Tailwind supportati</li>
+            </ul>
+          </div>
+          <div class="card" style="border-color:var(--red);border-width:2px">
+            <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <h3 style="color:var(--red)">Gemini — Immagine statica</h3>
+            <p>Alla stessa richiesta, Gemini genera un'<strong>immagine PNG/JPG</strong>
+              tramite image generation. Il risultato è un'illustrazione non funzionante.</p>
+            <ul style="margin-top:.3rem;font-size:.75rem;color:var(--muted);line-height:1.45;padding-left:1.1rem">
+              <li>Nessun codice generato — solo pixel</li>
+              <li>Non cliccabile, non navigabile</li>
+              <li>Impossibile iterare sui dettagli</li>
+              <li>Non utilizzabile per lo sviluppo</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card"
+          style="flex:0 0 280px;background:var(--surface);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:1.25rem">
+          <div>
+            <div
+              style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:.3rem">
+              Claude</div>
+            <div
+              style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:.7rem;font-family:'Space Mono',monospace;font-size:.6rem;text-align:left;color:var(--muted);line-height:1.5">
+              <span style="color:var(--purple)">&lt;button</span> <span style="color:var(--blue)">onclick</span>=<span
+                style="color:var(--green)">"toggle()"</span><span style="color:var(--purple)">&gt;</span><br>
+              &nbsp;&nbsp;Click me<br>
+              <span style="color:var(--purple)">&lt;/button&gt;</span><br>
+              <span style="color:#999">// → codice vero, funzionante</span>
+            </div>
+          </div>
+          <div style="font-size:1rem;color:var(--muted)">vs</div>
+          <div>
+            <div
+              style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);margin-bottom:.3rem">
+              Gemini</div>
+            <div
+              style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:.7rem;display:flex;align-items:center;justify-content:center;min-height:45px">
+              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>immagine_dashboard.png</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bench-note anim d4" style="margin-top:.4rem">
+        Artifacts: HTML/CSS/JS, React, SVG, Mermaid, Markdown. Disponibili su Claude.ai, Claude Desktop e app mobile.
+        <a href="https://support.anthropic.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them"
+          style="color:var(--accent)" target="_blank" rel="noopener">Fonte</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: PRICING COMPARISON -->
+    <div class="slide content-slide" data-slide="16">
+      <h2 class="slide-title anim d1">Costi a confronto: Claude vs competitor</h2>
+      <p class="section-desc anim d2">Prezzi per utente/mese dei principali piani. Claude offre Claude Code incluso dal piano Pro; i competitor richiedono add-on o tier separati per funzionalità equivalenti.</p>
+      <div class="compare pricing anim d3">
+        <div class="compare-row header">
+          <div class="compare-cell">Piano</div>
+          <div class="compare-cell">Claude</div>
+          <div class="compare-cell">ChatGPT</div>
+          <div class="compare-cell">Copilot</div>
+          <div class="compare-cell">Gemini</div>
+          <div class="compare-cell" style="justify-content:center">Info</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Free</div>
+          <div class="compare-cell"><span class="badge good">$0</span></div>
+          <div class="compare-cell"><span class="badge good">$0</span></div>
+          <div class="compare-cell"><span class="badge good">$0</span></div>
+          <div class="compare-cell"><span class="badge good">$0</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('free')">!</button></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Personal base</div>
+          <div class="compare-cell"><span class="badge good">$20 Pro</span></div>
+          <div class="compare-cell"><span class="badge good">$20 Plus</span></div>
+          <div class="compare-cell"><span class="badge good">$10 Pro</span></div>
+          <div class="compare-cell"><span class="badge mid">$22 AI Pro</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('base')">!</button></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Personal premium</div>
+          <div class="compare-cell"><span class="badge mid">$100–200 Max</span></div>
+          <div class="compare-cell"><span class="badge bad">$200 Pro</span></div>
+          <div class="compare-cell"><span class="badge mid">$39 Pro+</span></div>
+          <div class="compare-cell"><span class="badge bad">$275 AI Ultra</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('premium')">!</button></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Team / Business</div>
+          <div class="compare-cell"><span class="badge good">$25–30</span></div>
+          <div class="compare-cell"><span class="badge mid">$25–30</span></div>
+          <div class="compare-cell"><span class="badge good">$19</span></div>
+          <div class="compare-cell"><span class="badge mid">In Workspace</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('team')">!</button></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Enterprise</div>
+          <div class="compare-cell"><span class="badge mid">Custom</span></div>
+          <div class="compare-cell"><span class="badge bad">~$60 (min 150)</span></div>
+          <div class="compare-cell"><span class="badge mid">$39+$21 GH</span></div>
+          <div class="compare-cell"><span class="badge mid">Custom</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('enterprise')">!</button></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Coding agent</div>
+          <div class="compare-cell"><span class="badge good">Da Pro</span></div>
+          <div class="compare-cell"><span class="badge bad">Solo API</span></div>
+          <div class="compare-cell"><span class="badge good">Da Pro</span></div>
+          <div class="compare-cell"><span class="badge mid">Da AI Pro</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('agent')">!</button></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Code Review PR</div>
+          <div class="compare-cell"><span class="badge good">Team / Ent</span></div>
+          <div class="compare-cell"><span class="badge bad">No</span></div>
+          <div class="compare-cell"><span class="badge good">Da Pro</span></div>
+          <div class="compare-cell"><span class="badge bad">No</span></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('review')">!</button></div>
+        </div>
+      </div>
+
+      <!-- Modal differenze -->
+      <div class="modal-overlay" id="diffModal" onclick="closeDiff(event)">
+        <div class="modal-box" style="position:relative">
+          <button class="modal-close" onclick="closeDiff()">&times;</button>
+          <h3 id="diffTitle"></h3>
+          <ul id="diffBody"></ul>
+        </div>
+      </div>
+      <div class="bench-note anim d4">
+        Prezzi in USD, aggiornati a Marzo 2026. Gemini AI Pro/Ultra in EUR (~stessa cifra). Workspace include ora Gemini senza add-on separato.<br>
+        Fonti: <a href="https://claude.com/pricing" style="color:var(--accent)" target="_blank" rel="noopener">claude.com/pricing</a> ·
+        <a href="https://chatgpt.com/pricing/" style="color:var(--accent)" target="_blank" rel="noopener">chatgpt.com/pricing</a> ·
+        <a href="https://github.com/features/copilot/plans" style="color:var(--accent)" target="_blank" rel="noopener">github.com/copilot/plans</a> ·
+        <a href="https://gemini.google/subscriptions/" style="color:var(--accent)" target="_blank" rel="noopener">gemini.google/subscriptions</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 17: TRAINING & CERTIFICATION -->
+    <div class="slide content-slide" data-slide="17">
+      <h2 class="slide-title anim d1">Formazione & Certificazione</h2>
+      <p class="section-desc anim d2">13 corsi gratuiti su Skilljar per tutti, più la certificazione ufficiale Claude
+        Certified Architect per le aziende nel Partner Network. Investimento Anthropic: $100M nel 2026.</p>
+      <div class="card-grid anim d3" style="max-width:1000px">
+        <div class="card">
+          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <h3>Anthropic Academy (gratuita)</h3>
+          <p>13 corsi self-paced su <strong>anthropic.skilljar.com</strong> — da Claude 101 alla costruzione di server
+            MCP avanzati in Python. Certificati di completamento per LinkedIn. Nessun paywall.</p>
+        </div>
+        <div class="card">
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <h3>Claude Certified Architect</h3>
+          <p>Esame proctored da 60 domande su architettura agentica, MCP, Claude Code e design di sistemi AI in
+            produzione. Gratuito per i primi 5.000 dipendenti partner, poi $99.</p>
+        </div>
+        <div class="card">
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Claude Partner Network</h3>
+          <p>Adesione gratuita per qualsiasi azienda. Include: accesso prioritario a certificazioni, Applied AI engineer
+            dedicati, co-marketing e sales playbook. OT Consulting può aderire subito.</p>
+        </div>
+      </div>
+      <div class="metrics anim d4" style="margin-top:1rem;justify-content:flex-start">
+        <div class="metric">
+          <div class="value">13</div>
+          <div class="label">Corsi gratuiti Skilljar</div>
+        </div>
+        <div class="metric">
+          <div class="value">$100M</div>
+          <div class="label">Investimento Anthropic 2026</div>
+        </div>
+        <div class="metric">
+          <div class="value">30K+</div>
+          <div class="label">Professionisti Accenture in training</div>
+        </div>
+      </div>
+      <div class="bench-note anim d5" style="margin-top:.75rem">
+        Registrazione esame:
+        <strong>anthropic.skilljar.com/claude-certified-architect-foundations-access-request</strong><br>
+        Partner già attivi: Accenture (30.000 professionisti), Cognizant (~350.000 dipendenti), Deloitte, Infosys.
+        Prossime cert nel 2026: sellers, architects, developers.<br>
+        Fonti: <a href="https://www.anthropic.com/news/claude-partner-network" style="color:var(--accent)"
+          target="_blank" rel="noopener">anthropic.com/news/claude-partner-network</a> · <a
+          href="https://news.cognizant.com/2025-11-04-Cognizant-Adopts-Anthropics-Claude-to-Accelerate-Enterprise-AI-Adoption-at-Scale"
+          style="color:var(--accent)" target="_blank" rel="noopener">news.cognizant.com</a> · <a
+          href="https://anthropic.skilljar.com/" style="color:var(--accent)" target="_blank"
+          rel="noopener">anthropic.skilljar.com</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">otconsulting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 18: CTA / GRAZIE -->
+    <div class="slide" data-slide="18" style="justify-content:center;align-items:center">
+      <div class="close-line"></div>
+      <div class="cover-dot-grid" style="top:2.5rem;left:2.5rem;right:auto">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="close-hex" style="display:flex;gap:0">
+        <div class="close-hex-filled"></div>
+        <div class="close-hex-outline" style="position:relative;top:20px;left:-15px"></div>
+      </div>
+      <h1 class="hero-title anim d1"
+        style="text-align:center;font-size:clamp(3rem,7vw,6rem);max-width:none;width:100%;margin-top:auto;margin-bottom:auto">
+        Pronti a fare il <span class="highlight">salto</span>?
+      </h1>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <button id="prev" onclick="go(-1)" disabled>&#x25C2;</button>
+    <div class="dots" id="dots"></div>
+    <button id="next" onclick="go(1)">&#x25B8;</button>
+    <div class="counter" id="counter">1 / 15</div>
+  </div>
+  <div class="kbd-hint">&larr; &rarr; oppure swipe per navigare</div>
+
+  <script>
+    /* --- Pricing diff modal --- */
+    const diffData = {
+      free: {
+        title: 'Free — Differenze tra i piani',
+        items: [
+          '<strong>Claude:</strong> Uso limitato di Sonnet, no Claude Code, contesto ridotto.',
+          '<strong>ChatGPT:</strong> GPT-4o mini, uso limitato, no image gen avanzata.',
+          '<strong>Copilot:</strong> 2.000 completamenti + 50 chat/mese, supporto CLI e MCP base.',
+          '<strong>Gemini:</strong> Gemini 3 Flash, 50 crediti AI/giorno, 15 GB storage.'
+        ]
+      },
+      base: {
+        title: 'Personal base — Differenze tra i piani',
+        items: [
+          '<strong>Claude Pro ($20):</strong> Opus 4.6 + Sonnet, Claude Code con limiti, contesto 1M, MCP nativo.',
+          '<strong>ChatGPT Plus ($20):</strong> GPT-4o completo, image gen, Advanced Voice, Deep Research.',
+          '<strong>Copilot Pro ($10):</strong> 300 richieste premium/mese, multi-modello (Anthropic, Google, OpenAI), coding agent.',
+          '<strong>Gemini AI Pro ($22):</strong> Gemini 3.1 Pro, 1.000 crediti AI/mese, Gemini Code Assist, 2 TB storage, YouTube Premium incluso.'
+        ]
+      },
+      premium: {
+        title: 'Personal premium — Differenze tra i piani',
+        items: [
+          '<strong>Claude Max ($100–200):</strong> 5x o 20x l\'uso Pro, Claude Code esteso, ideale per sviluppatori intensivi.',
+          '<strong>ChatGPT Pro ($200):</strong> Accesso illimitato a tutti i modelli incluso GPT-5.4 Pro, limiti massimi.',
+          '<strong>Copilot Pro+ ($39):</strong> 1.500 richieste premium/mese, GitHub Spark, tutti i modelli top.',
+          '<strong>Gemini AI Ultra ($275):</strong> 25.000 crediti AI/mese, Deep Think, Gemini Agent (US), 30 TB storage, Veo 3.1 completo.'
+        ]
+      },
+      team: {
+        title: 'Team / Business — Differenze tra i piani',
+        items: [
+          '<strong>Claude Team ($25–30):</strong> Seat Standard $25 (annuale) o $30 (mensile). Seat Premium $150 con Claude Code. Admin controls, min 5 utenti.',
+          '<strong>ChatGPT Business ($25–30):</strong> Ex "Team". Admin console, dati esclusi dal training, GPT-5.4 Thinking.',
+          '<strong>Copilot Business ($19):</strong> 300 richieste premium/utente, gestione utenti, IP indemnity, dati non usati per training.',
+          '<strong>Gemini (in Workspace):</strong> Ora incluso nei piani Workspace Business/Enterprise senza add-on separato. Costo base Workspace: $12–18/utente.'
+        ]
+      },
+      enterprise: {
+        title: 'Enterprise — Differenze tra i piani',
+        items: [
+          '<strong>Claude:</strong> Pricing custom con SSO/SAML, audit log, compliance API, retention configurabile, supporto dedicato.',
+          '<strong>ChatGPT (~$60, min 150 seat):</strong> Contratto annuale obbligatorio (~$108K/anno minimo). SSO, analytics admin, uso illimitato.',
+          '<strong>Copilot ($39 + $21 GH Enterprise):</strong> Totale ~$60/utente. 1.000 richieste premium, knowledge bases, sicurezza avanzata. Richiede GitHub Enterprise Cloud.',
+          '<strong>Gemini:</strong> Pricing custom via Google Sales. Integrato in Workspace Enterprise con compliance e sicurezza avanzata.'
+        ]
+      },
+      agent: {
+        title: 'Coding agent — Differenze tra i piani',
+        items: [
+          '<strong>Claude:</strong> Claude Code incluso dal piano Pro ($20). CLI agentica completa: legge il codebase, esegue comandi, crea PR. Estensibile via MCP e Skills.',
+          '<strong>ChatGPT:</strong> Nessun coding agent nativo. Codex è solo via API a pagamento separato, non incluso nei piani consumer.',
+          '<strong>Copilot:</strong> Coding agent disponibile da Pro ($10). Funziona in VS Code e CLI con supporto multi-modello.',
+          '<strong>Gemini:</strong> Gemini Code Assist disponibile dal piano AI Pro ($22). CLI con supporto agentico, integrazione IDE.'
+        ]
+      },
+      review: {
+        title: 'Code Review in PR — Differenze tra i piani',
+        items: [
+          '<strong>Claude:</strong> Review multi-agente su PR GitHub, disponibile solo per Team ed Enterprise. Flotta di agenti specializzati con severity tagging. ~$15–25 per review.',
+          '<strong>ChatGPT:</strong> Nessuna funzionalità nativa di code review su PR.',
+          '<strong>Copilot:</strong> Code review integrato nelle PR da piano Pro ($10). Suggerimenti inline direttamente su GitHub.',
+          '<strong>Gemini:</strong> Nessuna funzionalità nativa di code review su PR GitHub.'
+        ]
+      }
+    };
+
+    function openDiff(key) {
+      const d = diffData[key];
+      if (!d) return;
+      document.getElementById('diffTitle').textContent = d.title;
+      document.getElementById('diffBody').innerHTML = d.items.map(i => '<li>' + i + '</li>').join('');
+      document.getElementById('diffModal').classList.add('open');
+    }
+
+    function closeDiff(e) {
+      if (e && e.target !== e.currentTarget && !e.target.classList.contains('modal-close')) return;
+      document.getElementById('diffModal').classList.remove('open');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.getElementById('diffModal').classList.remove('open');
+    });
+
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    let cur = 0;
+
+    const dotsEl = document.getElementById('dots');
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(i);
+      dotsEl.appendChild(d);
+    }
+
+    function updateSlides() {
+      slides.forEach((s, i) => {
+        s.classList.remove('active', 'before');
+        if (i === cur) s.classList.add('active');
+        else if (i < cur) s.classList.add('before');
+      });
+      document.getElementById('prev').disabled = cur === 0;
+      document.getElementById('next').disabled = cur === total - 1;
+      document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+      document.getElementById('progress').style.width = `${(cur / (total - 1)) * 100}%`;
+      document.querySelectorAll('.dot').forEach((d, i) => {
+        d.className = 'dot' + (i === cur ? ' active' : '');
+      });
+    }
+
+    function goTo(n) {
+      if (n < 0 || n >= total || n === cur) return;
+      cur = n;
+      updateSlides();
+    }
+
+    function go(dir) { goTo(cur + dir); }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+
+    let tx = 0;
+    document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+    document.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) { dx < 0 ? go(1) : go(-1); }
+    });
+
+    updateSlides();
+  </script>
+</body>
+
+</html>
