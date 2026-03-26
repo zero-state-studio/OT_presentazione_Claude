@@ -97,25 +97,44 @@
 
     <!-- SLIDE 2: IL PROBLEMA -->
     <div class="slide content-slide" data-slide="2">
-      <h2 class="slide-title anim d1">I limiti di Copilot e Gemini nei workflow aziendali</h2>
-      <div class="card-grid anim d2">
-        <div class="card">
-          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
-          <h3>Contesto limitato</h3>
-          <p>Copilot vede solo il file corrente o pochi file aperti. Non comprende l'architettura del progetto, le
-            convenzioni del team, o il perché dietro le scelte tecniche.</p>
+      <h2 class="slide-title anim d1">Una giornata tipo senza il tool giusto</h2>
+      <p class="section-desc anim d2">Tre scenari reali in cui gli strumenti attuali rallentano il team. Copilot e Gemini hanno fatto passi avanti nel 2025, ma questi problemi restano.</p>
+      <div class="card-grid anim d3" style="grid-template-columns:1fr;max-width:1100px">
+        <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
+          <div>
+            <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">8x</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">meno contesto<br>vs Claude Code</div>
+          </div>
+          <div>
+            <h3>Il dev chiede "dove viene validato il pagamento?"</h3>
+            <p><strong>Con Copilot:</strong> contesto di 64K-128K token, ricerca a snippet indicizzati. Il tool trova frammenti ma non capisce il flusso end-to-end. Il dev deve navigare manualmente 15 file per ricostruire la catena.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> 1M di contesto continuo. Analizza l'intero codebase, segue le dipendenze e risponde con il flusso completo in secondi.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="16" y1="19" x2="16" y2="22"/><line x1="19" y1="16" x2="22" y2="16"/></svg></div>
-          <h3>Zero integrazione tool</h3>
-          <p>Nessuna connessione nativa a Jira, Splunk, Confluence. Lo sviluppatore continua a fare context-switching
-            tra IDE, browser e terminale.</p>
+        <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
+          <div>
+            <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="16" y1="19" x2="16" y2="22"/><line x1="19" y1="16" x2="22" y2="16"/></svg></div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">4</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">tool aperti<br>in parallelo</div>
+          </div>
+          <div>
+            <h3>Arriva un bug critico in produzione</h3>
+            <p><strong>Oggi:</strong> apri Splunk per i log, Jira per il ticket, GitHub per il codice, Slack per avvisare il team. Copilot e Gemini supportano MCP dal 2025, ma solo in IDE — non orchestrano il flusso.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> un unico comando nel terminale interroga Splunk, legge il codice, crea il fix, apre la PR e aggiorna il ticket Jira. Tutto via MCP nativo.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="10" y1="12" x2="14" y2="16"/><line x1="14" y1="12" x2="10" y2="16"/></svg></div>
-          <h3>Nessuno standard codificato</h3>
-          <p>Impossibile insegnare al tool le convenzioni specifiche del progetto, gli stili di codice, i pattern
-            architetturali. Ogni suggerimento è generico.</p>
+        <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
+          <div>
+            <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="10" y1="12" x2="14" y2="16"/><line x1="14" y1="12" x2="10" y2="16"/></svg></div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">1</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">livello di config<br>vs 4 in Claude</div>
+          </div>
+          <div>
+            <h3>Un nuovo dev entra nel progetto</h3>
+            <p><strong>Oggi:</strong> Copilot ha <code>copilot-instructions.md</code>, Gemini ha <code>styleguide.md</code> — file statici senza gerarchia. Ogni dev puo' ignorarli o sovrascriverli.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> CLAUDE.md a 4 livelli (Enterprise → User → Project → Local) + Skills componibili. Le policy aziendali hanno sempre priorita' — impossibile bypassarle.</p>
+          </div>
         </div>
       </div>
       <div class="slide-footer">
@@ -303,7 +322,7 @@
 
     <!-- SLIDE 5: BENCHMARKS -->
     <div class="slide content-slide" data-slide="5">
-      <h2 class="slide-title anim d1">I modelli sono alla pari. L'ecosistema fa la differenza.</h2>
+      <h2 class="slide-title anim d1">I modelli sono &ldquo;quasi&rdquo; alla pari. L'ecosistema fa la differenza.</h2>
       <p class="section-desc anim d2">I top model sono entro 1-2 punti sui benchmark principali. Il vero differenziale
         non è il punteggio del modello — è il tooling agentico, l'integrazione enterprise e il costo per task.</p>
       <div class="bench-table anim d3">
@@ -777,43 +796,44 @@
 
     <!-- SLIDE 13: COMPARISON -->
     <div class="slide content-slide" data-slide="13">
-      <h2 class="slide-title anim d1">Claude vs Copilot vs Gemini</h2>
-      <div class="compare anim d2">
+      <h2 class="slide-title anim d1">Claude Code vs Copilot vs Gemini</h2>
+      <p class="section-desc anim d2">I competitor hanno recuperato terreno nel 2025, ma restano gap strutturali nell'ecosistema enterprise.</p>
+      <div class="compare anim d3" style="max-width:1100px">
         <div class="compare-row header">
           <div class="compare-cell">Capacità</div>
           <div class="compare-cell">Claude Code</div>
           <div class="compare-cell">GitHub Copilot</div>
-          <div class="compare-cell">Gemini Code</div>
+          <div class="compare-cell">Gemini Code Assist</div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Contesto codebase</div>
-          <div class="compare-cell"><span class="badge good">1M token</span></div>
-          <div class="compare-cell"><span class="badge bad">File aperto</span></div>
-          <div class="compare-cell"><span class="badge good">1M token</span></div>
+          <div class="compare-cell feature">Contesto massimo</div>
+          <div class="compare-cell"><span class="badge good">1M continuo</span></div>
+          <div class="compare-cell"><span class="badge bad">64K-128K + retrieval</span></div>
+          <div class="compare-cell"><span class="badge mid">1M (retrieval)</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">MCP Protocol (Jira, Splunk)</div>
-          <div class="compare-cell"><span class="badge good">Nativo</span></div>
-          <div class="compare-cell"><span class="badge mid">VS Code GA</span></div>
-          <div class="compare-cell"><span class="badge mid">Agent mode</span></div>
+          <div class="compare-cell feature">MCP Protocol</div>
+          <div class="compare-cell"><span class="badge good">Nativo CLI (2024)</span></div>
+          <div class="compare-cell"><span class="badge mid">Solo IDE (lug 2025)</span></div>
+          <div class="compare-cell"><span class="badge mid">Agent mode (ott 2025)</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Skills / Standard codificati</div>
-          <div class="compare-cell"><span class="badge good">SKILL.md</span></div>
-          <div class="compare-cell"><span class="badge mid">.github/copilot</span></div>
-          <div class="compare-cell"><span class="badge mid">.gemini/skills</span></div>
+          <div class="compare-cell feature">Standard codificati</div>
+          <div class="compare-cell"><span class="badge good">CLAUDE.md 4 livelli + Skills</span></div>
+          <div class="compare-cell"><span class="badge mid">copilot-instructions.md</span></div>
+          <div class="compare-cell"><span class="badge mid">Rules + styleguide.md</span></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Esecuzione agentica</div>
-          <div class="compare-cell"><span class="badge good">CLI completa</span></div>
-          <div class="compare-cell"><span class="badge bad">Solo IDE</span></div>
-          <div class="compare-cell"><span class="badge mid">CLI + IDE</span></div>
+          <div class="compare-cell"><span class="badge good">CLI completa + sub-agent</span></div>
+          <div class="compare-cell"><span class="badge mid">IDE + CLI limitata</span></div>
+          <div class="compare-cell"><span class="badge mid">IDE + CLI</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Config enterprise multi-scope</div>
-          <div class="compare-cell"><span class="badge good">4 livelli</span></div>
+          <div class="compare-cell feature">Config enterprise</div>
+          <div class="compare-cell"><span class="badge good">4 scope gerarchici</span></div>
           <div class="compare-cell"><span class="badge mid">Org policy</span></div>
-          <div class="compare-cell"><span class="badge bad">No</span></div>
+          <div class="compare-cell"><span class="badge bad">Workspace base</span></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">SWE-bench Verified</div>
@@ -821,15 +841,20 @@
           <div class="compare-cell"><span class="badge mid">Vari modelli</span></div>
           <div class="compare-cell"><span class="badge mid">80.6%</span></div>
         </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Code Review su PR</div>
+          <div class="compare-cell"><span class="badge good">Multi-agente</span></div>
+          <div class="compare-cell"><span class="badge good">Integrato da Pro</span></div>
+          <div class="compare-cell"><span class="badge bad">No</span></div>
+        </div>
       </div>
-      <div class="bench-note anim d3" style="margin-top:.75rem">
-        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank"
-          rel="noopener">Claude Code MCP</a> · <a
-          href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp"
-          style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP (GA lug 2025)</a> · <a
-          href="https://geminicli.com/docs/cli/skills/" style="color:var(--accent)" target="_blank"
-          rel="noopener">Gemini Skills</a> · <a href="https://code.claude.com/docs/en/settings"
-          style="color:var(--accent)" target="_blank" rel="noopener">Claude Settings (4 livelli)</a>
+      <div class="bench-note anim d4" style="margin-top:.75rem">
+        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank" rel="noopener">Claude Code MCP</a> ·
+        <a href="https://github.blog/changelog/2024-12-06-copilot-chat-now-has-a-64k-context-window-with-openai-gpt-4o/" style="color:var(--accent)" target="_blank" rel="noopener">Copilot 64K context</a> ·
+        <a href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp" style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP</a> ·
+        <a href="https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot" style="color:var(--accent)" target="_blank" rel="noopener">Copilot instructions</a> ·
+        <a href="https://developers.google.com/gemini-code-assist/docs/overview" style="color:var(--accent)" target="_blank" rel="noopener">Gemini Code Assist</a> ·
+        <a href="https://code.claude.com/docs/en/settings" style="color:var(--accent)" target="_blank" rel="noopener">Claude Settings (4 livelli)</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
