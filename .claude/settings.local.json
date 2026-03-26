@@ -30,7 +30,11 @@
       "Bash(git remote:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "WebFetch(domain:www.anthropic.com)",
+      "WebFetch(domain:github.blog)",
+      "WebFetch(domain:www.mckinsey.com)",
+      "WebFetch(domain:www.index.dev)"
     ]
   }
 }

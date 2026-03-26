@@ -513,6 +513,27 @@ body {
   font-size: .68rem;
 }
 
+/* ROI feature anatomy table: 5 compact columns */
+.compare.roi .compare-row {
+  grid-template-columns: 1.6fr .55fr .55fr .6fr .45fr;
+}
+
+.compare.roi .compare-cell {
+  padding: .4rem .5rem;
+  font-size: .78rem;
+}
+
+.compare.roi .compare-cell.feature {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+.compare.roi .compare-row.header .compare-cell {
+  font-size: .65rem;
+  padding: .45rem .5rem;
+}
+
 .diff-btn {
   width: 26px;
   height: 26px;
@@ -1361,6 +1382,26 @@ img.avatar-inner {
   .slide-dense .bench-note {
     margin-top: .4rem;
     font-size: .62rem;
+  }
+
+  /* ROI table compact on 13" */
+  .compare.roi .compare-row {
+    grid-template-columns: 1.5fr .5fr .5fr .55fr .4fr;
+  }
+
+  .compare.roi .compare-cell {
+    padding: .3rem .35rem;
+    font-size: .72rem;
+  }
+
+  .compare.roi .compare-row.header .compare-cell {
+    font-size: .6rem;
+    padding: .35rem .35rem;
+  }
+
+  .compare.roi .compare-cell .badge {
+    font-size: .65rem;
+    padding: .15rem .4rem;
   }
 }
 
