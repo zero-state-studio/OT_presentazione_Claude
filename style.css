@@ -1108,6 +1108,146 @@ img.avatar-inner {
   animation-delay: .5s
 }
 
+/* ── Claude pricing detail slide ── */
+.claude-plans {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.plans-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.plans-group-label {
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  padding: 0 .25rem;
+}
+
+.plans-row {
+  display: flex;
+  gap: .6rem;
+}
+
+.plan-card {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .75rem .85rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  transition: border-color .2s, transform .2s;
+  position: relative;
+}
+
+.plan-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.plan-card.plan-highlight {
+  border-color: var(--accent);
+  background: rgba(230, 0, 0, .03);
+}
+
+.plan-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .4rem;
+}
+
+.plan-name {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.plan-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.plan-price small {
+  font-size: .6rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.plan-price.free {
+  color: var(--green);
+}
+
+.plan-price.custom {
+  font-size: .85rem;
+  color: var(--blue);
+}
+
+.plan-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  flex: 1;
+}
+
+.plan-features li {
+  font-size: .72rem;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: .35rem;
+  line-height: 1.3;
+}
+
+.plan-features li::before {
+  content: '·';
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: .02em;
+}
+
+.plan-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .15rem;
+}
+
+.plan-tag {
+  font-size: .6rem;
+  font-weight: 600;
+  padding: .15rem .45rem;
+  border-radius: 4px;
+  background: rgba(230,0,0,.08);
+  color: var(--accent);
+}
+
+.plan-tag.green {
+  background: rgba(22,163,74,.08);
+  color: var(--green);
+}
+
+.plan-tag.blue {
+  background: rgba(37,99,235,.08);
+  color: var(--blue);
+}
+
 @media(max-width:768px) {
   .slide {
     padding: 2rem 1.5rem 4.5rem
