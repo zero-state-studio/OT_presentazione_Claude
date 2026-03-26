@@ -177,14 +177,11 @@ body {
 .slide-footer .copyright {
   font-size: .72rem;
   color: var(--muted);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .slide-footer .ot-logo {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: .4rem;
   margin-left: auto;
 }
@@ -204,6 +201,15 @@ body {
   font-weight: 700;
   font-size: .82rem;
   color: var(--text);
+  line-height: 1.15;
+}
+
+.ot-division {
+  font-weight: 500;
+  font-size: .72em;
+  color: var(--muted);
+  letter-spacing: .03em;
+  text-transform: uppercase;
 }
 
 /* Slide title with red bar underneath */
@@ -1022,7 +1028,7 @@ body {
   bottom: 8rem;
   left: 4rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: .6rem;
   z-index: 10;
 }
@@ -1317,6 +1323,28 @@ body {
     font-size: .65rem;
     padding: .6rem .8rem;
     margin-top: .5rem;
+  }
+
+  /* Cover slide: prevent overlap on short viewports */
+  .hero-title {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    font-size: clamp(.9rem, 1.5vw, 1.1rem);
+  }
+
+  .metrics .metric .value {
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+  }
+
+  .metrics .metric .label {
+    font-size: .7rem;
+  }
+
+  .logo-bar {
+    bottom: 5.5rem !important;
   }
 }
 
