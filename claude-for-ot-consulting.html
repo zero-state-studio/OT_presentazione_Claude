@@ -97,25 +97,44 @@
 
     <!-- SLIDE 2: IL PROBLEMA -->
     <div class="slide content-slide" data-slide="2">
-      <h2 class="slide-title anim d1">I limiti di Copilot e Gemini nei workflow aziendali</h2>
-      <div class="card-grid anim d2">
-        <div class="card">
-          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
-          <h3>Contesto limitato</h3>
-          <p>Copilot vede solo il file corrente o pochi file aperti. Non comprende l'architettura del progetto, le
-            convenzioni del team, o il perché dietro le scelte tecniche.</p>
+      <h2 class="slide-title anim d1">Una giornata tipo senza il tool giusto</h2>
+      <p class="section-desc anim d2">Tre scenari reali in cui gli strumenti attuali rallentano il team. Copilot e Gemini hanno fatto passi avanti nel 2025, ma questi problemi restano.</p>
+      <div class="card-grid anim d3" style="grid-template-columns:1fr;max-width:1100px">
+        <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
+          <div>
+            <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">~8x</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">meno contesto<br>(modello default)</div>
+          </div>
+          <div>
+            <h3>Il dev chiede "dove viene validato il pagamento?"</h3>
+            <p><strong>Con Copilot:</strong> contesto 128K token (modello default GPT-4.1; alcuni modelli opzionali arrivano a 200K), ricerca a snippet indicizzati. Il tool trova frammenti ma non capisce il flusso end-to-end. Il dev deve navigare manualmente 15 file per ricostruire la catena.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> 1M di contesto continuo. Analizza l'intero codebase, segue le dipendenze e risponde con il flusso completo in secondi.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="16" y1="19" x2="16" y2="22"/><line x1="19" y1="16" x2="22" y2="16"/></svg></div>
-          <h3>Zero integrazione tool</h3>
-          <p>Nessuna connessione nativa a Jira, Splunk, Confluence. Lo sviluppatore continua a fare context-switching
-            tra IDE, browser e terminale.</p>
+        <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
+          <div>
+            <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="16" y1="19" x2="16" y2="22"/><line x1="19" y1="16" x2="22" y2="16"/></svg></div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">4</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">tool aperti<br>in parallelo</div>
+          </div>
+          <div>
+            <h3>Arriva un bug critico in produzione</h3>
+            <p><strong>Oggi:</strong> apri Splunk per i log, Jira per il ticket, GitHub per il codice, Slack per avvisare il team. Copilot e Gemini supportano MCP dal 2025, ma solo in IDE — non orchestrano il flusso.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> un unico comando nel terminale interroga Splunk, legge il codice, crea il fix, apre la PR e aggiorna il ticket Jira. Tutto via MCP nativo.</p>
+          </div>
         </div>
-        <div class="card">
-          <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="10" y1="12" x2="14" y2="16"/><line x1="14" y1="12" x2="10" y2="16"/></svg></div>
-          <h3>Nessuno standard codificato</h3>
-          <p>Impossibile insegnare al tool le convenzioni specifiche del progetto, gli stili di codice, i pattern
-            architetturali. Ogni suggerimento è generico.</p>
+        <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
+          <div>
+            <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="10" y1="12" x2="14" y2="16"/><line x1="14" y1="12" x2="10" y2="16"/></svg></div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">1</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">livello di config<br>vs 4 in Claude</div>
+          </div>
+          <div>
+            <h3>Un nuovo dev entra nel progetto</h3>
+            <p><strong>Oggi:</strong> Copilot ha <code>copilot-instructions.md</code>, Gemini ha <code>styleguide.md</code> — file statici senza gerarchia. Ogni dev puo' ignorarli o sovrascriverli.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> CLAUDE.md a 4 livelli (Enterprise → User → Project → Local) + Skills componibili. Le policy aziendali hanno sempre priorita' — impossibile bypassarle.</p>
+          </div>
         </div>
       </div>
       <div class="slide-footer">
@@ -128,7 +147,7 @@
 
     <!-- SLIDE 3: ECOSYSTEM -->
     <div class="slide content-slide" data-slide="3">
-      <h2 class="slide-title anim d1">Un sistema integrato, non un semplice autocomplete</h2>
+      <h2 class="slide-title anim d1">Claude: un sistema integrato</h2>
       <p class="section-desc anim d2">Claude Code è un assistente agentico a riga di comando con accesso completo al
         codebase, capacità di eseguire comandi, e un protocollo aperto per connettersi a qualsiasi tool aziendale.</p>
       <div class="flow anim d3" style="justify-content:flex-start">
@@ -191,7 +210,7 @@
     <div class="slide content-slide" data-slide="4">
       <h2 class="slide-title anim d1">Un protocollo. Migliaia di integrazioni.</h2>
       <p class="section-desc anim d2">MCP è stato creato da Anthropic nel Nov 2024, adottato da OpenAI (Mar 2025) e
-        Google (Apr 2025), e donato all'Agentic AI Foundation sotto la Linux Foundation (Dic 2025). A Marzo 2026,
+        Google (commitment Apr 2025, deployment produzione Ott–Dic 2025), e donato all'Agentic AI Foundation sotto la Linux Foundation (Dic 2025). A Marzo 2026,
         l'ecosistema conta oltre 10.000 server.</p>
       <div class="metrics anim d2" style="margin-top:1rem;justify-content:flex-start">
         <div class="metric">
@@ -303,7 +322,7 @@
 
     <!-- SLIDE 5: BENCHMARKS -->
     <div class="slide content-slide" data-slide="5">
-      <h2 class="slide-title anim d1">I modelli sono alla pari. L'ecosistema fa la differenza.</h2>
+      <h2 class="slide-title anim d1">I modelli sono &ldquo;quasi&rdquo; alla pari. L'ecosistema fa la differenza.</h2>
       <p class="section-desc anim d2">I top model sono entro 1-2 punti sui benchmark principali. Il vero differenziale
         non è il punteggio del modello — è il tooling agentico, l'integrazione enterprise e il costo per task.</p>
       <div class="bench-table anim d3">
@@ -329,7 +348,7 @@
           <div class="bcell"><span class="bval silver">57.6%</span></div>
           <div class="bcell"><span class="bval silver">69.9%</span></div>
           <div class="bcell"><span class="bval gold">1M</span></div>
-          <div class="bcell"><span class="bval bronze">$5 / $25</span></div>
+          <div class="bcell"><span class="bval bronze">€4,21 / €21</span></div>
         </div>
         <div class="brow">
           <div class="bcell bname">Claude Sonnet 4.6</div>
@@ -337,23 +356,23 @@
           <div class="bcell"><span class="bval normal">~51%</span></div>
           <div class="bcell"><span class="bval normal">~62%</span></div>
           <div class="bcell"><span class="bval gold">1M</span></div>
-          <div class="bcell"><span class="bval silver">$3 / $15</span></div>
+          <div class="bcell"><span class="bval silver">€2,52 / €12,6</span></div>
         </div>
         <div class="brow">
           <div class="bcell bname">GPT-5.4</div>
-          <div class="bcell"><span class="bval silver">~80%</span></div>
+          <div class="bcell"><span class="bval bronze">~75%</span></div>
           <div class="bcell"><span class="bval gold">67.4%</span></div>
           <div class="bcell"><span class="bval gold">75.1%</span></div>
           <div class="bcell"><span class="bval silver">1M (Codex)</span></div>
-          <div class="bcell"><span class="bval silver">$2.5 / $15</span></div>
+          <div class="bcell"><span class="bval silver">€2,10 / €12,6</span></div>
         </div>
         <div class="brow">
           <div class="bcell bname">Gemini 3.1 Pro</div>
           <div class="bcell"><span class="bval silver">80.6%</span></div>
-          <div class="bcell"><span class="bval bronze">~48%</span></div>
+          <div class="bcell"><span class="bval normal">N/D</span></div>
           <div class="bcell"><span class="bval silver">68.5%</span></div>
           <div class="bcell"><span class="bval gold">1M</span></div>
-          <div class="bcell"><span class="bval silver">$2 / $12</span></div>
+          <div class="bcell"><span class="bval silver">€1,68 / €10,1</span></div>
         </div>
         <div class="brow">
           <div class="bcell bname">DeepSeek V3.2</div>
@@ -361,7 +380,7 @@
           <div class="bcell"><span class="bval bronze">~42%</span></div>
           <div class="bcell"><span class="bval bronze">~55%</span></div>
           <div class="bcell"><span class="bval bronze">128K</span></div>
-          <div class="bcell"><span class="bval gold">$0.3 / $1.2</span></div>
+          <div class="bcell"><span class="bval gold">€0,25 / €1,01</span></div>
         </div>
       </div>
       <div class="bench-note anim d4">
@@ -510,7 +529,7 @@
         </div>
       </div>
       <div class="bench-note anim d4">
-        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro ($20/mo). GitHub Action con API key (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
+        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro (~€17/mo). GitHub Action con API key (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
         Fonti: <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank" rel="noopener">GitHub Actions Docs</a> · <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank" rel="noopener">Code Review Docs</a> · <a href="https://github.com/anthropics/claude-code-action" style="color:var(--accent)" target="_blank" rel="noopener">claude-code-action repo</a>
       </div>
       <div class="slide-footer">
@@ -574,7 +593,7 @@
 
     <!-- SLIDE 10: CLAUDE.md -->
     <div class="slide content-slide" data-slide="10">
-      <h2 class="slide-title anim d1">Onboarding istantaneo su ogni repository</h2>
+      <h2 class="slide-title anim d1">Onboarding istantaneo su ogni repository con CLAUDE.md</h2>
       <p class="section-desc anim d2">CLAUDE.md è un file alla root del progetto che insegna a Claude il WHY, WHAT e HOW
         del codebase. Come un senior engineer che conosce tutto il progetto — disponibile dal giorno 1.</p>
       <div class="card-grid anim d3">
@@ -695,7 +714,7 @@
         <div class="compare-row">
           <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Monitor & AM</div>
           <div class="compare-cell" style="font-size:.72rem">Splunk per threat hunting, Sentry per errori prod. Ticket AM gestiti via Jira MCP: triage, assegnazione e SLA tracking automatizzati.</div>
-          <div class="compare-cell"><span class="badge mid">Channels + /loop</span></div>
+          <div class="compare-cell"><span class="badge mid">Claude Code CLI / Claude MCP</span></div>
           <div class="compare-cell"><span class="badge good">Splunk + Sentry + Jira MCP</span></div>
         </div>
         <div class="compare-row">
@@ -730,41 +749,99 @@
 
     <!-- SLIDE 12: ROI -->
     <div class="slide content-slide" data-slide="12">
-      <h2 class="slide-title anim d1">ROI concreto e misurabile</h2>
-      <div class="metrics anim d2" style="justify-content:flex-start;margin-top:1rem">
-        <div class="metric">
-          <div class="value">-70%</div>
-          <div class="label">Context-switching *</div>
+      <h2 class="slide-title anim d1">ROI concreto: anatomia di una feature</h2>
+      <p class="section-desc anim d2">Feature da 20 giorni di solo sviluppo (160h) — senior dev + Claude Code agentico al 100%, sub-agent paralleli su worktree isolati.</p>
+
+      <div class="compare roi anim d3" style="max-width:1100px">
+        <div class="compare-row header">
+          <div class="compare-cell">Attivit&agrave;</div>
+          <div class="compare-cell">Senza</div>
+          <div class="compare-cell">Speedup</div>
+          <div class="compare-cell">Con Claude</div>
+          <div class="compare-cell">Saved</div>
         </div>
-        <div class="metric">
-          <div class="value">-50%</div>
-          <div class="label">Tempo review ciclo *</div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Boilerplate &amp; scaffolding <button class="diff-btn" onclick="openDiff('roi_boilerplate')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">32h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">5-10x</span></div>
+          <div class="compare-cell"><span class="badge good">~4h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">87%</span></div>
         </div>
-        <div class="metric">
-          <div class="value">+40%</div>
-          <div class="label">Velocità delivery *</div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Refactoring larga scala <button class="diff-btn" onclick="openDiff('roi_refactoring')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">16h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">3-6x</span></div>
+          <div class="compare-cell"><span class="badge good">~3.5h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">78%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Debug complesso <button class="diff-btn" onclick="openDiff('roi_debug')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">24h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
+          <div class="compare-cell"><span class="badge good">~8h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">67%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Test unit / integration <button class="diff-btn" onclick="openDiff('roi_test')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">32h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
+          <div class="compare-cell"><span class="badge good">~10h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">69%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Code review &amp; doc <button class="diff-btn" onclick="openDiff('roi_review')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">16h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">3-5x</span></div>
+          <div class="compare-cell"><span class="badge good">~4h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">75%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Architettura &amp; design <button class="diff-btn" onclick="openDiff('roi_arch')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">16h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
+          <div class="compare-cell"><span class="badge good">~6h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">62%</span></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Logica business critica <button class="diff-btn" onclick="openDiff('roi_business')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell"><span class="badge bad">24h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">1.5-2.5x</span></div>
+          <div class="compare-cell"><span class="badge good">~12h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:800">50%</span></div>
+        </div>
+        <div class="compare-row" style="background:var(--surface);border-top:2px solid var(--accent)">
+          <div class="compare-cell feature" style="font-weight:900;color:var(--text)">TOTALE SVILUPPO</div>
+          <div class="compare-cell"><span class="badge bad" style="font-weight:800">160h</span></div>
+          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:900">~3.4x</span></div>
+          <div class="compare-cell"><span class="badge good" style="font-weight:800">~48h</span></div>
+          <div class="compare-cell"><span class="badge best" style="font-weight:900">70%</span></div>
         </div>
       </div>
-      <div class="bench-note" style="margin-top:.25rem;font-style:italic">* Stime interne basate su osservazioni degli
-        Ambassador durante il periodo di test. Non derivate da studi pubblicati.</div>
-      <div class="card-grid anim d3">
-        <div class="card">
-          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
-          <h3>Meno tool, meno costi</h3>
-          <p>Un unico sistema sostituisce Copilot + plugin Jira + dashboard Splunk manuali. Consolidamento licenze e
-            flussi.</p>
+      <div class="bench-note" style="margin-top:.25rem;font-style:italic">Fonti: GitHub Research (Copilot +55% task speed) · McKinsey GenAI Developer Productivity (~50% new code, ~66% optimization) · Anthropic Internal Data (+67% PR/giorno, 70-90% codice AI-produced) · BCG/Harvard AI Study (+25% task speed)</div>
+
+      <div style="display:flex;gap:1.2rem;margin-top:.7rem;align-items:center;flex-wrap:wrap" class="anim d4">
+        <div class="metric">
+          <div class="value" style="font-size:clamp(1.6rem,3vw,2.4rem)">20gg &rarr; 6gg</div>
+          <div class="label">Compressione timeline</div>
         </div>
-        <div class="card">
-          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
-          <h3>Onboarding 10x più veloce</h3>
-          <p>CLAUDE.md + Skills = ogni nuovo dev è operativo dal giorno 1. Lo standard del progetto è embedded nel tool,
-            non in wiki obsolete.</p>
+        <div class="metric">
+          <div class="value" style="font-size:clamp(1.6rem,3vw,2.4rem)">~70%</div>
+          <div class="label">Tempo risparmiato</div>
         </div>
-        <div class="card">
-          <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-          <h3>Standard garantiti</h3>
-          <p>Le Skills enterprise impongono code quality, pattern architetturali e security check. Impossibile
-            bypassarli — sono nel DNA del tool.</p>
+        <div class="metric">
+          <div class="value" style="font-size:clamp(1.6rem,3vw,2.4rem)">1 senior</div>
+          <div class="label">= output di ~3.4 dev</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:.8rem;margin-top:.6rem;flex-wrap:wrap" class="anim d5">
+        <div style="flex:1;min-width:240px;background:var(--surface);border-left:3px solid var(--accent);border-radius:8px;padding:.5rem .7rem">
+          <div style="font-weight:800;font-size:.78rem;color:var(--accent);margin-bottom:.2rem">Dove il senior resta insostituibile</div>
+          <div style="font-size:.73rem;color:var(--muted);line-height:1.45">Architettura e logica di business critica hanno lo speedup pi&ugrave; basso (1.5-2.5x) — richiedono giudizio e supervisione. Il vantaggio massimo &egrave; sul codice meccanico e ripetitivo (5-10x).</div>
+        </div>
+        <div style="flex:1;min-width:240px;background:var(--surface);border-left:3px solid var(--accent);border-radius:8px;padding:.5rem .7rem">
+          <div style="font-weight:800;font-size:.78rem;color:var(--accent);margin-bottom:.2rem">Nuova feature?</div>
+          <div style="font-size:.73rem;color:var(--muted);line-height:1.45">Lo sviluppo &egrave; trasversale: ~40% boilerplate (5-10x) + ~60% logica/architettura (1.5-2.5x). Feature CRUD semplice &rarr; vicina al 5-10x. Logica complessa &rarr; vicina al 2x.</div>
         </div>
       </div>
       <div class="slide-footer">
@@ -777,43 +854,44 @@
 
     <!-- SLIDE 13: COMPARISON -->
     <div class="slide content-slide" data-slide="13">
-      <h2 class="slide-title anim d1">Claude vs Copilot vs Gemini</h2>
-      <div class="compare anim d2">
+      <h2 class="slide-title anim d1">Claude Code vs Copilot vs Gemini</h2>
+      <p class="section-desc anim d2">I competitor hanno recuperato terreno nel 2025, ma restano gap strutturali nell'ecosistema enterprise.</p>
+      <div class="compare anim d3" style="max-width:1100px">
         <div class="compare-row header">
           <div class="compare-cell">Capacità</div>
           <div class="compare-cell">Claude Code</div>
           <div class="compare-cell">GitHub Copilot</div>
-          <div class="compare-cell">Gemini Code</div>
+          <div class="compare-cell">Gemini Code Assist</div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Contesto codebase</div>
-          <div class="compare-cell"><span class="badge good">1M token</span></div>
-          <div class="compare-cell"><span class="badge bad">File aperto</span></div>
-          <div class="compare-cell"><span class="badge good">1M token</span></div>
+          <div class="compare-cell feature">Contesto massimo</div>
+          <div class="compare-cell"><span class="badge good">1M continuo</span></div>
+          <div class="compare-cell"><span class="badge bad">128K–200K (dipende dal modello)</span></div>
+          <div class="compare-cell"><span class="badge mid">1M (nativo)</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">MCP Protocol (Jira, Splunk)</div>
-          <div class="compare-cell"><span class="badge good">Nativo</span></div>
-          <div class="compare-cell"><span class="badge mid">VS Code GA</span></div>
-          <div class="compare-cell"><span class="badge mid">Agent mode</span></div>
+          <div class="compare-cell feature">MCP Protocol</div>
+          <div class="compare-cell"><span class="badge good">Nativo CLI (2024)</span></div>
+          <div class="compare-cell"><span class="badge mid">Solo IDE (lug 2025)</span></div>
+          <div class="compare-cell"><span class="badge mid">Agent mode (ott 2025)</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Skills / Standard codificati</div>
-          <div class="compare-cell"><span class="badge good">SKILL.md</span></div>
-          <div class="compare-cell"><span class="badge mid">.github/copilot</span></div>
-          <div class="compare-cell"><span class="badge mid">.gemini/skills</span></div>
+          <div class="compare-cell feature">Standard codificati</div>
+          <div class="compare-cell"><span class="badge good">CLAUDE.md 4 livelli + Skills</span></div>
+          <div class="compare-cell"><span class="badge mid">copilot-instructions.md</span></div>
+          <div class="compare-cell"><span class="badge mid">Rules + styleguide.md</span></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Esecuzione agentica</div>
-          <div class="compare-cell"><span class="badge good">CLI completa</span></div>
-          <div class="compare-cell"><span class="badge bad">Solo IDE</span></div>
-          <div class="compare-cell"><span class="badge mid">CLI + IDE</span></div>
+          <div class="compare-cell"><span class="badge good">CLI completa + sub-agent</span></div>
+          <div class="compare-cell"><span class="badge mid">IDE + CLI limitata</span></div>
+          <div class="compare-cell"><span class="badge mid">IDE + CLI</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Config enterprise multi-scope</div>
-          <div class="compare-cell"><span class="badge good">4 livelli</span></div>
+          <div class="compare-cell feature">Config enterprise</div>
+          <div class="compare-cell"><span class="badge good">4 scope gerarchici</span></div>
           <div class="compare-cell"><span class="badge mid">Org policy</span></div>
-          <div class="compare-cell"><span class="badge bad">No</span></div>
+          <div class="compare-cell"><span class="badge bad">Workspace base</span></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">SWE-bench Verified</div>
@@ -821,15 +899,20 @@
           <div class="compare-cell"><span class="badge mid">Vari modelli</span></div>
           <div class="compare-cell"><span class="badge mid">80.6%</span></div>
         </div>
+        <div class="compare-row">
+          <div class="compare-cell feature">Code Review su PR</div>
+          <div class="compare-cell"><span class="badge good">Multi-agente</span></div>
+          <div class="compare-cell"><span class="badge good">Integrato da Pro</span></div>
+          <div class="compare-cell"><span class="badge bad">No</span></div>
+        </div>
       </div>
-      <div class="bench-note anim d3" style="margin-top:.75rem">
-        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank"
-          rel="noopener">Claude Code MCP</a> · <a
-          href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp"
-          style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP (GA lug 2025)</a> · <a
-          href="https://geminicli.com/docs/cli/skills/" style="color:var(--accent)" target="_blank"
-          rel="noopener">Gemini Skills</a> · <a href="https://code.claude.com/docs/en/settings"
-          style="color:var(--accent)" target="_blank" rel="noopener">Claude Settings (4 livelli)</a>
+      <div class="bench-note anim d4" style="margin-top:.75rem">
+        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank" rel="noopener">Claude Code MCP</a> ·
+        <a href="https://github.blog/changelog/2024-12-06-copilot-chat-now-has-a-64k-context-window-with-openai-gpt-4o/" style="color:var(--accent)" target="_blank" rel="noopener">Copilot 64K context</a> ·
+        <a href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp" style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP</a> ·
+        <a href="https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot" style="color:var(--accent)" target="_blank" rel="noopener">Copilot instructions</a> ·
+        <a href="https://developers.google.com/gemini-code-assist/docs/overview" style="color:var(--accent)" target="_blank" rel="noopener">Gemini Code Assist</a> ·
+        <a href="https://code.claude.com/docs/en/settings" style="color:var(--accent)" target="_blank" rel="noopener">Claude Settings (4 livelli)</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
@@ -879,9 +962,9 @@
 
     <!-- SLIDE 15: ARTIFACTS INTERATTIVI -->
     <div class="slide content-slide" data-slide="15">
-      <h2 class="slide-title anim d1">Mockup interattivi, non immagini statiche</h2>
+      <h2 class="slide-title anim d1">Non solo DEV! Mockup interattivi, non immagini statiche</h2>
       <p class="section-desc anim d2">Claude Desktop genera <strong>artifacts interattivi</strong> — vero codice HTML,
-        CSS e JavaScript eseguito live nel browser. Gemini genera un'immagine statica non modificabile.</p>
+        CSS e JavaScript eseguito live nel browser. Gemini genera codice ma senza ambiente di esecuzione integrato nella chat.</p>
       <div class="slide-body anim d3">
         <div class="card-grid" style="flex:1">
           <div class="card" style="border-color:var(--green);border-width:2px">
@@ -898,14 +981,13 @@
           </div>
           <div class="card" style="border-color:var(--red);border-width:2px">
             <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-            <h3 style="color:var(--red)">Gemini — Immagine statica</h3>
-            <p>Alla stessa richiesta, Gemini genera un'<strong>immagine PNG/JPG</strong>
-              tramite image generation. Il risultato è un'illustrazione non funzionante.</p>
+            <h3 style="color:var(--red)">Gemini — Senza ambiente di esecuzione</h3>
+            <p>Gemini genera <strong>codice HTML/CSS</strong>, ma senza un ambiente di esecuzione integrato nella chat. Manca il preview interattivo live paragonabile agli Artifacts.</p>
             <ul style="margin-top:.3rem;font-size:.75rem;color:var(--muted);line-height:1.45;padding-left:1.1rem">
-              <li>Nessun codice generato — solo pixel</li>
-              <li>Non cliccabile, non navigabile</li>
-              <li>Impossibile iterare sui dettagli</li>
-              <li>Non utilizzabile per lo sviluppo</li>
+              <li>Nessun preview live nella conversazione</li>
+              <li>Richiede copia/incolla per testare il codice</li>
+              <li>Iterazione sul design meno fluida</li>
+              <li>Nessuna esportazione diretta come file standalone</li>
             </ul>
           </div>
         </div>
@@ -931,7 +1013,7 @@
               Gemini</div>
             <div
               style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:.7rem;display:flex;align-items:center;justify-content:center;min-height:45px">
-              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>immagine_dashboard.png</span>
+              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>codice senza preview live</span>
             </div>
           </div>
         </div>
@@ -964,41 +1046,41 @@
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Free</div>
-          <div class="compare-cell"><span class="badge good">$0</span></div>
-          <div class="compare-cell"><span class="badge good">$0</span></div>
-          <div class="compare-cell"><span class="badge good">$0</span></div>
-          <div class="compare-cell"><span class="badge good">$0</span></div>
+          <div class="compare-cell"><span class="badge good">€0</span></div>
+          <div class="compare-cell"><span class="badge good">€0</span></div>
+          <div class="compare-cell"><span class="badge good">€0</span></div>
+          <div class="compare-cell"><span class="badge good">€0</span></div>
           <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('free')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Personal base</div>
-          <div class="compare-cell"><span class="badge good">$20 Pro</span></div>
-          <div class="compare-cell"><span class="badge good">$20 Plus</span></div>
-          <div class="compare-cell"><span class="badge good">$10 Pro</span></div>
-          <div class="compare-cell"><span class="badge mid">$22 AI Pro</span></div>
+          <div class="compare-cell"><span class="badge good">€17 Pro</span></div>
+          <div class="compare-cell"><span class="badge good">~€17 Plus</span></div>
+          <div class="compare-cell"><span class="badge good">~€8 Pro</span></div>
+          <div class="compare-cell"><span class="badge mid">~€19 AI Pro</span></div>
           <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('base')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Personal premium</div>
-          <div class="compare-cell"><span class="badge mid">$100–200 Max</span></div>
-          <div class="compare-cell"><span class="badge bad">$200 Pro</span></div>
-          <div class="compare-cell"><span class="badge mid">$39 Pro+</span></div>
-          <div class="compare-cell"><span class="badge bad">$275 AI Ultra</span></div>
+          <div class="compare-cell"><span class="badge mid">€84–168 Max</span></div>
+          <div class="compare-cell"><span class="badge bad">~€168 Pro</span></div>
+          <div class="compare-cell"><span class="badge mid">~€33 Pro+</span></div>
+          <div class="compare-cell"><span class="badge bad">~€231 AI Ultra</span></div>
           <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('premium')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Team / Business</div>
-          <div class="compare-cell"><span class="badge good">$25–30</span></div>
-          <div class="compare-cell"><span class="badge mid">$25–30</span></div>
-          <div class="compare-cell"><span class="badge good">$19</span></div>
+          <div class="compare-cell"><span class="badge good">€17–21</span></div>
+          <div class="compare-cell"><span class="badge mid">~€21–25</span></div>
+          <div class="compare-cell"><span class="badge good">~€16</span></div>
           <div class="compare-cell"><span class="badge mid">In Workspace</span></div>
           <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('team')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Enterprise</div>
           <div class="compare-cell"><span class="badge mid">Custom</span></div>
-          <div class="compare-cell"><span class="badge bad">~$60 (min 150)</span></div>
-          <div class="compare-cell"><span class="badge mid">$39+$21 GH</span></div>
+          <div class="compare-cell"><span class="badge bad">~€50 (min 150)</span></div>
+          <div class="compare-cell"><span class="badge mid">€33+€18 GH</span></div>
           <div class="compare-cell"><span class="badge mid">Custom</span></div>
           <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('enterprise')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
         </div>
@@ -1020,16 +1102,8 @@
         </div>
       </div>
 
-      <!-- Modal differenze -->
-      <div class="modal-overlay" id="diffModal" onclick="closeDiff(event)">
-        <div class="modal-box" style="position:relative">
-          <button class="modal-close" onclick="closeDiff()">&times;</button>
-          <h3 id="diffTitle"></h3>
-          <ul id="diffBody"></ul>
-        </div>
-      </div>
       <div class="bench-note anim d4">
-        Prezzi in USD, aggiornati a Marzo 2026. Gemini AI Pro/Ultra in EUR (~stessa cifra). Workspace include ora Gemini senza add-on separato.<br>
+        Prezzi in EUR, aggiornati a Marzo 2026. Workspace include ora Gemini senza add-on separato.<br>
         Fonti: <a href="https://claude.com/pricing" style="color:var(--accent)" target="_blank" rel="noopener">claude.com/pricing</a> ·
         <a href="https://chatgpt.com/pricing/" style="color:var(--accent)" target="_blank" rel="noopener">chatgpt.com/pricing</a> ·
         <a href="https://github.com/features/copilot/plans" style="color:var(--accent)" target="_blank" rel="noopener">github.com/copilot/plans</a> ·
@@ -1043,11 +1117,176 @@
       </div>
     </div>
 
-    <!-- SLIDE 17: TRAINING & CERTIFICATION -->
+    <!-- SLIDE 17: CLAUDE PRICING DETAIL -->
     <div class="slide content-slide" data-slide="17">
+      <h2 class="slide-title anim d1">Piani Claude: prezzi e funzionalità</h2>
+      <p class="section-desc anim d2">Dettaglio dei piani Claude per uso personale, team ed enterprise. Prezzi per utente/mese in EUR.</p>
+
+      <div class="claude-plans anim d3">
+
+        <!-- Personal -->
+        <div class="plans-group">
+          <span class="plans-group-label">Personali</span>
+          <div class="plans-row">
+
+            <div class="plan-card">
+              <div class="plan-card-head">
+                <span class="plan-name">Free</span>
+                <span class="plan-price free">€0</span>
+              </div>
+              <ul class="plan-features">
+                <li>Sonnet (uso limitato)</li>
+                <li>Projects base</li>
+                <li>Claude.ai web &amp; mobile</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag green">Gratuito</span>
+                <button class="diff-btn" onclick="openDiff('c_free')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+            <div class="plan-card plan-highlight">
+              <div class="plan-card-head">
+                <span class="plan-name">Pro</span>
+                <span class="plan-price">€17<small>/mo</small></span>
+              </div>
+              <ul class="plan-features">
+                <li>Opus 4.6 + Sonnet 4.6</li>
+                <li>Claude Code (CLI agentica)</li>
+                <li>Contesto 200K–1M tokens</li>
+                <li>MCP nativo</li>
+                <li>Projects con memoria</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag">Consigliato dev</span>
+                <button class="diff-btn" onclick="openDiff('c_pro')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+            <div class="plan-card">
+              <div class="plan-card-head">
+                <span class="plan-name">Max 5×</span>
+                <span class="plan-price">€84<small>/mo</small></span>
+              </div>
+              <ul class="plan-features">
+                <li>5× utilizzo rispetto a Pro</li>
+                <li>Claude Code sessioni estese</li>
+                <li>Tutti i modelli disponibili</li>
+                <li>Priorità nelle ore di punta</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag blue">Heavy user</span>
+                <button class="diff-btn" onclick="openDiff('c_max100')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+            <div class="plan-card">
+              <div class="plan-card-head">
+                <span class="plan-name">Max 20×</span>
+                <span class="plan-price">€168<small>/mo</small></span>
+              </div>
+              <ul class="plan-features">
+                <li>20× utilizzo rispetto a Pro</li>
+                <li>Claude Code praticamente illimitato</li>
+                <li>Tutti i modelli disponibili</li>
+                <li>Priorità massima</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag blue">Power user</span>
+                <button class="diff-btn" onclick="openDiff('c_max200')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Business -->
+        <div class="plans-group">
+          <div style="display:flex;align-items:center;gap:.5rem">
+            <span class="plans-group-label">Business</span>
+            <button class="diff-btn" onclick="openImgModal()" title="Prezzi ufficiali claude.ai/pricing" style="opacity:.8"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg></button>
+          </div>
+          <div class="plans-row">
+
+            <div class="plan-card">
+              <div class="plan-card-head">
+                <span class="plan-name">Team Standard</span>
+                <span class="plan-price">€17<small>–21/mo</small></span>
+              </div>
+              <ul class="plan-features">
+                <li>€17 ann. / €21 mens. per utente</li>
+                <li>Tutto il piano Pro per ogni seat</li>
+                <li>Admin console &amp; gestione utenti</li>
+                <li>Shared Projects di team</li>
+                <li>Dati esclusi dal training</li>
+                <li>Min 5 utenti</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag green">Da 5 utenti</span>
+                <button class="diff-btn" onclick="openDiff('c_team_std')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+            <div class="plan-card plan-highlight">
+              <div class="plan-card-head">
+                <span class="plan-name">Team Premium</span>
+                <span class="plan-price">€84<small>–105/mo</small></span>
+              </div>
+              <ul class="plan-features">
+                <li>Claude Code potenziato (uso pro)</li>
+                <li>Code Review automatica su PR</li>
+                <li>GitHub Actions integrazione</li>
+                <li>Multi-agent su worktree paralleli</li>
+                <li>Admin controls avanzati</li>
+                <li>Min 5 utenti</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag">Dev teams</span>
+                <button class="diff-btn" onclick="openDiff('c_team_prem')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+            <div class="plan-card">
+              <div class="plan-card-head">
+                <span class="plan-name">Enterprise</span>
+                <span class="plan-price custom">Custom</span>
+              </div>
+              <ul class="plan-features">
+                <li>SSO / SAML (Okta, Azure AD…)</li>
+                <li>Audit log completo</li>
+                <li>Compliance (SOC 2, HIPAA ready)</li>
+                <li>Data retention configurabile</li>
+                <li>Supporto dedicato con SLA</li>
+                <li>Claude.ai for Work avanzato</li>
+              </ul>
+              <div class="plan-card-foot">
+                <span class="plan-tag blue">Via sales</span>
+                <button class="diff-btn" onclick="openDiff('c_enterprise')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bench-note anim d4">
+        Prezzi EUR, aggiornati a Marzo 2026. Team Premium: seat separato dal Standard, non upgrade. Enterprise: pricing custom tramite <a href="https://www.anthropic.com/contact-sales" style="color:var(--accent)" target="_blank" rel="noopener">anthropic.com/contact-sales</a>.<br>
+        Fonte: <a href="https://claude.ai/pricing" style="color:var(--accent)" target="_blank" rel="noopener">claude.ai/pricing</a> · <a href="https://www.anthropic.com/pricing" style="color:var(--accent)" target="_blank" rel="noopener">anthropic.com/pricing</a>
+      </div>
+      <div class="slide-footer">
+        <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+        <div class="ot-logo">
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 18: TRAINING & CERTIFICATION -->
+    <div class="slide content-slide" data-slide="18">
       <h2 class="slide-title anim d1">Formazione & Certificazione</h2>
       <p class="section-desc anim d2">13 corsi gratuiti su Skilljar per tutti, più la certificazione ufficiale Claude
-        Certified Architect per le aziende nel Partner Network. Investimento Anthropic: $100M nel 2026.</p>
+        Certified Architect per le aziende nel Partner Network. $100M investiti da Anthropic nel Claude Partner Network nel 2026.</p>
       <div class="card-grid anim d3" style="max-width:1000px">
         <div class="card">
           <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
@@ -1059,7 +1298,7 @@
           <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
           <h3>Claude Certified Architect</h3>
           <p>Esame proctored da 60 domande su architettura agentica, MCP, Claude Code e design di sistemi AI in
-            produzione. Gratuito per i primi 5.000 dipendenti partner, poi $99.</p>
+            produzione. Gratuito per i primi 5.000 dipendenti partner, poi €99.</p>
         </div>
         <div class="card">
           <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -1075,7 +1314,7 @@
         </div>
         <div class="metric">
           <div class="value">$100M</div>
-          <div class="label">Investimento Anthropic 2026</div>
+          <div class="label">Investimento Partner Network 2026</div>
         </div>
         <div class="metric">
           <div class="value">30K+</div>
@@ -1103,7 +1342,7 @@
     </div>
 
     <!-- SLIDE 18: CTA / GRAZIE -->
-    <div class="slide" data-slide="18" style="justify-content:center;align-items:center">
+    <div class="slide" data-slide="19" style="justify-content:center;align-items:center">
       <div class="close-line"></div>
       <div class="cover-dot-grid" style="top:2.5rem;left:2.5rem;right:auto">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -1132,6 +1371,24 @@
     <div class="counter" id="counter">1 / 15</div>
   </div>
   <div class="kbd-hint">&larr; &rarr; oppure swipe per navigare</div>
+
+  <!-- Modal immagine prezzi (Business) -->
+  <div class="modal-overlay" id="imgModal" onclick="closeImgModal(event)">
+    <div class="modal-box" style="position:relative;max-width:760px;padding:1.25rem 1.5rem">
+      <button class="modal-close" onclick="closeImgModal()">&times;</button>
+      <p style="font-size:.65rem;color:var(--muted);margin-bottom:.75rem">Prezzi ufficiali claude.ai/pricing — Team &amp; Enterprise (fatturazione annuale / mensile)</p>
+      <img src="public/claude-pricing-team-enterprise.png" alt="Claude Team & Enterprise pricing" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </div>
+
+  <!-- Modal differenze (globale, fuori dalle slide) -->
+  <div class="modal-overlay" id="diffModal" onclick="closeDiff(event)">
+    <div class="modal-box" style="position:relative">
+      <button class="modal-close" onclick="closeDiff()">&times;</button>
+      <h3 id="diffTitle"></h3>
+      <ul id="diffBody"></ul>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
