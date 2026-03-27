@@ -103,12 +103,12 @@
         <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
           <div>
             <div class="icon red" style="width:40px;height:40px;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
-            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">8x</div>
-            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">meno contesto<br>vs Claude Code</div>
+            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">~8x</div>
+            <div style="font-size:.65rem;color:var(--muted);line-height:1.3">meno contesto<br>(modello default)</div>
           </div>
           <div>
             <h3>Il dev chiede "dove viene validato il pagamento?"</h3>
-            <p><strong>Con Copilot:</strong> contesto di 64K-128K token, ricerca a snippet indicizzati. Il tool trova frammenti ma non capisce il flusso end-to-end. Il dev deve navigare manualmente 15 file per ricostruire la catena.</p>
+            <p><strong>Con Copilot:</strong> contesto 128K token (modello default GPT-4.1; alcuni modelli opzionali arrivano a 200K), ricerca a snippet indicizzati. Il tool trova frammenti ma non capisce il flusso end-to-end. Il dev deve navigare manualmente 15 file per ricostruire la catena.</p>
             <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> 1M di contesto continuo. Analizza l'intero codebase, segue le dipendenze e risponde con il flusso completo in secondi.</p>
           </div>
         </div>
@@ -210,7 +210,7 @@
     <div class="slide content-slide" data-slide="4">
       <h2 class="slide-title anim d1">Un protocollo. Migliaia di integrazioni.</h2>
       <p class="section-desc anim d2">MCP è stato creato da Anthropic nel Nov 2024, adottato da OpenAI (Mar 2025) e
-        Google (Apr 2025), e donato all'Agentic AI Foundation sotto la Linux Foundation (Dic 2025). A Marzo 2026,
+        Google (commitment Apr 2025, deployment produzione Ott–Dic 2025), e donato all'Agentic AI Foundation sotto la Linux Foundation (Dic 2025). A Marzo 2026,
         l'ecosistema conta oltre 10.000 server.</p>
       <div class="metrics anim d2" style="margin-top:1rem;justify-content:flex-start">
         <div class="metric">
@@ -360,7 +360,7 @@
         </div>
         <div class="brow">
           <div class="bcell bname">GPT-5.4</div>
-          <div class="bcell"><span class="bval silver">~80%</span></div>
+          <div class="bcell"><span class="bval bronze">~75%</span></div>
           <div class="bcell"><span class="bval gold">67.4%</span></div>
           <div class="bcell"><span class="bval gold">75.1%</span></div>
           <div class="bcell"><span class="bval silver">1M (Codex)</span></div>
@@ -369,7 +369,7 @@
         <div class="brow">
           <div class="bcell bname">Gemini 3.1 Pro</div>
           <div class="bcell"><span class="bval silver">80.6%</span></div>
-          <div class="bcell"><span class="bval bronze">~48%</span></div>
+          <div class="bcell"><span class="bval normal">N/D</span></div>
           <div class="bcell"><span class="bval silver">68.5%</span></div>
           <div class="bcell"><span class="bval gold">1M</span></div>
           <div class="bcell"><span class="bval silver">€1,68 / €10,1</span></div>
@@ -529,7 +529,7 @@
         </div>
       </div>
       <div class="bench-note anim d4">
-        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro (€20/mo). GitHub Action con API key (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
+        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro (~€16,83/mo). GitHub Action con API key (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
         Fonti: <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank" rel="noopener">GitHub Actions Docs</a> · <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank" rel="noopener">Code Review Docs</a> · <a href="https://github.com/anthropics/claude-code-action" style="color:var(--accent)" target="_blank" rel="noopener">claude-code-action repo</a>
       </div>
       <div class="slide-footer">
@@ -866,8 +866,8 @@
         <div class="compare-row">
           <div class="compare-cell feature">Contesto massimo</div>
           <div class="compare-cell"><span class="badge good">1M continuo</span></div>
-          <div class="compare-cell"><span class="badge bad">64K-128K + retrieval</span></div>
-          <div class="compare-cell"><span class="badge mid">1M (retrieval)</span></div>
+          <div class="compare-cell"><span class="badge bad">128K–200K (dipende dal modello)</span></div>
+          <div class="compare-cell"><span class="badge mid">1M (nativo)</span></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">MCP Protocol</div>
@@ -964,7 +964,7 @@
     <div class="slide content-slide" data-slide="15">
       <h2 class="slide-title anim d1">Mockup interattivi, non immagini statiche</h2>
       <p class="section-desc anim d2">Claude Desktop genera <strong>artifacts interattivi</strong> — vero codice HTML,
-        CSS e JavaScript eseguito live nel browser. Gemini genera un'immagine statica non modificabile.</p>
+        CSS e JavaScript eseguito live nel browser. Gemini genera codice ma senza ambiente di esecuzione integrato nella chat.</p>
       <div class="slide-body anim d3">
         <div class="card-grid" style="flex:1">
           <div class="card" style="border-color:var(--green);border-width:2px">
@@ -981,14 +981,13 @@
           </div>
           <div class="card" style="border-color:var(--red);border-width:2px">
             <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-            <h3 style="color:var(--red)">Gemini — Immagine statica</h3>
-            <p>Alla stessa richiesta, Gemini genera un'<strong>immagine PNG/JPG</strong>
-              tramite image generation. Il risultato è un'illustrazione non funzionante.</p>
+            <h3 style="color:var(--red)">Gemini — Senza ambiente di esecuzione</h3>
+            <p>Gemini genera <strong>codice HTML/CSS</strong>, ma senza un ambiente di esecuzione integrato nella chat. Manca il preview interattivo live paragonabile agli Artifacts.</p>
             <ul style="margin-top:.3rem;font-size:.75rem;color:var(--muted);line-height:1.45;padding-left:1.1rem">
-              <li>Nessun codice generato — solo pixel</li>
-              <li>Non cliccabile, non navigabile</li>
-              <li>Impossibile iterare sui dettagli</li>
-              <li>Non utilizzabile per lo sviluppo</li>
+              <li>Nessun preview live nella conversazione</li>
+              <li>Richiede copia/incolla per testare il codice</li>
+              <li>Iterazione sul design meno fluida</li>
+              <li>Nessuna esportazione diretta come file standalone</li>
             </ul>
           </div>
         </div>
@@ -1014,7 +1013,7 @@
               Gemini</div>
             <div
               style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:.7rem;display:flex;align-items:center;justify-content:center;min-height:45px">
-              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>immagine_dashboard.png</span>
+              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>codice senza preview live</span>
             </div>
           </div>
         </div>
@@ -1287,7 +1286,7 @@
     <div class="slide content-slide" data-slide="18">
       <h2 class="slide-title anim d1">Formazione & Certificazione</h2>
       <p class="section-desc anim d2">13 corsi gratuiti su Skilljar per tutti, più la certificazione ufficiale Claude
-        Certified Architect per le aziende nel Partner Network. Investimento Anthropic: €100M nel 2026.</p>
+        Certified Architect per le aziende nel Partner Network. $100M investiti da Anthropic nel Claude Partner Network nel 2026.</p>
       <div class="card-grid anim d3" style="max-width:1000px">
         <div class="card">
           <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
@@ -1314,8 +1313,8 @@
           <div class="label">Corsi gratuiti Skilljar</div>
         </div>
         <div class="metric">
-          <div class="value">€100M</div>
-          <div class="label">Investimento Anthropic 2026</div>
+          <div class="value">$100M</div>
+          <div class="label">Investimento Partner Network 2026</div>
         </div>
         <div class="metric">
           <div class="value">30K+</div>
