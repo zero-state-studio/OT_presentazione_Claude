@@ -323,7 +323,23 @@ async function downloadPptx() {
   ];
 
   const pptx = new PptxGenJS();
-  pptx.layout = 'LAYOUT_WIDE'; // 16:9
+  pptx.layout = 'LAYOUT_WIDE'; // 13.33" x 7.5" (16:9)
+
+  /* ── Force exact 16:9 capture area ──
+     The PPTX slide is 16:9. If the browser viewport is NOT 16:9,
+     html2canvas will capture a non-16:9 rectangle and PptxGenJS
+     will stretch it to fit. We avoid this by capturing at a fixed
+     16:9 resolution using a wrapper element. */
+  const captureW = 1920;
+  const captureH = 1080;
+
+  // Create an off-screen wrapper that forces exactly 1920×1080
+  const captureBox = document.createElement('div');
+  captureBox.id = 'pptx-capture-box';
+  captureBox.style.cssText =
+    'position:fixed;top:0;left:0;width:' + captureW + 'px;height:' + captureH +
+    'px;overflow:hidden;z-index:-9999;pointer-events:none;opacity:0;';
+  document.body.appendChild(captureBox);
 
   for (let i = 0; i < total; i++) {
     statusEl.textContent = `Slide ${i + 1} di ${total}…`;
@@ -340,17 +356,33 @@ async function downloadPptx() {
     noAnimStyle.id = 'pptx-no-anim';
     noAnimStyle.textContent =
       '*, *::before, *::after { animation: none !important; transition: none !important; }' +
-      '.anim { opacity: 1 !important; transform: none !important; }';
+      '.anim { opacity: 1 !important; transform: none !important; }' +
+      /* Force the deck to render at exactly 1920×1080 for the capture */
+      '#pptx-capture-box .deck { width: ' + captureW + 'px !important; height: ' + captureH + 'px !important; }' +
+      '#pptx-capture-box .slide { width: ' + captureW + 'px !important; height: ' + captureH + 'px !important; }';
     document.head.appendChild(noAnimStyle);
 
+    // Clone the deck into the capture box at fixed 16:9 dimensions
+    const deckEl = document.querySelector('.deck');
+    const clone = deckEl.cloneNode(true);
+    clone.style.width = captureW + 'px';
+    clone.style.height = captureH + 'px';
+    clone.style.position = 'relative';
+    captureBox.innerHTML = '';
+    captureBox.appendChild(clone);
+
+    // Make capture box visible for html2canvas
+    captureBox.style.opacity = '1';
+    captureBox.style.zIndex = '99999';
+
     try {
-      const canvas = await html2canvas(document.body, {
+      const canvas = await html2canvas(captureBox, {
         scale: 1.5,
         useCORS: true,
         allowTaint: true,
         logging: false,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: captureW,
+        height: captureH,
         scrollX: 0,
         scrollY: 0
       });
@@ -359,11 +391,15 @@ async function downloadPptx() {
       const slide = pptx.addSlide();
       slide.addImage({ data: imgData, x: 0, y: 0, w: '100%', h: '100%' });
     } finally {
+      captureBox.style.opacity = '0';
+      captureBox.style.zIndex = '-9999';
+      captureBox.innerHTML = '';
       document.getElementById('pptx-no-anim').remove();
       uiEls.forEach(el => el && (el.style.visibility = ''));
     }
   }
 
+  captureBox.remove();
   goTo(savedCur);
   overlayEl.style.display = 'none';
   btn.disabled = false;
