@@ -284,3 +284,94 @@ document.addEventListener('touchend', e => {
 });
 
 updateSlides();
+
+/* ── PPTX download ── */
+async function downloadPptx() {
+  // html2canvas non funziona con il protocollo file:// per restrizioni di sicurezza del browser.
+  // La presentazione deve essere servita via HTTP.
+  if (window.location.protocol === 'file:') {
+    const overlayEl = document.getElementById('pptxOverlay');
+    const statusEl = document.getElementById('pptxStatus');
+    document.getElementById('pptxSpinner').style.display = 'none';
+    document.querySelector('#pptxOverlayBox strong').textContent = 'Server HTTP richiesto';
+    statusEl.innerHTML =
+      'Apri la presentazione tramite un server locale:<br><br>' +
+      '<code style="background:#f5f5f5;padding:.3rem .6rem;border-radius:6px;font-size:.78rem;display:inline-block">' +
+      'python3 -m http.server 8000</code><br><br>' +
+      'Poi vai su <strong>http://localhost:8000/claude-for-ot-consulting.html</strong><br><br>' +
+      '<button onclick="document.getElementById(\'pptxOverlay\').style.display=\'none\';document.getElementById(\'pptxSpinner\').style.display=\'\';document.querySelector(\'#pptxOverlayBox strong\').textContent=\'Generazione PPTX\';" ' +
+      'style="margin-top:.5rem;padding:.4rem 1.2rem;border:1px solid #e0e0e0;border-radius:999px;cursor:pointer;font-family:inherit;font-size:.8rem">Chiudi</button>';
+    overlayEl.style.display = 'flex';
+    return;
+  }
+
+  const btn = document.getElementById('pptxBtn');
+  const overlayEl = document.getElementById('pptxOverlay');
+  const statusEl = document.getElementById('pptxStatus');
+  const savedCur = cur;
+
+  btn.disabled = true;
+  overlayEl.style.display = 'flex';
+
+  // Elements to hide during each screen capture
+  const uiEls = [
+    document.querySelector('.nav'),
+    document.getElementById('progress'),
+    document.querySelector('.kbd-hint'),
+    btn,
+    overlayEl
+  ];
+
+  const pptx = new PptxGenJS();
+  pptx.layout = 'LAYOUT_WIDE'; // 16:9
+
+  for (let i = 0; i < total; i++) {
+    statusEl.textContent = `Slide ${i + 1} di ${total}…`;
+    goTo(i);
+
+    // Wait for slide transition to complete
+    await new Promise(r => setTimeout(r, 650));
+
+    // Hide UI elements so they don't appear in the screenshot
+    uiEls.forEach(el => el && (el.style.visibility = 'hidden'));
+
+    // Freeze animations and force final (visible) state for all .anim elements
+    const noAnimStyle = document.createElement('style');
+    noAnimStyle.id = 'pptx-no-anim';
+    noAnimStyle.textContent =
+      '*, *::before, *::after { animation: none !important; transition: none !important; }' +
+      '.anim { opacity: 1 !important; transform: none !important; }';
+    document.head.appendChild(noAnimStyle);
+
+    try {
+      const canvas = await html2canvas(document.body, {
+        scale: 1.5,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scrollX: 0,
+        scrollY: 0
+      });
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.92);
+      const slide = pptx.addSlide();
+      slide.addImage({ data: imgData, x: 0, y: 0, w: '100%', h: '100%' });
+    } finally {
+      document.getElementById('pptx-no-anim').remove();
+      uiEls.forEach(el => el && (el.style.visibility = ''));
+    }
+  }
+
+  goTo(savedCur);
+  overlayEl.style.display = 'none';
+  btn.disabled = false;
+
+  try {
+    await pptx.writeFile({ fileName: 'claude-ecosystem-ot-consulting.pptx' });
+  } catch (err) {
+    console.error('PPTX write error:', err);
+    alert('Errore durante la generazione del PPTX: ' + err.message);
+  }
+}
