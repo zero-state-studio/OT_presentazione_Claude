@@ -75,10 +75,15 @@ body {
   pointer-events: auto
 }
 
-/* Content slides: left-aligned with title bar */
+/* Content slides: center-aligned with left-aligned title bar */
 .slide.content-slide {
-  align-items: flex-start;
+  align-items: center;
   padding: 1.25rem 4rem 3.5rem;
+}
+
+.slide.content-slide > .slide-title,
+.slide.content-slide > .section-desc {
+  align-self: flex-start;
 }
 
 .slide.content-slide>*:first-child {
