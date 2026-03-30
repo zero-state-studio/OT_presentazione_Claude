@@ -1476,7 +1476,7 @@ img.avatar-inner {
   margin-top: .1rem;
 }
 [data-slide="11"] .flow {
-  margin-top: .4rem !important;
+  margin-top: 1rem !important;
   gap: .3rem !important;
 }
 [data-slide="11"] .flow-node {
@@ -1487,7 +1487,7 @@ img.avatar-inner {
   font-size: .65rem !important;
 }
 [data-slide="11"] .compare {
-  margin-top: .4rem !important;
+  margin-top: .9rem !important;
 }
 [data-slide="11"] .compare-cell {
   padding: .3rem .6rem;
