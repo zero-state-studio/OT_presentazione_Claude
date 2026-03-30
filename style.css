@@ -1066,9 +1066,8 @@ img.avatar-inner {
 
 /* OT Consulting logo bar (cover only) */
 .logo-bar {
-  position: absolute;
-  bottom: 8rem;
-  left: 4rem;
+  margin-top: auto;
+  align-self: flex-start;
   display: flex;
   align-items: flex-start;
   gap: .6rem;
@@ -1447,4 +1446,47 @@ img.avatar-inner {
   color: #ccc;
   font-family: 'Space Mono', monospace;
   z-index: 90;
+}
+
+/* 
+  ===========================================
+  CUSTOM SLIDE TWEAKS (PPTX SCALING FITS)
+  ===========================================
+*/
+
+/* Slide 3 (Giornata tipo): Avoid nav bar collision by slightly compressing line-heights and padding */
+[data-slide="2"] .card {
+  padding: 1.1rem 1.7rem;
+}
+[data-slide="2"] .card p {
+  line-height: 1.35;
+}
+
+/* Slide 13 (ROI Table): Comprehensively override rem/vw properties that bypass em inheritance */
+[data-slide="12"] .slide-title {
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  margin-bottom: .2rem;
+}
+[data-slide="12"] .section-desc {
+  font-size: .9rem;
+}
+[data-slide="12"] .compare-row {
+  padding: .3rem .8rem;
+}
+[data-slide="12"] .compare-cell {
+  padding: .3rem .8rem;
+  font-size: .8rem;
+}
+[data-slide="12"] .metric .value {
+  font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+}
+[data-slide="12"] .card-grid {
+  margin-top: .7rem !important;
+}
+[data-slide="12"] .card {
+  padding: .75rem 1rem;
+}
+[data-slide="12"] .card p {
+  font-size: .8rem;
+  line-height: 1.3;
 }
