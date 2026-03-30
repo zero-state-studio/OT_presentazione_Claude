@@ -23,7 +23,10 @@
 }
 
 html {
-  font-size: 16px
+  /* Prevent vertical scrolling by natively scaling everything down exactly like PPTX letterboxing.
+     Using highly calculated min(1.25vw, 2.2vh) bounds to guarantee completely maximized font sizes 
+     that still mathematically fit the heaviest slides (Slide 3/13) inside a 16:9 vertical limit. */
+  font-size: clamp(10px, min(1.25vw, 2.2vh), 26px);
 }
 
 body {
@@ -49,12 +52,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 4rem 4.5rem;
+  padding: 3rem 4rem 6.5rem;
   opacity: 0;
   pointer-events: none;
-  overflow-y: auto;
+  overflow: hidden;
   transition: opacity .45s ease, transform .45s cubic-bezier(.4, 0, .2, 1);
-  transform: translateX(60px);
+  transform: translateX(3.75rem);
 }
 
 .slide>*:first-child {
@@ -78,12 +81,25 @@ body {
 /* Content slides: center-aligned with left-aligned title bar */
 .slide.content-slide {
   align-items: center;
-  padding: 1.25rem 4rem 3.5rem;
+  padding: 1.25rem 4rem 6.5rem;
 }
 
 .slide.content-slide > .slide-title,
 .slide.content-slide > .section-desc {
   align-self: flex-start;
+}
+
+/* Vertically center the main content block within the slide */
+.slide.content-slide > .slide-title + *:not(.section-desc) {
+  margin-top: auto;
+}
+
+.slide.content-slide > .section-desc + * {
+  margin-top: auto;
+}
+
+.slide.content-slide > *:nth-last-child(2) {
+  margin-bottom: auto;
 }
 
 .slide.content-slide>*:first-child {
@@ -110,11 +126,11 @@ body {
   gap: 1rem;
   background: rgba(255, 255, 255, .92);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 62.4375rem;
   padding: .5rem 1.5rem;
   z-index: 100;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+  backdrop-filter: blur(0.75rem);
+  box-shadow: 0 2px 0.75rem rgba(0, 0, 0, .08);
 }
 
 .nav button {
@@ -152,8 +168,8 @@ body {
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   border-radius: 50%;
   background: var(--border);
   transition: all .3s;
@@ -162,7 +178,7 @@ body {
 
 .dot.active {
   background: var(--accent);
-  width: 20px;
+  width: 1.25rem;
   border-radius: 3px
 }
 
@@ -192,8 +208,8 @@ body {
 }
 
 .slide-footer .ot-logo .ot-circle {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .slide-footer .ot-logo .ot-circle img {
@@ -232,8 +248,8 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: clamp(200px, 35%, 420px);
-  height: 6px;
+  width: clamp(12.5rem, 35%, 26.25rem);
+  height: 0.375rem;
   background: linear-gradient(90deg, #E60000 60%, #FF4400);
   border-radius: 1px;
 }
@@ -243,8 +259,8 @@ body {
   position: absolute;
   top: -80px;
   left: -80px;
-  width: 280px;
-  height: 280px;
+  width: 17.5rem;
+  height: 17.5rem;
   border-radius: 50%;
   background: var(--accent);
   z-index: 0;
@@ -254,8 +270,8 @@ body {
   position: absolute;
   bottom: -120px;
   right: -60px;
-  width: 350px;
-  height: 350px;
+  width: 21.875rem;
+  height: 21.875rem;
   border-radius: 50%;
   background: var(--accent);
   z-index: 0;
@@ -267,13 +283,13 @@ body {
   right: 2.5rem;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 5px;
+  gap: 0.3125rem;
   z-index: 1;
 }
 
 .cover-dot-grid span {
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   border-radius: 50%;
   background: #1a1a1a;
 }
@@ -299,19 +315,19 @@ body {
 }
 
 .close-hex-filled {
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   background: var(--accent);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
 .close-hex-outline {
-  width: 70px;
-  height: 70px;
+  width: 4.375rem;
+  height: 4.375rem;
   border: 2px solid #1a1a1a;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   position: absolute;
-  top: 20px;
+  top: 1.25rem;
   right: -15px;
 }
 
@@ -333,7 +349,7 @@ body {
   font-weight: 900;
   line-height: 1.1;
   text-align: left;
-  max-width: 800px;
+  max-width: 50rem;
   position: relative;
   z-index: 2;
 }
@@ -346,7 +362,7 @@ body {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--muted);
   text-align: left;
-  max-width: 640px;
+  max-width: 40rem;
   margin-top: 1.5rem;
   line-height: 1.6;
   position: relative;
@@ -366,7 +382,7 @@ body {
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 900;
   line-height: 1.2;
-  max-width: 800px;
+  max-width: 50rem;
 }
 
 .section-title .highlight {
@@ -377,40 +393,40 @@ body {
   color: var(--muted);
   font-size: .95rem;
   line-height: 1.5;
-  max-width: 700px;
+  max-width: 43.75rem;
   margin-top: .4rem;
 }
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
   gap: 1.25rem;
   width: 100%;
-  max-width: 1000px;
+  max-width: 62.5rem;
   margin-top: 1.5rem;
 }
 
 .card {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   padding: 1.5rem;
   transition: all .3s;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  box-shadow: 0 1px 0.25rem rgba(0, 0, 0, .04);
 }
 
 .card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(230, 0, 0, .08)
+  box-shadow: 0 0.25rem 1rem rgba(230, 0, 0, .08)
 }
 
 .card .icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -458,10 +474,10 @@ body {
 
 .compare {
   width: 100%;
-  max-width: 900px;
+  max-width: 56.25rem;
   margin-top: 1.5rem;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   overflow: hidden;
   background: var(--bg);
 }
@@ -501,7 +517,7 @@ body {
 
 /* Pricing table: 6 columns */
 .compare.pricing .compare-row {
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 44px;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 2.75rem;
 }
 
 /* Workflow table: 4 columns */
@@ -540,8 +556,8 @@ body {
 }
 
 .diff-btn {
-  width: 26px;
-  height: 26px;
+  width: 1.625rem;
+  height: 1.625rem;
   border-radius: 50%;
   border: none;
   background: none;
@@ -581,14 +597,14 @@ body {
 .modal-box {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 0.875rem;
   padding: 1.75rem 2rem;
-  max-width: 560px;
+  max-width: 35rem;
   width: 90%;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 12px 40px rgba(0,0,0,.15);
-  transform: translateY(20px);
+  box-shadow: 0 0.75rem 2.5rem rgba(0,0,0,.15);
+  transform: translateY(1.25rem);
   transition: transform .25s;
 }
 
@@ -606,7 +622,7 @@ body {
 .modal-box h3::after {
   content: '';
   display: block;
-  width: 40px;
+  width: 2.5rem;
   height: 3px;
   background: var(--accent);
   border-radius: 2px;
@@ -637,12 +653,12 @@ body {
   font-size: 1.3rem;
   color: var(--muted);
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   transition: all .2s;
 }
 
@@ -654,7 +670,7 @@ body {
 .badge {
   display: inline-flex;
   padding: .2rem .65rem;
-  border-radius: 6px;
+  border-radius: 0.375rem;
   font-size: .75rem;
   font-weight: 600;
 }
@@ -681,10 +697,10 @@ body {
 
 .bench-table {
   width: 100%;
-  max-width: 960px;
+  max-width: 60rem;
   margin-top: 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   overflow: hidden;
   background: var(--bg);
   font-size: .82rem;
@@ -726,7 +742,7 @@ body {
 .bval {
   display: inline-flex;
   padding: .15rem .55rem;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   font-size: .72rem;
   font-weight: 700;
   font-family: 'Space Mono', monospace;
@@ -757,7 +773,7 @@ body {
   font-size: .7rem;
   margin-top: .75rem;
   font-style: italic;
-  max-width: 800px;
+  max-width: 50rem;
 }
 
 .flow {
@@ -772,11 +788,11 @@ body {
 .flow-node {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   padding: 1rem 1.5rem;
   text-align: center;
-  min-width: 140px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  min-width: 8.75rem;
+  box-shadow: 0 1px 0.25rem rgba(0, 0, 0, .04);
 }
 
 .flow-node .fn-icon {
@@ -805,13 +821,13 @@ body {
 .code-block {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   padding: .85rem 1rem;
   margin-top: 1rem;
   font-family: 'Space Mono', monospace;
   font-size: .72rem;
   line-height: 1.55;
-  max-width: 700px;
+  max-width: 43.75rem;
   width: 100%;
   overflow-x: auto;
   white-space: pre;
@@ -822,7 +838,7 @@ body {
   display: flex;
   gap: 1rem;
   width: 100%;
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin-top: .75rem;
   align-items: stretch;
 }
@@ -904,7 +920,7 @@ body {
   display: flex;
   gap: 0;
   margin-top: 1.5rem;
-  max-width: 900px;
+  max-width: 56.25rem;
   width: 100%
 }
 
@@ -920,8 +936,8 @@ body {
   position: absolute;
   top: -8px;
   left: 1.25rem;
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   border-radius: 50%;
   background: var(--border);
   border: 2px solid var(--bg);
@@ -933,7 +949,7 @@ body {
 
 .tl-step.current::before {
   background: var(--accent);
-  box-shadow: 0 0 12px rgba(230, 0, 0, .3)
+  box-shadow: 0 0 0.75rem rgba(230, 0, 0, .3)
 }
 
 .tl-step .tl-week {
@@ -962,7 +978,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  max-width: 900px;
+  max-width: 56.25rem;
   width: 100%;
   margin-top: 2rem;
 }
@@ -970,13 +986,13 @@ body {
 .ambassador {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 1rem;
   padding: 1.75rem 1.25rem;
   text-align: center;
   transition: all .3s;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+  box-shadow: 0 1px 0.25rem rgba(0, 0, 0, .04);
 }
 
 .ambassador:hover {
@@ -985,8 +1001,8 @@ body {
 }
 
 .ambassador .avatar {
-  width: 72px;
-  height: 72px;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
   margin: 0 auto 1rem;
   display: flex;
@@ -1041,7 +1057,7 @@ img.avatar-inner {
   display: inline-flex;
   margin-top: .6rem;
   padding: .2rem .7rem;
-  border-radius: 6px;
+  border-radius: 0.375rem;
   font-size: .68rem;
   font-weight: 600;
   background: rgba(230, 0, 0, .08);
@@ -1060,8 +1076,8 @@ img.avatar-inner {
 }
 
 .logo-bar .ot-mark {
-  width: 28px;
-  height: 28px;
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 .logo-bar .ot-mark img {
@@ -1079,7 +1095,7 @@ img.avatar-inner {
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px)
+    transform: translateY(1.25rem)
   }
 
   to {
@@ -1119,7 +1135,7 @@ img.avatar-inner {
   flex-direction: column;
   gap: .75rem;
   width: 100%;
-  max-width: 1100px;
+  max-width: 68.75rem;
 }
 
 .plans-group {
@@ -1146,7 +1162,7 @@ img.avatar-inner {
   flex: 1;
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   padding: .75rem .85rem;
   display: flex;
   flex-direction: column;
@@ -1238,7 +1254,7 @@ img.avatar-inner {
   font-size: .6rem;
   font-weight: 600;
   padding: .15rem .45rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   background: rgba(230,0,0,.08);
   color: var(--accent);
 }
@@ -1320,15 +1336,15 @@ img.avatar-inner {
   }
 
   .cover-deco-tl {
-    width: 180px;
-    height: 180px;
+    width: 11.25rem;
+    height: 11.25rem;
     top: -50px;
     left: -50px
   }
 
   .cover-deco-br {
-    width: 220px;
-    height: 220px;
+    width: 13.75rem;
+    height: 13.75rem;
     bottom: -80px;
     right: -40px
   }
@@ -1338,217 +1354,8 @@ img.avatar-inner {
   }
 }
 
-/* Short viewport adjustments (13" laptops, ~800px height) */
-@media(max-height:860px) {
-  .slide.content-slide {
-    padding: .85rem 3.5rem 3.5rem;
-  }
+/* Short viewport adjustments (13" laptops, ~50rem height) */
 
-  .slide-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-    margin-bottom: .3rem;
-    padding-bottom: .2rem;
-  }
-
-  .slide-title::after {
-    height: 4px;
-  }
-
-  .section-desc {
-    font-size: 1.05rem;
-    margin-top: .2rem;
-    line-height: 1.4;
-  }
-
-  .card-grid {
-    margin-top: .85rem;
-    gap: .75rem;
-  }
-
-  .card {
-    padding: 1rem;
-  }
-
-  .card h3 {
-    font-size: 1.15rem;
-    margin-bottom: .25rem;
-  }
-
-  .card p {
-    font-size: .95rem;
-    line-height: 1.45;
-  }
-
-  .metrics {
-    margin-top: 1rem;
-    gap: 1.5rem;
-  }
-
-  .bench-note {
-    margin-top: .4rem;
-    font-size: .75rem;
-  }
-
-  .bench-table {
-    margin-top: .6rem;
-  }
-
-  .bench-table .bcell {
-    padding: .45rem .6rem;
-    font-size: .85rem;
-  }
-
-  .bench-table .brow.bheader .bcell {
-    font-size: .75rem;
-  }
-
-  .compare-cell {
-    padding: .5rem .8rem;
-    font-size: .9rem;
-  }
-
-  .compare-row.header .compare-cell {
-    font-size: .75rem;
-    padding: .4rem .8rem;
-  }
-
-  .slide-footer {
-    bottom: 1rem;
-  }
-
-  .slide-body {
-    margin-top: .5rem;
-  }
-
-  .slide-body .card {
-    padding: .6rem .85rem;
-  }
-
-  .slide-body .card h3 {
-    font-size: 1rem;
-  }
-
-  .slide-body .card p {
-    font-size: .85rem;
-  }
-
-  .code-block {
-    font-size: .8rem;
-    padding: .6rem .85rem;
-    margin-top: .5rem;
-  }
-
-  /* Cover slide: prevent overlap on short viewports */
-  .hero-title {
-    font-size: clamp(2.3rem, 5vw, 3.8rem);
-  }
-
-  .subtitle {
-    margin-top: .8rem;
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-  }
-
-  .metrics .metric .value {
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  }
-
-  .metrics .metric .label {
-    font-size: .8rem;
-  }
-
-  .logo-bar {
-    bottom: 5rem !important;
-  }
-
-  /* Dense slide (workflow): moderately compact */
-  .slide-dense .slide-title {
-    font-size: clamp(1.65rem, 3.2vw, 2.2rem);
-    margin-bottom: .25rem;
-  }
-
-  .slide-dense .section-desc {
-    font-size: .95rem;
-    margin-top: .15rem;
-    line-height: 1.35;
-  }
-
-  .slide-dense .flow {
-    margin-top: .4rem !important;
-    gap: .3rem !important;
-  }
-
-  .slide-dense .flow-node {
-    padding: .35rem .5rem !important;
-    min-width: 85px !important;
-  }
-
-  .slide-dense .flow-node .fn-icon {
-    font-size: 1.1rem !important;
-    margin-bottom: .1rem;
-  }
-
-  .slide-dense .flow-node .fn-icon svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .slide-dense .flow-node .fn-label {
-    font-size: .75rem !important;
-  }
-
-  .slide-dense .flow-arrow {
-    font-size: 1rem !important;
-  }
-
-  .slide-dense .compare {
-    margin-top: .4rem !important;
-  }
-
-  .slide-dense .compare.workflow .compare-row {
-    grid-template-columns: .7fr 2.2fr .9fr 1fr;
-  }
-
-  .slide-dense .compare.workflow .compare-cell {
-    font-size: .8rem !important;
-    padding: .38rem .5rem;
-    line-height: 1.35;
-  }
-
-  .slide-dense .compare.workflow .compare-row.header .compare-cell {
-    font-size: .68rem !important;
-    padding: .28rem .5rem;
-  }
-
-  .slide-dense .compare.workflow .compare-cell .badge {
-    font-size: .7rem;
-    padding: .15rem .45rem;
-  }
-
-  .slide-dense .bench-note {
-    margin-top: .3rem;
-    font-size: .7rem;
-  }
-
-  /* ROI table compact on 13" */
-  .compare.roi .compare-row {
-    grid-template-columns: 1.5fr .5fr .5fr .55fr .4fr;
-  }
-
-  .compare.roi .compare-cell {
-    padding: .25rem .35rem;
-    font-size: .8rem;
-  }
-
-  .compare.roi .compare-row.header .compare-cell {
-    font-size: .68rem;
-    padding: .3rem .35rem;
-  }
-
-  .compare.roi .compare-cell .badge {
-    font-size: .72rem;
-    padding: .15rem .4rem;
-  }
-}
 
 /* ── PPTX download button ── */
 #pptxBtn {
@@ -1560,7 +1367,7 @@ img.avatar-inner {
   gap: .4rem;
   background: rgba(255, 255, 255, .92);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 62.4375rem;
   padding: .45rem 1rem;
   font-size: .72rem;
   font-family: 'DM Sans', sans-serif;
@@ -1568,8 +1375,8 @@ img.avatar-inner {
   color: var(--muted);
   cursor: pointer;
   z-index: 100;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
+  backdrop-filter: blur(0.75rem);
+  box-shadow: 0 2px 0.75rem rgba(0, 0, 0, .08);
   transition: color .2s, border-color .2s;
 }
 
@@ -1595,15 +1402,15 @@ img.avatar-inner {
 
 #pptxOverlayBox {
   background: white;
-  border-radius: 16px;
+  border-radius: 1rem;
   padding: 2rem 3rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  min-width: 280px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .18);
+  min-width: 17.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, .18);
 }
 
 #pptxOverlayBox p {
@@ -1617,8 +1424,8 @@ img.avatar-inner {
 }
 
 #pptxSpinner {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border: 3px solid var(--border);
   border-top-color: var(--accent);
   border-radius: 50%;
