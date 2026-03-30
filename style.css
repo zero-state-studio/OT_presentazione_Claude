@@ -1341,75 +1341,75 @@ img.avatar-inner {
 /* Short viewport adjustments (13" laptops, ~800px height) */
 @media(max-height:860px) {
   .slide.content-slide {
-    padding: 1rem 3.5rem 2.5rem;
+    padding: .85rem 3.5rem 3.5rem;
   }
 
   .slide-title {
-    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
-    margin-bottom: .5rem;
-    padding-bottom: .3rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: .3rem;
+    padding-bottom: .2rem;
   }
 
   .slide-title::after {
-    height: 5px;
+    height: 4px;
   }
 
   .section-desc {
-    font-size: .88rem;
-    margin-top: .3rem;
-    line-height: 1.45;
+    font-size: 1.05rem;
+    margin-top: .2rem;
+    line-height: 1.4;
   }
 
   .card-grid {
-    margin-top: 1.25rem;
-    gap: 1rem;
+    margin-top: .85rem;
+    gap: .75rem;
   }
 
   .card {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .card h3 {
-    font-size: 1rem;
-    margin-bottom: .3rem;
+    font-size: 1.15rem;
+    margin-bottom: .25rem;
   }
 
   .card p {
-    font-size: .84rem;
-    line-height: 1.5;
+    font-size: .95rem;
+    line-height: 1.45;
   }
 
   .metrics {
-    margin-top: 1.5rem;
-    gap: 1.75rem;
+    margin-top: 1rem;
+    gap: 1.5rem;
   }
 
   .bench-note {
-    margin-top: .5rem;
-    font-size: .65rem;
+    margin-top: .4rem;
+    font-size: .75rem;
   }
 
   .bench-table {
-    margin-top: .8rem;
+    margin-top: .6rem;
   }
 
   .bench-table .bcell {
-    padding: .5rem .6rem;
-    font-size: .76rem;
+    padding: .45rem .6rem;
+    font-size: .85rem;
   }
 
   .bench-table .brow.bheader .bcell {
-    font-size: .6rem;
+    font-size: .75rem;
   }
 
   .compare-cell {
-    padding: .6rem .8rem;
-    font-size: .8rem;
+    padding: .5rem .8rem;
+    font-size: .9rem;
   }
 
   .compare-row.header .compare-cell {
-    font-size: .68rem;
-    padding: .5rem .8rem;
+    font-size: .75rem;
+    padding: .4rem .8rem;
   }
 
   .slide-footer {
@@ -1417,91 +1417,91 @@ img.avatar-inner {
   }
 
   .slide-body {
-    margin-top: .6rem;
+    margin-top: .5rem;
   }
 
   .slide-body .card {
-    padding: .6rem .9rem;
+    padding: .6rem .85rem;
   }
 
   .slide-body .card h3 {
-    font-size: .85rem;
+    font-size: 1rem;
   }
 
   .slide-body .card p {
-    font-size: .75rem;
+    font-size: .85rem;
   }
 
   .code-block {
-    font-size: .68rem;
-    padding: .7rem .9rem;
-    margin-top: .6rem;
+    font-size: .8rem;
+    padding: .6rem .85rem;
+    margin-top: .5rem;
   }
 
   /* Cover slide: prevent overlap on short viewports */
   .hero-title {
-    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
   }
 
   .subtitle {
-    margin-top: 1rem;
-    font-size: clamp(.9rem, 1.5vw, 1.1rem);
+    margin-top: .8rem;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
   }
 
   .metrics .metric .value {
-    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   }
 
   .metrics .metric .label {
-    font-size: .7rem;
+    font-size: .8rem;
   }
 
   .logo-bar {
-    bottom: 5.5rem !important;
+    bottom: 5rem !important;
   }
 
   /* Dense slide (workflow): moderately compact */
   .slide-dense .slide-title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: .4rem;
+    font-size: clamp(1.65rem, 3.2vw, 2.2rem);
+    margin-bottom: .25rem;
   }
 
   .slide-dense .section-desc {
-    font-size: .85rem;
-    margin-top: .2rem;
-    line-height: 1.4;
+    font-size: .95rem;
+    margin-top: .15rem;
+    line-height: 1.35;
   }
 
   .slide-dense .flow {
-    margin-top: .6rem !important;
-    gap: .35rem !important;
+    margin-top: .4rem !important;
+    gap: .3rem !important;
   }
 
   .slide-dense .flow-node {
-    padding: .4rem .65rem !important;
-    min-width: 92px !important;
+    padding: .35rem .5rem !important;
+    min-width: 85px !important;
   }
 
   .slide-dense .flow-node .fn-icon {
-    font-size: .95rem !important;
+    font-size: 1.1rem !important;
     margin-bottom: .1rem;
   }
 
   .slide-dense .flow-node .fn-icon svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   .slide-dense .flow-node .fn-label {
-    font-size: .67rem !important;
+    font-size: .75rem !important;
   }
 
   .slide-dense .flow-arrow {
-    font-size: .8rem !important;
+    font-size: 1rem !important;
   }
 
   .slide-dense .compare {
-    margin-top: .6rem !important;
+    margin-top: .4rem !important;
   }
 
   .slide-dense .compare.workflow .compare-row {
@@ -1509,24 +1509,24 @@ img.avatar-inner {
   }
 
   .slide-dense .compare.workflow .compare-cell {
-    font-size: .72rem !important;
-    padding: .42rem .55rem;
+    font-size: .8rem !important;
+    padding: .38rem .5rem;
     line-height: 1.35;
   }
 
   .slide-dense .compare.workflow .compare-row.header .compare-cell {
-    font-size: .62rem !important;
-    padding: .32rem .55rem;
+    font-size: .68rem !important;
+    padding: .28rem .5rem;
   }
 
   .slide-dense .compare.workflow .compare-cell .badge {
-    font-size: .65rem;
+    font-size: .7rem;
     padding: .15rem .45rem;
   }
 
   .slide-dense .bench-note {
-    margin-top: .4rem;
-    font-size: .62rem;
+    margin-top: .3rem;
+    font-size: .7rem;
   }
 
   /* ROI table compact on 13" */
@@ -1535,17 +1535,17 @@ img.avatar-inner {
   }
 
   .compare.roi .compare-cell {
-    padding: .3rem .35rem;
-    font-size: .72rem;
+    padding: .25rem .35rem;
+    font-size: .8rem;
   }
 
   .compare.roi .compare-row.header .compare-cell {
-    font-size: .6rem;
-    padding: .35rem .35rem;
+    font-size: .68rem;
+    padding: .3rem .35rem;
   }
 
   .compare.roi .compare-cell .badge {
-    font-size: .65rem;
+    font-size: .72rem;
     padding: .15rem .4rem;
   }
 }
