@@ -1735,86 +1735,87 @@ img.avatar-inner {
   ===========================================
 */
 
-/* Slide 3 (Giornata tipo): Avoid nav bar collision by slightly compressing line-heights and padding */
-[data-slide="2"] .card {
+/* ── OT-presentation-specific slide overrides ──
+   Scoped under .deck-ot to avoid affecting other presentations */
+
+/* Slide 3 (Giornata tipo) */
+.deck-ot [data-slide="2"] .card {
   padding: 1.1rem 1.7rem;
 }
-[data-slide="2"] .card p {
+.deck-ot [data-slide="2"] .card p {
   line-height: 1.35;
 }
 
-/* Slide 12 (Workflow Enterprise): Extremely dense — flow diagram + 9-row table + footnotes.
-   Use CSS scale() to physically shrink the entire slide like PPTX "Ensure Fit" does. */
-[data-slide="11"].slide.content-slide {
+/* Slide 12 (Workflow Enterprise): dense layout */
+.deck-ot [data-slide="11"].slide.content-slide {
   padding-top: 1rem;
 }
-[data-slide="11"] .slide-title {
+.deck-ot [data-slide="11"] .slide-title {
   font-size: clamp(1.4rem, 2.8vw, 2.2rem);
   margin-bottom: .15rem;
 }
-[data-slide="11"] .section-desc {
+.deck-ot [data-slide="11"] .section-desc {
   font-size: .85rem;
   margin-top: .1rem;
 }
-[data-slide="11"] .flow {
+.deck-ot [data-slide="11"] .flow {
   margin-top: 1rem !important;
   gap: .3rem !important;
 }
-[data-slide="11"] .flow-node {
+.deck-ot [data-slide="11"] .flow-node {
   padding: .4rem .5rem !important;
   min-width: 5rem !important;
 }
-[data-slide="11"] .flow-node .fn-label {
+.deck-ot [data-slide="11"] .flow-node .fn-label {
   font-size: .65rem !important;
 }
-[data-slide="11"] .compare {
+.deck-ot [data-slide="11"] .compare {
   margin-top: .9rem !important;
 }
-[data-slide="11"] .compare-cell {
+.deck-ot [data-slide="11"] .compare-cell {
   padding: .3rem .6rem;
   font-size: .7rem;
 }
-[data-slide="11"] .compare-row.header .compare-cell {
+.deck-ot [data-slide="11"] .compare-row.header .compare-cell {
   font-size: .6rem;
   padding: .25rem .6rem;
 }
-[data-slide="11"] .bench-note {
+.deck-ot [data-slide="11"] .bench-note {
   margin-top: .2rem;
   font-size: .6rem;
 }
 
-/* Slide 13 (ROI Table): 8-row detailed table + metrics + 2 info cards.
-   Aggressively compress all vertical spacing and font sizes. */
-[data-slide="12"].slide.content-slide {
+/* Slide 13 (ROI Table): dense layout */
+.deck-ot [data-slide="12"].slide.content-slide {
   padding-top: 1rem;
 }
-[data-slide="12"] .slide-title {
+.deck-ot [data-slide="12"] .slide-title {
   font-size: clamp(1.4rem, 2.8vw, 2.2rem);
   margin-bottom: .15rem;
 }
-[data-slide="12"] .section-desc {
+.deck-ot [data-slide="12"] .section-desc {
   font-size: .85rem;
   margin-top: .1rem;
 }
-[data-slide="12"] .compare {
+.deck-ot [data-slide="12"] .compare {
   margin-top: .5rem !important;
 }
-[data-slide="12"] .compare.roi .compare-cell {
+.deck-ot [data-slide="12"] .compare.roi .compare-cell {
   padding: .25rem .5rem;
   font-size: .72rem;
 }
-[data-slide="12"] .compare.roi .compare-row.header .compare-cell {
+.deck-ot [data-slide="12"] .compare.roi .compare-row.header .compare-cell {
   padding: .2rem .5rem;
   font-size: .6rem;
 }
-[data-slide="12"] .bench-note {
+.deck-ot [data-slide="12"] .bench-note {
   margin-top: .15rem;
   font-size: .58rem;
 }
-[data-slide="12"] .metric .value {
+.deck-ot [data-slide="12"] .metric .value {
   font-size: clamp(1.1rem, 2vw, 1.5rem) !important;
 }
-[data-slide="12"] .metric .label {
+.deck-ot [data-slide="12"] .metric .label {
   font-size: .65rem;
 }
 
