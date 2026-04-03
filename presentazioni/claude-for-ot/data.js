@@ -239,55 +239,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-const slides = document.querySelectorAll('.slide');
-const total = slides.length;
-let cur = 0;
-
-const dotsEl = document.getElementById('dots');
-for (let i = 0; i < total; i++) {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
-  d.onclick = () => goTo(i);
-  dotsEl.appendChild(d);
-}
-
-function updateSlides() {
-  slides.forEach((s, i) => {
-    s.classList.remove('active', 'before');
-    if (i === cur) s.classList.add('active');
-    else if (i < cur) s.classList.add('before');
-  });
-  document.getElementById('prev').disabled = cur === 0;
-  document.getElementById('next').disabled = cur === total - 1;
-  document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
-  document.getElementById('progress').style.width = `${(cur / (total - 1)) * 100}%`;
-  document.querySelectorAll('.dot').forEach((d, i) => {
-    d.className = 'dot' + (i === cur ? ' active' : '');
-  });
-}
-
-function goTo(n) {
-  if (n < 0 || n >= total || n === cur) return;
-  cur = n;
-  updateSlides();
-}
-
-function go(dir) { goTo(cur + dir); }
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
-  if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
-});
-
-let tx = 0;
-document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
-document.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - tx;
-  if (Math.abs(dx) > 50) { dx < 0 ? go(1) : go(-1); }
-});
-
-updateSlides();
-
 /* ── PPTX download ── */
 async function downloadPptx() {
   // html2canvas non funziona con il protocollo file:// per restrizioni di sicurezza del browser.
