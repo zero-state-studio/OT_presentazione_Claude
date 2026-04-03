@@ -37,7 +37,8 @@
       "WebFetch(domain:www.index.dev)",
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:screenapp.io)",
-      "WebFetch(domain:www.ssdnodes.com)"
+      "WebFetch(domain:www.ssdnodes.com)",
+      "Bash(cp:*)"
     ]
   }
 }

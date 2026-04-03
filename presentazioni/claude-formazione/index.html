@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corso Claude — OT Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* ── Formazione overrides: larger sizing for sparser slides ── */
+
+  /* Content slides fill more space */
+  .slide.content-slide {
+    padding: 2rem 4rem 4rem;
+  }
+
+  /* Bigger section descriptions */
+  .section-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  /* Two-column: fill the viewport width */
+  .two-col {
+    width: 100%;
+    gap: 3rem;
+    margin-top: 1.5rem;
+    flex: 1;
+    align-content: center;
+  }
+
+  .two-col p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: none;
+  }
+
+  .two-col h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Bigger tags */
+  .tag {
+    font-size: .8rem;
+    padding: .5rem 1rem;
+  }
+
+  /* Big number: even bigger to anchor the left side */
+  .big-number {
+    font-size: clamp(100px, 15vw, 180px);
+  }
+
+  /* Vertical timeline: bigger items */
+  .timeline-vertical {
+    margin-top: 0;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .timeline-item {
+    padding: 1rem 0;
+  }
+
+  .timeline-dot {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .timeline-content .time {
+    font-size: .85rem;
+    margin-bottom: .35rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: .35rem;
+  }
+
+  .timeline-content p {
+    font-size: .95rem;
+    line-height: 1.55;
+    max-width: none;
+  }
+
+  /* Tip box: bigger text */
+  .tip-box {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .tip-box p {
+    font-size: 1rem;
+    max-width: none;
+  }
+
+  /* Card grid: stretch to fill */
+  .card-grid {
+    width: 100%;
+    max-width: none;
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.75rem;
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+    margin-bottom: .5rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Icon in cards: slightly bigger */
+  .card .icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    margin-bottom: .75rem;
+  }
+
+  /* Overview grid: fill available space */
+  .overview-grid {
+    width: 100%;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    flex: 1;
+    align-content: start;
+  }
+
+  .day-card {
+    padding: 2rem;
+  }
+
+  .day-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+  }
+
+  .day-card .day-sub {
+    font-size: .9rem;
+    margin-bottom: 1rem;
+  }
+
+  .day-card ul {
+    font-size: 1rem;
+  }
+
+  .day-card ul li {
+    padding: .4rem 0;
+    padding-left: 1.25rem;
+  }
+
+  /* Theme grid: bigger cards */
+  .theme-grid {
+    width: 100%;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .theme-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .theme-card .tc-icon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: .75rem;
+  }
+
+  .theme-card .name {
+    font-size: .9rem;
+    margin-bottom: .5rem;
+  }
+
+  .theme-card .desc {
+    font-size: .78rem;
+    line-height: 1.5;
+  }
+
+  /* Cmd table: bigger rows */
+  .cmd-table td {
+    padding: .85rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .cmd-table td:first-child {
+    width: auto;
+    padding-right: 2rem;
+  }
+
+  /* Checklist: bigger items */
+  .checklist li {
+    font-size: 1rem;
+    padding: .6rem 0;
+  }
+
+  /* KV row: bigger on cover */
+  .kv .val {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .kv .label {
+    font-size: .9rem;
+  }
+
+  /* Slide label */
+  .slide-label {
+    font-size: .8rem;
+    letter-spacing: .2em;
+    margin-bottom: 1rem;
+  }
+
+  /* Concepts box in two-col */
+  .two-col > div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ── Sorteggio tool ── */
+  .sorteggio-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .sorteggio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .65rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sorteggio-btn:hover { background: #cc0000; transform: translateY(-1px); }
+  .sorteggio-btn:active { transform: scale(.97); }
+  .sorteggio-btn:disabled { opacity: .5; cursor: default; transform: none; }
+
+  .sorteggio-results {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    flex: 1;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .sort-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-size: .95rem;
+    font-weight: 700;
+    text-align: center;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    min-width: 140px;
+    opacity: 0;
+    transform: translateY(8px) scale(.9);
+    animation: chipIn .4s ease forwards;
+  }
+
+  .sort-chip .chip-team {
+    font-family: 'Space Mono', monospace;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: .3rem .7rem;
+    border-radius: 6px;
+    color: #fff;
+  }
+
+  .sort-chip:nth-child(1) .chip-team { background: var(--accent); }
+  .sort-chip:nth-child(2) .chip-team { background: var(--blue); }
+  .sort-chip:nth-child(3) .chip-team { background: var(--green); }
+  .sort-chip:nth-child(4) .chip-team { background: var(--purple); }
+
+  @keyframes chipIn {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Highlight card during shuffle */
+  .theme-card.shuffling {
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(230,0,0,.15);
+    transform: translateY(-3px);
+  }
+
+  .theme-card.picked {
+    border-color: var(--accent);
+    background: rgba(230,0,0,.04);
+  }
+
+  .theme-card.dimmed {
+    opacity: .35;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- SLIDE 0: Cover -->
+  <div class="slide active" data-slide="0" style="align-items:flex-start;justify-content:center;padding:4rem">
+    <div class="cover-deco-tl"></div>
+    <div class="cover-deco-br"></div>
+    <div class="cover-dot-grid">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="slide-label" style="position:relative;z-index:2"><span style="color:#fff">OT Consulting</span> <span style="color:var(--accent)">— Formazione interna</span></div>
+    <h1 style="position:relative;z-index:2" class="hero-title">Sviluppare con <span class="highlight">Claude</span></h1>
+    <p class="subtitle" style="position:relative;z-index:2">Corso pratico di 3 giornate per imparare a integrare l'AI nel workflow di sviluppo quotidiano.</p>
+    <div class="kv-row" style="position:relative;z-index:2">
+      <div class="kv"><div class="val">3</div><div class="label">Giornate</div></div>
+      <div class="kv"><div class="val">3h</div><div class="label">Per sessione</div></div>
+      <div class="kv"><div class="val">~10</div><div class="label">Partecipanti</div></div>
+      <div class="kv"><div class="val">3-4</div><div class="label">Gruppi</div></div>
+    </div>
+    <div class="tags" style="margin-top: 30px; position:relative;z-index:2">
+      <span class="tag">Claude Code</span>
+      <span class="tag">MCP</span>
+      <span class="tag">Prompt Engineering</span>
+      <span class="tag">Progetto di gruppo</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 1: Obiettivi -->
+  <div class="slide content-slide" data-slide="1">
+    <div class="slide-label">Perché questo corso</div>
+    <h2 class="slide-title">Obiettivi</h2>
+    <div class="card-grid" style="max-width: 900px;">
+      <div class="card">
+        <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="10" y1="24" x2="14" y2="24"/></svg></div>
+        <h3>Capire Claude</h3>
+        <p>Differenze tra Claude.ai, API e Claude Code. Modelli, context window, system prompt.</p>
+      </div>
+      <div class="card">
+        <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+        <h3>Usare Claude Code</h3>
+        <p>Setup, comandi, prompt engineering, CLAUDE.md, gestione del contesto.</p>
+      </div>
+      <div class="card">
+        <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <h3>Padroneggiare MCP</h3>
+        <p>Collegare servizi esterni, creare skills, estendere le capacità di Claude.</p>
+      </div>
+      <div class="card">
+        <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Costruire qualcosa di reale</h3>
+        <p>Progetto di gruppo end-to-end: dall'idea alla demo, tutto con Claude.</p>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 2: Overview 3 giornate -->
+  <div class="slide content-slide" data-slide="2">
+    <div class="slide-label">Panoramica</div>
+    <h2 class="slide-title">Le 3 giornate</h2>
+    <div class="overview-grid">
+      <div class="day-card d1">
+        <div class="day-num">01</div>
+        <h3>Fondamenta & Kickoff</h3>
+        <div class="day-sub">Teoria + brainstorming</div>
+        <ul>
+          <li>Introduzione a Claude</li>
+          <li>Demo live Claude Code</li>
+          <li>MCP e Skills</li>
+          <li>Hands-on individuale</li>
+          <li>Formazione gruppi</li>
+          <li>Sorteggio aree & brainstorming</li>
+        </ul>
+      </div>
+      <div class="day-card d2">
+        <div class="day-num">02</div>
+        <h3>Sviluppo Progetto</h3>
+        <div class="day-sub">Coding assistito</div>
+        <ul>
+          <li>Allineamento piani</li>
+          <li>Sviluppo con Claude Code</li>
+          <li>Supporto tutor continuo</li>
+          <li>Checkpoint a metà</li>
+          <li>Wrap-up e tips</li>
+        </ul>
+      </div>
+      <div class="day-card d3">
+        <div class="day-num">03</div>
+        <h3>Demo Day</h3>
+        <div class="day-sub">Finalizzazione + presentazioni</div>
+        <ul>
+          <li>Sprint finale</li>
+          <li>Preparazione demo</li>
+          <li>Presentazioni live</li>
+          <li>Retrospettiva collettiva</li>
+          <li>Best practices & next steps</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 3: GIORNATA 1 - Teoria -->
+  <div class="slide content-slide" data-slide="3">
+    <div class="slide-label">Giornata 1 — Parte teorica</div>
+    <h2 class="slide-title">Cos'è Claude e come usarlo</h2>
+    <div class="two-col">
+      <div>
+        <h3 class="mb-4">Claude: i fondamenti (20 min)</h3>
+        <p>Differenza tra Claude.ai, API e Claude Code. Modelli disponibili (Sonnet, Opus, Haiku) e quando usarli. Context window e system prompt.</p>
+
+        <h3 style="margin-top: 24px;" class="mb-4">Claude Code in azione (30 min)</h3>
+        <p>Demo live: da zero a progetto funzionante in 10 minuti. Comandi essenziali, CLAUDE.md, prompt engineering per sviluppatori.</p>
+
+        <h3 style="margin-top: 24px;" class="mb-4">MCP & Skills (20 min)</h3>
+        <p>Model Context Protocol spiegato semplice: "le API di Claude". Demo di collegamento MCP server. Come creare e usare le skills.</p>
+      </div>
+      <div>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.04);">
+          <h3 style="color: var(--accent); margin-bottom: 16px;">Concetti chiave</h3>
+          <div class="tags" style="margin-top: 0;">
+            <span class="tag">Context Window</span>
+            <span class="tag">System Prompt</span>
+            <span class="tag">CLAUDE.md</span>
+            <span class="tag">/init</span>
+            <span class="tag">/compact</span>
+            <span class="tag">/model</span>
+            <span class="tag">MCP Server</span>
+            <span class="tag">Skills</span>
+            <span class="tag">Prompt Engineering</span>
+          </div>
+          <div class="tip-box" style="margin-top: 20px;">
+            <p><strong>Regola d'oro:</strong> più contesto dai a Claude, migliore sarà il risultato. Il CLAUDE.md è il tuo alleato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 4: G1 Timeline -->
+  <div class="slide content-slide" data-slide="4">
+    <div class="slide-label">Giornata 1 — Timeline completa</div>
+    <div class="two-col" style="align-items: start;">
+      <div>
+        <div class="big-number">G1</div>
+        <p style="margin-top: 12px;">Dalla teoria alla pratica: si parte con i fondamenti, si prova tutti insieme, poi si formano i gruppi e si inizia a ideare il progetto.</p>
+      </div>
+      <div class="timeline-vertical">
+        <div class="timeline-item">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">70 min</div>
+            <h3>Intro e teoria</h3>
+            <p>Claude, Claude Code, MCP, Skills — con demo live</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot pause"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="timeline-content">
+            <div class="time" style="color: var(--muted);">15 min</div>
+            <h3 style="color: var(--muted);">Pausa</h3>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">40 min</div>
+            <h3>Hands-on individuale</h3>
+            <p>Mini-esercizio guidato: creare un progetto, collegare MCP, iterare con prompt</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">55 min</div>
+            <h3>Formazione gruppi & brainstorming</h3>
+            <p>Sorteggio aree tematiche, definizione progetto, validazione con tutor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 5: Aree tematiche -->
+  <div class="slide content-slide" data-slide="5">
+    <div class="slide-label">Sorteggio</div>
+    <h2 class="slide-title">10 aree tematiche</h2>
+    <p>Ogni gruppo pesca a sorte un'area e costruisce un progetto reale con Claude Code. Solo 3-4 vengono estratte.</p>
+    <div class="theme-grid">
+      <div class="theme-card">
+        <div class="tc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="name">Banca & Fintech</div>
+        <div class="desc">Dashboard portafoglio, simulatore prestiti, analisi spese</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(37,99,235,.08);color:var(--blue)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="name">Viaggi & Turismo</div>
+        <div class="desc">Pianificatore itinerari, confronto voli, guida interattiva</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(22,163,74,.08);color:var(--green)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/><circle cx="12" cy="2" r="1"/></svg></div>
+        <div class="name">Sport & Fitness</div>
+        <div class="desc">Schede allenamento, dashboard statistiche, gestione tornei</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(124,58,237,.08);color:var(--purple)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <div class="name">Moda & Retail</div>
+        <div class="desc">Raccomandatore outfit, catalogo smart, gestione inventario</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="name">Salute & Sanità</div>
+        <div class="desc">Prenotazione visite, monitoraggio salute, reminder farmaci</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(37,99,235,.08);color:var(--blue)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="name">Food & Ristorazione</div>
+        <div class="desc">Menu settimanali, gestione ordini, calcolatore nutrizionale</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(22,163,74,.08);color:var(--green)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="name">Immobiliare</div>
+        <div class="desc">Comparatore immobili, costi ristrutturazione, valutazione automatica</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(124,58,237,.08);color:var(--purple)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="name">Education</div>
+        <div class="desc">Generatore quiz, flashcard intelligenti, tracker studenti</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(22,163,74,.08);color:var(--green)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="name">Sostenibilità</div>
+        <div class="desc">Impronta carbonica, consumi energetici, confronto fornitori</div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-icon" style="background:rgba(37,99,235,.08);color:var(--blue)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="name">Gaming</div>
+        <div class="desc">Generatore personaggi, torneo esports, quiz interattivo</div>
+      </div>
+    </div>
+
+    <!-- Sorteggio tool -->
+    <div class="sorteggio-bar">
+      <div class="sorteggio-results" id="sortResults"></div>
+      <button class="sorteggio-btn" id="sortBtn" onclick="startSorteggio()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
+        Sorteggia
+      </button>
+    </div>
+
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 6: G2 Timeline -->
+  <div class="slide content-slide" data-slide="6">
+    <div class="slide-label day2">Giornata 2 — Timeline completa</div>
+    <div class="two-col" style="align-items: start;">
+      <div>
+        <div class="big-number c2">G2</div>
+        <p style="margin-top: 12px;">La giornata più operativa. I gruppi sviluppano il progetto con Claude Code e il supporto continuo del tutor.</p>
+        <div class="tip-box" style="border-left-color: var(--blue); margin-top: 24px;">
+          <p><strong>Ruolo del tutor:</strong> gira tra i gruppi, aiuta col prompt engineering, suggerisce approcci, prende nota di pattern comuni.</p>
+        </div>
+      </div>
+      <div class="timeline-vertical">
+        <div class="timeline-item day2">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">15 min</div>
+            <h3>Allineamento</h3>
+            <p>Ogni gruppo presenta il piano in 2 min + feedback tutor</p>
+          </div>
+        </div>
+        <div class="timeline-item day2">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">60 min</div>
+            <h3>Sviluppo — parte 1</h3>
+            <p>Coding con Claude Code, supporto tutor continuo</p>
+          </div>
+        </div>
+        <div class="timeline-item day2">
+          <div class="timeline-dot pause"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="timeline-content">
+            <div class="time" style="color: var(--muted);">15 min</div>
+            <h3 style="color: var(--muted);">Pausa</h3>
+          </div>
+        </div>
+        <div class="timeline-item day2">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">75 min</div>
+            <h3>Sviluppo — parte 2 + checkpoint</h3>
+            <p>55 min sviluppo + 20 min checkpoint (5 min per gruppo): a che punto siete? Serve ridurre lo scope?</p>
+          </div>
+        </div>
+        <div class="timeline-item day2">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">15 min</div>
+            <h3>Wrap-up</h3>
+            <p>Stato avanzamento, tips comuni, preparazione per G3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 7: G3 Timeline -->
+  <div class="slide content-slide" data-slide="7">
+    <div class="slide-label day3">Giornata 3 — Timeline completa</div>
+    <div class="two-col" style="align-items: start;">
+      <div>
+        <div class="big-number c3">G3</div>
+        <p style="margin-top: 12px;">Sprint finale, poi ognuno presenta il proprio lavoro. Si chiude con retrospettiva e best practices.</p>
+        <div class="tip-box" style="border-left-color: var(--green); margin-top: 24px;">
+          <p><strong>Ogni gruppo (15 min):</strong> demo live (5-7 min) + come hanno usato Claude (3-4 min) + lezioni apprese (2-3 min) + Q&A (2-3 min).</p>
+        </div>
+      </div>
+      <div class="timeline-vertical">
+        <div class="timeline-item day3">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">75 min</div>
+            <h3>Sprint finale</h3>
+            <p>Finalizzazione progetto + preparazione demo. Focus: far funzionare, non aggiungere feature.</p>
+          </div>
+        </div>
+        <div class="timeline-item day3">
+          <div class="timeline-dot pause"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div class="timeline-content">
+            <div class="time" style="color: var(--muted);">15 min</div>
+            <h3 style="color: var(--muted);">Pausa</h3>
+          </div>
+        </div>
+        <div class="timeline-item day3">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">60 min</div>
+            <h3>Presentazioni</h3>
+            <p>15 min per gruppo: demo live, uso di Claude, lezioni apprese, Q&A</p>
+          </div>
+        </div>
+        <div class="timeline-item day3">
+          <div class="timeline-dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <div class="timeline-content">
+            <div class="time">30 min</div>
+            <h3>Chiusura</h3>
+            <p>Retrospettiva collettiva, best practices, risorse, votazione miglior progetto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 8: Cheat sheet Claude Code -->
+  <div class="slide content-slide" data-slide="8">
+    <div class="slide-label">Riferimento rapido</div>
+    <h2 class="slide-title">Claude Code — Cheat Sheet</h2>
+    <div class="two-col">
+      <div>
+        <table class="cmd-table">
+          <tr><td>claude</td><td>Avvia Claude Code nella directory corrente</td></tr>
+          <tr><td>/init</td><td>Genera il file CLAUDE.md per il progetto</td></tr>
+          <tr><td>/compact</td><td>Compatta il contesto quando è troppo lungo</td></tr>
+          <tr><td>/cost</td><td>Mostra il costo della sessione</td></tr>
+          <tr><td>/model</td><td>Cambia modello (Sonnet/Opus/Haiku)</td></tr>
+          <tr><td>/clear</td><td>Pulisce la conversazione</td></tr>
+          <tr><td>/help</td><td>Mostra tutti i comandi</td></tr>
+          <tr><td>Shift+Tab</td><td>Accetta le modifiche suggerite</td></tr>
+          <tr><td>Esc</td><td>Rifiuta le modifiche</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Tips per prompt efficaci</h3>
+        <div class="tip-box" style="margin-top: 12px;">
+          <p><strong>Sii specifico</strong> — "Crea un endpoint REST per la gestione utenti con CRUD in Express.js" batte "Fammi un backend"</p>
+        </div>
+        <div class="tip-box" style="margin-top: 10px;">
+          <p><strong>Dai contesto</strong> — "Usiamo React 18 + TypeScript + Tailwind. Aggiungi un componente Sidebar che..."</p>
+        </div>
+        <div class="tip-box" style="margin-top: 10px;">
+          <p><strong>Itera</strong> — Non fare tutto in un prompt. Step by step.</p>
+        </div>
+        <div class="tip-box" style="margin-top: 10px;">
+          <p><strong>Chiedi review</strong> — "Rivedi questo codice e suggerisci miglioramenti" è un ottimo uso di Claude.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 9: Checklist -->
+  <div class="slide content-slide" data-slide="9">
+    <div class="slide-label">Prima di iniziare</div>
+    <h2 class="slide-title">Checklist pre-corso</h2>
+    <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1000px;">
+      <div class="card">
+        <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Setup tecnico</h3>
+        <ul class="checklist">
+          <li>Account Claude (API key)</li>
+          <li>Claude Code installato</li>
+          <li>Node.js installato</li>
+          <li>Accesso a GitHub</li>
+          <li>Internet stabile</li>
+          <li>Rate limits verificati</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <h3>Materiali</h3>
+        <ul class="checklist">
+          <li>Schede progetto per sorteggio</li>
+          <li>Cheat sheet stampate</li>
+          <li>Slide di supporto</li>
+          <li>Template CLAUDE.md</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Logistica</h3>
+        <ul class="checklist">
+          <li>Prese di corrente sufficienti</li>
+          <li>Monitor/TV per le demo</li>
+          <li>Timer visibile</li>
+          <li>Caffè e snack</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="copyright">OT Consulting — Formazione interna</span></div>
+  </div>
+
+  <!-- SLIDE 10: Closing -->
+  <div class="slide" data-slide="10" style="align-items:flex-start;justify-content:center;padding:4rem">
+    <div class="cover-deco-tl"></div>
+    <div class="cover-deco-br"></div>
+    <div class="slide-label" style="position:relative;z-index:2">Let's build</div>
+    <h1 class="hero-title" style="position:relative;z-index:2">Pronti a sviluppare<br>con <span class="highlight">Claude</span>?</h1>
+    <p class="subtitle" style="position:relative;z-index:2">3 giorni. 1 progetto reale. Un nuovo modo di scrivere codice.</p>
+    <div style="margin-top: 40px; display: flex; gap: 20px; position:relative;z-index:2">
+      <div style="background: var(--bg); border: 1px solid var(--accent); border-radius: 12px; padding: 16px 24px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.04);">
+        <div style="margin-bottom: 6px; color: var(--accent);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--accent);">G1 — Learn</div>
+      </div>
+      <div style="background: var(--bg); border: 1px solid var(--blue); border-radius: 12px; padding: 16px 24px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.04);">
+        <div style="margin-bottom: 6px; color: var(--blue);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--blue);">G2 — Build</div>
+      </div>
+      <div style="background: var(--bg); border: 1px solid var(--green); border-radius: 12px; padding: 16px 24px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.04);">
+        <div style="margin-bottom: 6px; color: var(--green);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--green);">G3 — Ship</div>
+      </div>
+    </div>
+    <p style="margin-top: 30px; font-size: 14px; color: var(--muted); position:relative;z-index:2">OT Consulting — Formazione AI per sviluppatori</p>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" onclick="go(-1)">&#x2039;</button>
+  <div class="dots" id="dots"></div>
+  <div class="counter" id="counter">1 / 11</div>
+  <button id="next" onclick="go(1)">&#x203a;</button>
+</div>
+
+<div class="kbd-hint"><kbd>←</kbd> <kbd>→</kbd> per navigare</div>
+
+<script src="../../shared/nav.js"></script>
+
+<script>
+/* ── Sorteggio animation ── */
+const AREAS = [
+  'Banca & Fintech', 'Viaggi & Turismo', 'Sport & Fitness',
+  'Moda & Retail', 'Salute & Sanità', 'Food & Ristorazione',
+  'Immobiliare', 'Education', 'Sostenibilità', 'Gaming'
+];
+const TEAMS = ['Team 1', 'Team 2', 'Team 3', 'Team 4'];
+const TEAM_COLORS = ['var(--accent)', 'var(--blue)', 'var(--green)', 'var(--purple)'];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startSorteggio() {
+  const btn = document.getElementById('sortBtn');
+  const resultsEl = document.getElementById('sortResults');
+  const cards = document.querySelectorAll('[data-slide="5"] .theme-card');
+
+  btn.disabled = true;
+  resultsEl.innerHTML = '';
+  cards.forEach(c => c.classList.remove('picked', 'dimmed', 'shuffling'));
+
+  const available = shuffle([...Array(AREAS.length).keys()]);
+  const picked = available.slice(0, 4);
+  let step = 0;
+  const totalFlashes = 20;
+
+  // Phase 1: rapid flashing across all cards
+  const flashInterval = setInterval(() => {
+    cards.forEach(c => c.classList.remove('shuffling'));
+    const idx = Math.floor(Math.random() * cards.length);
+    cards[idx].classList.add('shuffling');
+    step++;
+
+    if (step >= totalFlashes) {
+      clearInterval(flashInterval);
+      cards.forEach(c => c.classList.remove('shuffling'));
+      // Phase 2: reveal one by one
+      revealPicks(picked, cards, resultsEl, btn);
+    }
+  }, 80);
+}
+
+function revealPicks(picked, cards, resultsEl, btn) {
+  picked.forEach((areaIdx, i) => {
+    setTimeout(() => {
+      // Quick flash on the target card
+      let flashes = 0;
+      const quickFlash = setInterval(() => {
+        const randomIdx = Math.floor(Math.random() * cards.length);
+        cards.forEach(c => c.classList.remove('shuffling'));
+        cards[randomIdx].classList.add('shuffling');
+        flashes++;
+        if (flashes >= 6) {
+          clearInterval(quickFlash);
+          cards.forEach(c => c.classList.remove('shuffling'));
+          // Land on the picked card
+          cards[areaIdx].classList.add('picked');
+
+          // Dim non-picked cards after last pick
+          if (i === picked.length - 1) {
+            cards.forEach((c, ci) => {
+              if (!picked.includes(ci)) c.classList.add('dimmed');
+            });
+            btn.disabled = false;
+          }
+
+          // Add chip
+          const chip = document.createElement('div');
+          chip.className = 'sort-chip';
+          chip.style.animationDelay = '0s';
+          chip.innerHTML = `<span class="chip-team">${TEAMS[i]}</span> ${AREAS[areaIdx]}`;
+          resultsEl.appendChild(chip);
+        }
+      }, 60);
+    }, i * 800);
+  });
+}
+</script>
+
+</body>
+</html>
