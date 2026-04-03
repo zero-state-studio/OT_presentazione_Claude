@@ -38,7 +38,7 @@
       "WebFetch(domain:claude.ai)",
       "WebFetch(domain:screenapp.io)",
       "WebFetch(domain:www.ssdnodes.com)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
       "Bash(git log:*)"
     ]
   }
