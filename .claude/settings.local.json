@@ -46,7 +46,22 @@
       "Bash(cp /Users/gianlucaricaldone/Downloads/corso-claude-ot-consulting.pptx .)",
       "Bash(unzip -o corso-claude-ot-consulting.pptx ppt/presentation.xml -d pptx_check)",
       "Bash(unzip -o corso-claude-ot-consulting.pptx \"ppt/slides/slide1.xml\" -d pptx_check)",
-      "Bash(unzip -l corso-claude-ot-consulting.pptx \"ppt/media/*\")"
+      "Bash(unzip -l corso-claude-ot-consulting.pptx \"ppt/media/*\")",
+      "Bash(git -c commit.gpgsign=false add docs/superpowers/specs/2026-04-07-template-system-design.md)",
+      "Bash(git -c commit.gpgsign=false commit -m ':*)",
+      "Bash(git -c commit.gpgsign=false add docs/superpowers/plans/2026-04-07-template-system.md)",
+      "Bash(git check-ignore:*)",
+      "Bash(git -c commit.gpgsign=false add .gitignore)",
+      "Bash(git -c commit.gpgsign=false commit -m \"chore: add .gitignore to exclude .worktrees/\")",
+      "Bash(git -c commit.gpgsign=false commit -m \"fix: correct .gitignore entry for .worktrees/\")",
+      "Bash(git -c commit.gpgsign=false commit -m \"fix: deduplicate .gitignore entry\")",
+      "Bash(git worktree:*)",
+      "Bash(mkdir:*)",
+      "Bash(git -c commit.gpgsign=false add themes/standard/v1/partials/)",
+      "Bash(git -c commit.gpgsign=false commit -m \"fix: improve standard/v1 partials \\(z-index guide, closing anchor, team sub-template\\)\")",
+      "Bash(git:*)",
+      "Bash(node:*)",
+      "Bash(ls:*)"
     ]
   }
 }
