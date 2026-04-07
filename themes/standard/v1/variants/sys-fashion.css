@@ -1,0 +1,10 @@
+/* ══════════════════════════════════════════
+   themes/standard/v1/variants/sys-fashion.css
+   Override per la divisione SYS-FASHION.
+   Sovrascrive solo CSS custom properties.
+   ══════════════════════════════════════════ */
+
+:root {
+  /* SYS-FASHION usa l'accent rosso standard OT */
+  /* Aggiungere qui eventuali override specifici della divisione */
+}
