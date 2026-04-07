@@ -700,5 +700,4 @@ body {
   .slide-footer { bottom: 1rem; }
   .hero-title { font-size: clamp(2rem, 4.5vw, 3.5rem); }
   .subtitle { margin-top: 1rem; font-size: clamp(.9rem, 1.5vw, 1.1rem); }
-  .logo-bar { bottom: 5.5rem !important; }
 }
