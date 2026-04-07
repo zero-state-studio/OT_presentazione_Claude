@@ -1,0 +1,20 @@
+<!-- PARTIAL: closing — tema standard/v1
+     Placeholder guide:
+     {{N}}              = numero data-slide (ultima slide)
+     {{CLOSING_LABEL}}  = label (es. "Grazie", "Fine", "Q&A")
+     {{CLOSING_TITLE}}  = prima parte del titolo closing
+     {{CLOSING_ACCENT}} = parola in evidenza (span.highlight)
+     {{CLOSING_SUBTITLE}} = sottotitolo closing
+     {{TEAM_NAME_FRAG}} = <br><small class="ot-division">NOME</small> oppure stringa vuota
+-->
+<div class="slide" data-slide="{{N}}" style="align-items:flex-start;justify-content:center;padding:4rem">
+  <div class="cover-deco-tl"></div>
+  <div class="cover-deco-br"></div>
+  <div class="slide-label" style="position:relative;z-index:2">{{CLOSING_LABEL}}</div>
+  <h1 class="hero-title" style="position:relative;z-index:2">{{CLOSING_TITLE}} <span class="highlight">{{CLOSING_ACCENT}}</span></h1>
+  <p class="subtitle" style="position:relative;z-index:2">{{CLOSING_SUBTITLE}}</p>
+  <div class="logo-bar" style="position:relative;z-index:2;margin-top:2rem">
+    <div class="ot-mark"><img src="../../shared/assets/OT.png" alt="OT"></div>
+    <div class="ot-company">OT Consulting{{TEAM_NAME_FRAG}}</div>
+  </div>
+</div>
