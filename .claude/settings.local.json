@@ -39,7 +39,14 @@
       "WebFetch(domain:screenapp.io)",
       "WebFetch(domain:www.ssdnodes.com)",
       "Bash(cp:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Read(//Users/gianlucaricaldone/Downloads/**)",
+      "Bash(python /Users/gianlucaricaldone/Progetti/OT_presentazione_Claude/.claude/skills/pptx/scripts/office/soffice.py --headless --convert-to pdf corso-claude-ot-consulting.pptx)",
+      "Read(//private/tmp/**)",
+      "Bash(cp /Users/gianlucaricaldone/Downloads/corso-claude-ot-consulting.pptx .)",
+      "Bash(unzip -o corso-claude-ot-consulting.pptx ppt/presentation.xml -d pptx_check)",
+      "Bash(unzip -o corso-claude-ot-consulting.pptx \"ppt/slides/slide1.xml\" -d pptx_check)",
+      "Bash(unzip -l corso-claude-ot-consulting.pptx \"ppt/media/*\")"
     ]
   }
 }

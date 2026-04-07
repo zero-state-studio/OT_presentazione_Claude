@@ -114,16 +114,6 @@
     const pptx = new PptxGenJS();
     pptx.layout = 'LAYOUT_WIDE';
 
-    const captureW = 1920;
-    const captureH = 1080;
-
-    const captureBox = document.createElement('div');
-    captureBox.id = 'pptx-capture-box';
-    captureBox.style.cssText =
-      'position:fixed;top:0;left:0;width:' + captureW + 'px;height:' + captureH +
-      'px;overflow:hidden;z-index:-9999;pointer-events:none;opacity:0;';
-    document.body.appendChild(captureBox);
-
     for (let i = 0; i < total; i++) {
       statusEl.textContent = `Slide ${i + 1} di ${total}…`;
       goTo(i);
@@ -134,39 +124,48 @@
       noAnimStyle.id = 'pptx-no-anim';
       noAnimStyle.textContent =
         '*, *::before, *::after { animation: none !important; transition: none !important; }' +
-        '.anim { opacity: 1 !important; transform: none !important; }' +
-        '#pptx-capture-box .deck { width: ' + captureW + 'px !important; height: ' + captureH + 'px !important; }' +
-        '#pptx-capture-box .slide { width: ' + captureW + 'px !important; height: ' + captureH + 'px !important; }';
+        '.anim { opacity: 1 !important; transform: none !important; }';
       document.head.appendChild(noAnimStyle);
 
-      const deckEl = document.querySelector('.deck');
-      const clone = deckEl.cloneNode(true);
-      clone.style.width = captureW + 'px';
-      clone.style.height = captureH + 'px';
-      clone.style.position = 'relative';
-      captureBox.innerHTML = '';
-      captureBox.appendChild(clone);
-      captureBox.style.opacity = '1';
-      captureBox.style.zIndex = '99999';
-
       try {
-        const canvas = await html2canvas(captureBox, {
+        const rawCanvas = await html2canvas(document.body, {
           scale: 1.5, useCORS: true, allowTaint: true, logging: false,
-          width: captureW, height: captureH, scrollX: 0, scrollY: 0
+          width: window.innerWidth, height: window.innerHeight,
+          scrollX: 0, scrollY: 0
         });
+
+        /* Normalize to 16:9 to match LAYOUT_WIDE — avoids vertical/horizontal
+           distortion when the browser viewport is not exactly 16:9.
+           The slide background is white so any padding bars are invisible. */
+        const TARGET_RATIO = 16 / 9;
+        const rawRatio = rawCanvas.width / rawCanvas.height;
+        let canvas = rawCanvas;
+        if (Math.abs(rawRatio - TARGET_RATIO) > 0.005) {
+          canvas = document.createElement('canvas');
+          if (rawRatio > TARGET_RATIO) {
+            canvas.width = rawCanvas.width;
+            canvas.height = Math.round(rawCanvas.width / TARGET_RATIO);
+          } else {
+            canvas.height = rawCanvas.height;
+            canvas.width = Math.round(rawCanvas.height * TARGET_RATIO);
+          }
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(rawCanvas,
+            (canvas.width - rawCanvas.width) / 2,
+            (canvas.height - rawCanvas.height) / 2
+          );
+        }
+
         const imgData = canvas.toDataURL('image/jpeg', 0.92);
         const slide = pptx.addSlide();
         slide.addImage({ data: imgData, x: 0, y: 0, w: '100%', h: '100%' });
       } finally {
-        captureBox.style.opacity = '0';
-        captureBox.style.zIndex = '-9999';
-        captureBox.innerHTML = '';
         document.getElementById('pptx-no-anim').remove();
         uiEls.forEach(el => el && (el.style.visibility = ''));
       }
     }
-
-    captureBox.remove();
     goTo(savedCur);
     overlayEl.style.display = 'none';
     pptxBtn.disabled = false;
