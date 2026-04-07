@@ -24,7 +24,7 @@ Controlla se l'utente ha passato `--tema <nome>-<versione>` nell'invocazione (es
 - Memorizza il percorso tema: `TEMA_PATH = <nome>/<versione>` (es. `minimal/v1`)
 
 **Se `--tema` è assente:**
-- Usa il tool Glob su `themes/*/` per trovare tutti i `meta.json` disponibili
+- Usa il tool Glob su `themes/*/*/meta.json` per trovare tutti i `meta.json` disponibili
 - Leggi ogni `meta.json` trovato e costruisci la lista: nome, versione, description
 - Presenta la selezione:
 
@@ -37,7 +37,7 @@ Attendi la risposta numerica. Memorizza `TEMA_PATH` (es. `standard/v1` o `minima
 
 **Variante di divisione:**
 Se l'utente ha passato `--variante <nome>` (es. `--variante sys-fashion`):
-- Verifica che esista `themes/{{TEMA_PATH}}/variants/<nome>.css`
+- Verifica che esista `themes/<valore di TEMA_PATH>/variants/<nome>.css`
 - Memorizza `VARIANTE = <nome>`
 
 In assenza di `--variante`, non caricare nessuna variante CSS (lascia `VARIANTE` vuoto).
