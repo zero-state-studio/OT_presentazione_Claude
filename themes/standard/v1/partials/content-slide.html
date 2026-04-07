@@ -1,0 +1,16 @@
+<!-- PARTIAL: content-slide — tema standard/v1
+     Placeholder guide:
+     {{N}}           = numero data-slide progressivo
+     {{SEZIONE}}     = label sezione (slide-label)
+     {{TITOLO_SLIDE}} = titolo della slide
+     {{DESCRIZIONE}} = paragrafo descrittivo (OBBLIGATORIO — previene bug margin-top:auto)
+     {{CONTENUTO}}   = blocco componenti HTML (card-grid, two-col, timeline, ecc.)
+     {{SLIDE_FOOTER}} = footer HTML della slide
+-->
+<div class="slide content-slide" data-slide="{{N}}">
+  <div class="slide-label">{{SEZIONE}}</div>
+  <h2 class="slide-title">{{TITOLO_SLIDE}}</h2>
+  <p class="section-desc">{{DESCRIZIONE}}</p>
+  {{CONTENUTO}}
+  {{SLIDE_FOOTER}}
+</div>

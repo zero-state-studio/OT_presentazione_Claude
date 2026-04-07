@@ -1,0 +1,10 @@
+/* ══════════════════════════════════════════
+   themes/standard/v1/variants/data-engineering.css
+   Override per la divisione DATA-ENGINEERING.
+   Sovrascrive solo CSS custom properties.
+   ══════════════════════════════════════════ */
+
+:root {
+  /* DATA-ENGINEERING usa l'accent rosso standard OT */
+  /* Aggiungere qui eventuali override specifici della divisione */
+}

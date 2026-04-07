@@ -1,0 +1,8 @@
+{
+  "name": "minimal",
+  "version": "v1",
+  "description": "Layout pulito, tipografia dominante, nessuna decorazione circolare, barra titolo sottile",
+  "variants": ["sys-fashion", "data-engineering"],
+  "hasJs": false,
+  "author": "OT Consulting"
+}

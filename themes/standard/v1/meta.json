@@ -1,0 +1,8 @@
+{
+  "name": "standard",
+  "version": "v1",
+  "description": "Tema OT Consulting standard: sfondo bianco, accent rosso, cerchi decorativi in cover, barra rossa sotto i titoli",
+  "variants": ["sys-fashion", "data-engineering"],
+  "hasJs": false,
+  "author": "OT Consulting"
+}
