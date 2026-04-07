@@ -56,6 +56,8 @@ Responsive font scaling: `html { font-size: clamp(10px, min(1.25vw, 2.2vh), 26px
 
 ## Cover slide standard
 
+> **Nota:** La struttura qui sotto si applica al tema **standard**. I temi alternativi (es. minimal) omettono gli elementi decorativi — vedi `themes/minimal/v1/partials/` per riferimento.
+
 Every presentation's slide 0 follows this exact order and class structure:
 
 ```html
@@ -94,6 +96,8 @@ Every presentation's slide 0 follows this exact order and class structure:
 The `.logo-bar` has `margin-top: auto` in shared CSS, which anchors it to the bottom of the flex column. When `.cover-team` precedes it, `.cover-team` gets `margin-top: auto` (pushing both to the bottom), and `.cover-team + .logo-bar` overrides to `margin-top: .75rem`.
 
 ## Content slide standard
+
+> **Nota:** La struttura qui sotto si applica a tutti i temi. I componenti disponibili possono variare per tema.
 
 Every non-cover, non-closing slide must have `.content-slide` and this structure:
 
