@@ -3,6 +3,29 @@
      {{N}}           = numero data-slide (es. 1)
      {{AUTORI_HTML}} = uno o più blocchi .ambassador generati dalla skill
      {{SLIDE_FOOTER}} = footer HTML della slide
+
+     Sub-template per ogni autore in {{AUTORI_HTML}} — usare il primo se la foto esiste,
+     il secondo come fallback con le iniziali:
+
+     CON FOTO:
+     <div class="ambassador">
+       <div class="avatar">
+         <img class="avatar-inner" src="../../shared/assets/foto/{{FILENAME}}.{{EXT}}" alt="{{INIZIALI}}">
+       </div>
+       <div class="ch-name">{{COGNOME}} {{NOME}}</div>
+       <div class="ch-role">{{EMAIL}}</div>
+       <div class="ch-badge">{{TEAM_NAME}}</div>
+     </div>
+
+     SENZA FOTO (fallback iniziali):
+     <div class="ambassador">
+       <div class="avatar">
+         <div class="avatar-inner">{{INIZIALI}}</div>
+       </div>
+       <div class="ch-name">{{COGNOME}} {{NOME}}</div>
+       <div class="ch-role">{{EMAIL}}</div>
+       <div class="ch-badge">{{TEAM_NAME}}</div>
+     </div>
 -->
 <div class="slide content-slide" data-slide="{{N}}">
   <div class="slide-label">Il team</div>
