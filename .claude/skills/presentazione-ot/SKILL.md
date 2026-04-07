@@ -30,12 +30,21 @@ Dopo aver ricevuto il team, chiedi:
 > **Email degli autori** (separate da virgola, facoltativo — premi Invio per saltare)
 > Es: gianluca.ricaldone@otconsulting.com, leonardo.torella@otconsulting.com
 
-Attendi la risposta. Se l'utente inserisce email, per ciascuna:
+Attendi la risposta.
+
+**Se l'utente inserisce email**, per ciascuna:
 1. **Ricava nome e cognome** dalla parte locale dell'email: `nome.cognome@...` → Nome = capitalize(nome), Cognome = capitalize(cognome)
 2. **Ricava il filename della foto** concatenando nome e cognome senza separatori, tutto lowercase: `nome.cognome@...` → `nomecognome` (es. `gianlucaricaldone`). L'estensione può essere `.png`, `.webp` o `.jpg` — controlla quale esiste in `shared/assets/foto/`. Se nessuna esiste, usa un placeholder con le iniziali.
-3. Genera la slide Team (vedi Step 3b)
+3. **Chiedi dove inserire i membri del team:**
 
-Se l'utente preme Invio senza inserire email, salta la slide Team.
+> **Dove vuoi mostrare i membri del team?**
+> 1 — Home (nella cover, sotto le statistiche e sopra il logo OT)
+> 2 — Slide ad hoc (slide dedicata dopo la cover)
+
+   - Se **1 (Home)**: inserisci il blocco `.cover-team` nella cover, **prima** del `.logo-bar` (vedi template cover)
+   - Se **2 (Slide ad hoc)**: genera la slide Team separata (vedi sezione *Slide Team* nel template)
+
+Se l'utente preme Invio senza inserire email, salta completamente la gestione team.
 
 ### Step 2b: Chiedi la descrizione
 
@@ -80,6 +89,7 @@ Il file HTML DEVE seguire questa struttura esatta. Non improvvisare — usa il t
 <div class="deck" id="deck">
 
   <!-- SLIDE 0: Cover -->
+  <!-- Standard cover: 1) Title  2) Subtitle  3) Stats (optional)  4) Logo-bar  5) Team members (optional) -->
   <div class="slide active" data-slide="0" style="align-items:flex-start;justify-content:center;padding:4rem">
     <div class="cover-deco-tl"></div>
     <div class="cover-deco-br"></div>
@@ -91,12 +101,41 @@ Il file HTML DEVE seguire questa struttura esatta. Non improvvisare — usa il t
       <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
-    <h1 style="position:relative;z-index:2" class="hero-title">{{TITOLO_HERO}} <span class="highlight">{{PAROLA_ACCENT}}</span></h1>
-    <p class="subtitle" style="position:relative;z-index:2">{{SOTTOTITOLO}}</p>
-    <div class="logo-bar" style="position:relative;z-index:2">
+
+    <!-- 1) Title — always present. Use <br> for multi-line. Accent word in <span class="highlight"> -->
+    <h1 class="hero-title anim d1">{{TITOLO_HERO}} <span class="highlight">{{PAROLA_ACCENT}}</span></h1>
+
+    <!-- 2) Subtitle — always present -->
+    <p class="subtitle anim d2">{{SOTTOTITOLO}}</p>
+
+    <!-- 3) Statistics — OPTIONAL. Remove entire block if not needed.
+         Use class="metrics" with justify-content:flex-start to left-align.
+         Each stat: <div class="metric"><div class="value">X</div><div class="label">Label</div></div> -->
+    <div class="metrics anim d3" style="justify-content:flex-start;margin-top:2rem">
+      <div class="metric"><div class="value">{{VAL1}}</div><div class="label">{{LABEL1}}</div></div>
+      <div class="metric"><div class="value">{{VAL2}}</div><div class="label">{{LABEL2}}</div></div>
+      <!-- add/remove metric items as needed -->
+    </div>
+
+    <!-- 4) Team members in cover — OPTIONAL (only if user chose "1 - Home").
+         Goes BEFORE the logo-bar. Remove entire block if team is on a separate slide.
+         Photo files live in shared/assets/foto/<nomecognome>.(png|webp|jpg) -->
+    <div class="cover-team anim d4">
+      <div class="cover-team-member">
+        <img src="../../shared/assets/foto/{{FILENAME}}.{{EXT}}" alt="{{INIZIALI}}">
+        <div class="cover-team-member-name"><span>{{NOME}}</span><span>{{COGNOME}}</span></div>
+      </div>
+      <!-- repeat cover-team-member for each person -->
+    </div>
+
+    <!-- 5) OT Consulting logo bar — always present, always last.
+         Omit <small class="ot-division"> if no team/division name.
+         margin-top:auto (via CSS) anchors it to the bottom of the slide. -->
+    <div class="logo-bar anim d5">
       <div class="ot-mark"><img src="../../shared/assets/OT.png" alt="OT"></div>
       <div class="ot-company">OT Consulting<br><small class="ot-division">{{TEAM_NAME}}</small></div>
     </div>
+
   </div>
 
   <!-- SLIDE Team (opzionale — solo se sono state fornite email autori) -->

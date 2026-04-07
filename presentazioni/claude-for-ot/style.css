@@ -200,11 +200,6 @@
 .slide-body .card p { font-size: .78rem; line-height: 1.4 }
 .slide-body .code-block { flex: 1; margin-top: 0; max-width: none; min-width: 0; }
 
-/* Metrics display */
-.metrics { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
-.metric { text-align: center }
-.metric .value { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: var(--accent); }
-.metric .label { font-size: .8rem; color: var(--muted); margin-top: .25rem }
 
 /* Timeline (horizontal roadmap) */
 .timeline { display: flex; gap: 0; margin-top: 1.5rem; max-width: 56.25rem; width: 100% }
