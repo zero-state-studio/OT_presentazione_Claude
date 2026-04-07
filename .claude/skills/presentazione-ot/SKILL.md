@@ -16,6 +16,13 @@ Quando l'utente invoca `/presentazione-ot <nome-presentazione>`.
 
 ### Step 0: Seleziona il tema
 
+**Se `--migra` è presente nel comando:**
+- Salta tutti i passi Step 1-Step 7 del flusso normale
+- Salta direttamente alla sezione **Migrazione di una presentazione esistente** in fondo a questo documento
+- Se `--tema` è assente assieme a `--migra`, chiedi: **"Quale tema vuoi applicare alla migrazione?"** e mostra la lista temi
+
+In assenza di `--migra`, procedi normalmente con il flusso qui sotto.
+
 Controlla se l'utente ha passato `--tema <nome>-<versione>` nell'invocazione (es. `/presentazione-ot mia-pres --tema minimal-v1`).
 
 **Se `--tema` è presente nel comando:**
@@ -136,6 +143,12 @@ Il file HTML si costruisce così:
   </div>
 </div>
 ```
+
+**Placeholder della closing (da partial closing.html):**
+- `{{CLOSING_LABEL}}`: label della slide di chiusura (es. "Grazie", "Q&A", "Fine")
+- `{{CLOSING_TITLE}}`: prima parte del titolo della closing
+- `{{CLOSING_ACCENT}}`: parola in evidenza nella closing (span.highlight)
+- `{{CLOSING_SUBTITLE}}`: sottotitolo della closing — chiedi all'utente oppure usa "Grazie per l'attenzione." come default
 
 **3. Costruisci l'HTML completo** con questa struttura shell:
 
