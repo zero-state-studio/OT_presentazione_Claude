@@ -1,0 +1,33 @@
+/* ══════════════════════════════════════════
+   themes/minimal/v1/theme.css
+   Tema Minimal OT Consulting.
+   Override di shared/style.css per un look
+   pulito, tipografico, senza decorazioni.
+   ══════════════════════════════════════════ */
+
+/* Cover: nessuna decorazione circolare */
+.cover-deco-tl,
+.cover-deco-br,
+.cover-dot-grid {
+  display: none;
+}
+
+/* Cover: separatore orizzontale sopra il logo OT */
+.logo-bar {
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  width: 100%;
+}
+
+/* Hero title: lettering più stretto, look editoriale */
+.hero-title {
+  letter-spacing: -0.02em;
+}
+
+/* Slide title: barra sottile 2px invece del bar spesso */
+.slide-title::after {
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 0;
+}
