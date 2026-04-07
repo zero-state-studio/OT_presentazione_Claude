@@ -90,7 +90,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -98,49 +99,87 @@
     <!-- SLIDE 2: IL PROBLEMA -->
     <div class="slide content-slide" data-slide="2">
       <h2 class="slide-title anim d1">Una giornata tipo senza il tool giusto</h2>
-      <p class="section-desc anim d2">Tre scenari reali in cui gli strumenti attuali rallentano il team. Copilot e Gemini hanno fatto passi avanti nel 2025, ma questi problemi restano.</p>
+      <p class="section-desc anim d2">Tre scenari reali in cui gli strumenti attuali rallentano il team.</p>
       <div class="card-grid anim d3" style="grid-template-columns:1fr;max-width:68.75rem">
         <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
           <div>
-            <div class="icon red" style="width:2.5rem;height:2.5rem;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
-            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">~8x</div>
+            <div class="icon red" style="width:2.5rem;height:2.5rem;font-size:1.1rem"><svg width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg></div>
+            <div
+              style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">
+              ~8x</div>
             <div style="font-size:.65rem;color:var(--muted);line-height:1.3">meno contesto<br>(modello default)</div>
           </div>
           <div>
             <h3>Il dev chiede "dove viene validato il pagamento?"</h3>
-            <p><strong>Con Copilot:</strong> contesto 128K token (modello default GPT-4.1; alcuni modelli opzionali arrivano a 200K), ricerca a snippet indicizzati. Il tool trova frammenti ma non capisce il flusso end-to-end. Il dev deve navigare manualmente 15 file per ricostruire la catena.</p>
-            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> 1M di contesto continuo. Analizza l'intero codebase, segue le dipendenze e risponde con il flusso completo in secondi.</p>
+            <p><strong>Con Copilot:</strong> contesto 128K token (modello default GPT-4.1; alcuni modelli opzionali
+              arrivano a 200K), ricerca a snippet indicizzati. Il tool trova frammenti ma non capisce il flusso
+              end-to-end. Il dev deve navigare manualmente 15 file per ricostruire la catena.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> 1M di contesto continuo. Analizza l'intero
+              codebase, segue le dipendenze e risponde con il flusso completo in secondi.</p>
           </div>
         </div>
         <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
           <div>
-            <div class="icon red" style="width:2.5rem;height:2.5rem;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="16" y1="19" x2="16" y2="22"/><line x1="19" y1="16" x2="22" y2="16"/></svg></div>
-            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">4</div>
+            <div class="icon red" style="width:2.5rem;height:2.5rem;font-size:1.1rem"><svg width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18.84 12.25l1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M5.16 11.75l-1.72 1.71a5 5 0 0 0 7.07 7.07l1.72-1.71" />
+                <line x1="8" y1="2" x2="8" y2="5" />
+                <line x1="2" y1="8" x2="5" y2="8" />
+                <line x1="16" y1="19" x2="16" y2="22" />
+                <line x1="19" y1="16" x2="22" y2="16" />
+              </svg></div>
+            <div
+              style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">
+              4</div>
             <div style="font-size:.65rem;color:var(--muted);line-height:1.3">tool aperti<br>in parallelo</div>
           </div>
           <div>
             <h3>Arriva un bug critico in produzione</h3>
-            <p><strong>Oggi:</strong> apri Splunk per i log, Jira per il ticket, GitHub per il codice, Slack per avvisare il team. Copilot e Gemini supportano MCP dal 2025, ma solo in IDE — non orchestrano il flusso.</p>
-            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> un unico comando nel terminale interroga Splunk, legge il codice, crea il fix, apre la PR e aggiorna il ticket Jira. Tutto via MCP nativo.</p>
+            <p><strong>Oggi:</strong> apri Splunk per i log, Jira per il ticket, GitHub per il codice, Slack per
+              avvisare il team. Copilot e Gemini supportano MCP dal 2025, ma solo in IDE — non orchestrano il flusso.
+            </p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> un unico comando nel terminale interroga
+              Splunk, legge il codice, crea il fix, apre la PR e aggiorna il ticket Jira. Tutto via MCP nativo.</p>
           </div>
         </div>
         <div class="card" style="display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start">
           <div>
-            <div class="icon red" style="width:2.5rem;height:2.5rem;font-size:1.1rem"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="10" y1="12" x2="14" y2="16"/><line x1="14" y1="12" x2="10" y2="16"/></svg></div>
-            <div style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">1</div>
+            <div class="icon red" style="width:2.5rem;height:2.5rem;font-size:1.1rem"><svg width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                <line x1="10" y1="12" x2="14" y2="16" />
+                <line x1="14" y1="12" x2="10" y2="16" />
+              </svg></div>
+            <div
+              style="font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:900;color:var(--accent);margin-top:.4rem">
+              1</div>
             <div style="font-size:.65rem;color:var(--muted);line-height:1.3">livello di config<br>vs 4 in Claude</div>
           </div>
           <div>
             <h3>Un nuovo dev entra nel progetto</h3>
-            <p><strong>Oggi:</strong> Copilot ha <code>copilot-instructions.md</code>, Gemini ha <code>styleguide.md</code> — file statici senza gerarchia. Ogni dev puo' ignorarli o sovrascriverli.</p>
-            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> CLAUDE.md a 4 livelli (Enterprise → User → Project → Local) + Skills componibili. Le policy aziendali hanno sempre priorita' — impossibile bypassarle.</p>
+            <p><strong>Oggi:</strong> Copilot ha <code>copilot-instructions.md</code>, Gemini ha
+              <code>styleguide.md</code> — file statici senza gerarchia. Ogni dev puo' ignorarli o sovrascriverli.</p>
+            <p style="margin-top:.3rem"><strong>Con Claude Code:</strong> CLAUDE.md a 4 livelli (Enterprise → User →
+              Project → Local) + Skills componibili. Le policy aziendali hanno sempre priorita' — impossibile
+              bypassarle.</p>
           </div>
         </div>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -152,42 +191,81 @@
         codebase, capacità di eseguire comandi, e un protocollo aperto per connettersi a qualsiasi tool aziendale.</p>
       <div class="flow anim d3" style="justify-content:flex-start">
         <div class="flow-node">
-          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5" />
+              <line x1="12" y1="19" x2="20" y2="19" />
+            </svg></div>
           <div class="fn-label">Claude Code</div>
           <div class="fn-sub">CLI agentico nel terminale</div>
         </div>
         <div class="flow-arrow">&#x27F6;</div>
         <div class="flow-node">
-          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg></div>
           <div class="fn-label">MCP Protocol</div>
           <div class="fn-sub">Connessione a 10.000+ tool</div>
         </div>
         <div class="flow-arrow">&#x27F6;</div>
         <div class="flow-node">
-          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg></div>
           <div class="fn-label">Skills</div>
           <div class="fn-sub">Standard codificati</div>
         </div>
         <div class="flow-arrow">&#x27F6;</div>
         <div class="flow-node">
-          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <div class="fn-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg></div>
           <div class="fn-label">CLAUDE.md</div>
           <div class="fn-sub">Cervello del progetto</div>
         </div>
       </div>
       <div class="card-grid anim d4" style="margin-top:1.5rem">
         <div class="card">
-          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg></div>
           <h3>Agentic, non passivo</h3>
           <p>Legge il codebase, esegue test, crea branch, fa commit. Non si limita a suggerire — agisce.</p>
         </div>
         <div class="card">
-          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg></div>
           <h3>Open Standard</h3>
           <p>MCP è un protocollo aperto (come USB-C per l'AI): qualsiasi tool può connettersi, senza vendor lock-in.</p>
         </div>
         <div class="card">
-          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="21" x2="4" y2="14" />
+              <line x1="4" y1="10" x2="4" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12" y2="3" />
+              <line x1="20" y1="21" x2="20" y2="16" />
+              <line x1="20" y1="12" x2="20" y2="3" />
+              <line x1="1" y1="14" x2="7" y2="14" />
+              <line x1="9" y1="8" x2="15" y2="8" />
+              <line x1="17" y1="16" x2="23" y2="16" />
+            </svg></div>
           <h3>Multi-scope config</h3>
           <p>4 livelli: Managed (enterprise), User, Project e Local. Le policy aziendali hanno sempre priorità.
             Condivisibili via version control.</p>
@@ -201,7 +279,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -210,7 +289,8 @@
     <div class="slide content-slide" data-slide="4">
       <h2 class="slide-title anim d1">Un protocollo. Migliaia di integrazioni.</h2>
       <p class="section-desc anim d2">MCP è stato creato da Anthropic nel Nov 2024, adottato da OpenAI (Mar 2025) e
-        Google (commitment Apr 2025, deployment produzione Ott–Dic 2025), e donato all'Agentic AI Foundation sotto la Linux Foundation (Dic 2025). A Marzo 2026,
+        Google (commitment Apr 2025, deployment produzione Ott–Dic 2025), e donato all'Agentic AI Foundation sotto la
+        Linux Foundation (Dic 2025). A Marzo 2026,
         l'ecosistema conta oltre 10.000 server.</p>
       <div class="metrics anim d2" style="margin-top:1rem;justify-content:flex-start">
         <div class="metric">
@@ -315,12 +395,13 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5: BENCHMARKS -->
+    <!-- SLIDE 5: BENCHMARKS
     <div class="slide content-slide" data-slide="5">
       <h2 class="slide-title anim d1">I modelli sono &ldquo;quasi&rdquo; alla pari. L'ecosistema fa la differenza.</h2>
       <p class="section-desc anim d2">I top model sono entro 1-2 punti sui benchmark principali. Il vero differenziale
@@ -397,6 +478,7 @@
         </div>
       </div>
     </div>
+    END SLIDE 5 BENCHMARKS -->
 
     <!-- SLIDE 6: ATLASSIAN -->
     <div class="slide content-slide" data-slide="6">
@@ -406,19 +488,32 @@
       <div class="slide-body anim d3">
         <div class="card-grid">
           <div class="card">
-            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg></div>
             <h3>Query in linguaggio naturale</h3>
             <p>"Mostrami i bug critici assegnati a me nello sprint corrente" — Claude traduce in JQL e restituisce i
               risultati.</p>
           </div>
           <div class="card">
-            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg></div>
             <h3>CRUD completo su Issue</h3>
             <p>Crea story, bug, task con tutti i campi. Aggiorna status, aggiunge commenti, assegna priorità. Tutto dal
               terminale.</p>
           </div>
           <div class="card">
-            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10" />
+                <polyline points="1 20 1 14 7 14" />
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+              </svg></div>
             <h3>Workflow automation</h3>
             <p>Converti meeting notes in ticket Jira. Trasforma spec Confluence in backlog strutturati con gerarchia
               Epic.</p>
@@ -441,7 +536,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -454,19 +550,31 @@
       <div class="slide-body anim d3">
         <div class="card-grid">
           <div class="card">
-            <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg></div>
             <h3>Query Naturali</h3>
             <p>"Quanti login falliti nelle ultime 24 ore?" — Claude genera l'SPL, esegue la query, e restituisce
               un'analisi in italiano.</p>
           </div>
           <div class="card">
-            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg></div>
             <h3>Index & KV Store</h3>
             <p>Gestione index, ispezione metadata, operazioni CRUD su KV Store collections. Tutto via linguaggio
               naturale.</p>
           </div>
           <div class="card">
-            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg></div>
             <h3>Sicurezza enterprise</h3>
             <p>Rispetta autenticazione e ACL esistenti. Logging completo per audit. Nessun dato esposto fuori dal
               network aziendale.</p>
@@ -490,7 +598,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -498,44 +607,68 @@
     <!-- SLIDE 8: GITHUB PR -->
     <div class="slide content-slide" data-slide="8">
       <h2 class="slide-title anim d1">Pull Request automatiche su GitHub</h2>
-      <p class="section-desc anim d2">Claude Code si integra nativamente con GitHub: crea PR, revisiona codice con agenti multi-livello, e risponde a menzioni <code>@claude</code> direttamente nelle issue e PR.</p>
+      <p class="section-desc anim d2">Claude Code si integra nativamente con GitHub: crea PR, revisiona codice con
+        agenti multi-livello, e risponde a menzioni <code>@claude</code> direttamente nelle issue e PR.</p>
       <div class="slide-body anim d3">
         <div class="card-grid">
           <div class="card">
-            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div>
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="18" r="3" />
+                <circle cx="6" cy="6" r="3" />
+                <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+                <line x1="6" y1="9" x2="6" y2="21" />
+              </svg></div>
             <h3>PR da conversazione</h3>
-            <p>"Implementa la feature JIRA-123 e apri una PR" — Claude scrive il codice, crea il branch, e apre la Pull Request con descrizione strutturata.</p>
+            <p>"Implementa la feature JIRA-123 e apri una PR" — Claude scrive il codice, crea il branch, e apre la Pull
+              Request con descrizione strutturata.</p>
           </div>
           <div class="card">
-            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg></div>
             <h3>Code Review multi-agente</h3>
-            <p>Una flotta di agenti specializzati analizza le modifiche nel contesto dell'intero codebase. Trova bug, vulnerabilità e regressioni con severity tagging.</p>
+            <p>Una flotta di agenti specializzati analizza le modifiche nel contesto dell'intero codebase. Trova bug,
+              vulnerabilità e regressioni con severity tagging.</p>
           </div>
           <div class="card">
-            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg></div>
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
+              </svg></div>
             <h3>@claude nelle PR e Issue</h3>
-            <p>Menziona <code>@claude</code> in qualsiasi commento GitHub per chiedere fix, implementazioni o spiegazioni. Rispetta le regole in CLAUDE.md.</p>
+            <p>Menziona <code>@claude</code> in qualsiasi commento GitHub per chiedere fix, implementazioni o
+              spiegazioni. Rispetta le regole in CLAUDE.md.</p>
           </div>
         </div>
         <div class="code-block"><span class="cm"># Setup GitHub Action</span>
-<span class="kw">- uses:</span> anthropics/claude-code-action@v1
-  <span class="kw">with:</span>
-    <span class="str">anthropic_api_key</span>: ${{ secrets.ANTHROPIC_API_KEY }}
+          <span class="kw">- uses:</span> anthropics/claude-code-action@v1
+          <span class="kw">with:</span>
+          <span class="str">anthropic_api_key</span>: ${{ secrets.ANTHROPIC_API_KEY }}
 
-<span class="cm"># Poi, in qualsiasi PR o Issue:</span>
-<span class="acc">@claude fix the TypeError in the dashboard</span>
-<span class="acc">@claude review this PR</span>
-<span class="cm"># → Claude analizza, implementa, commenta inline</span>
+          <span class="cm"># Poi, in qualsiasi PR o Issue:</span>
+          <span class="acc">@claude fix the TypeError in the dashboard</span>
+          <span class="acc">@claude review this PR</span>
+          <span class="cm"># → Claude analizza, implementa, commenta inline</span>
         </div>
       </div>
       <div class="bench-note anim d4">
-        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro (~€17/mo). GitHub Action con API key (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
-        Fonti: <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank" rel="noopener">GitHub Actions Docs</a> · <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank" rel="noopener">Code Review Docs</a> · <a href="https://github.com/anthropics/claude-code-action" style="color:var(--accent)" target="_blank" rel="noopener">claude-code-action repo</a>
+        <strong>Disponibilità:</strong> CLI (PR creation) da piano Pro (~€17/mo). GitHub Action con API key
+        (pay-per-token). Code Review multi-agente solo Team ed Enterprise.<br>
+        Fonti: <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank"
+          rel="noopener">GitHub Actions Docs</a> · <a href="https://code.claude.com/docs/en/code-review"
+          style="color:var(--accent)" target="_blank" rel="noopener">Code Review Docs</a> · <a
+          href="https://github.com/anthropics/claude-code-action" style="color:var(--accent)" target="_blank"
+          rel="noopener">claude-code-action repo</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -548,19 +681,40 @@
       <div class="slide-body anim d3">
         <div class="card-grid">
           <div class="card">
-            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
+              </svg></div>
             <h3>Struttura modulare</h3>
             <p>Ogni Skill è una directory con SKILL.md + script + template. Attivazione automatica basata sul contesto —
               nessun invoke manuale.</p>
           </div>
           <div class="card">
-            <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="18"/><line x1="15" y1="22" x2="15" y2="18"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/></svg></div>
+            <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                <line x1="9" y1="22" x2="9" y2="18" />
+                <line x1="15" y1="22" x2="15" y2="18" />
+                <line x1="9" y1="6" x2="9" y2="6.01" />
+                <line x1="15" y1="6" x2="15" y2="6.01" />
+                <line x1="9" y1="10" x2="9" y2="10.01" />
+                <line x1="15" y1="10" x2="15" y2="10.01" />
+                <line x1="9" y1="14" x2="9" y2="14.01" />
+                <line x1="15" y1="14" x2="15" y2="14.01" />
+              </svg></div>
             <h3>Gerarchia enterprise</h3>
             <p>4 livelli: Managed → User → Project → Local. Le policy aziendali hanno sempre la priorità. Configurabili
               dal team IT centrale.</p>
           </div>
           <div class="card">
-            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10" />
+                <polyline points="1 20 1 14 7 14" />
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+              </svg></div>
             <h3>Versionati in Git</h3>
             <p>Le Skills vivono in <code>.claude/skills/</code> nel repo. Ogni dev ha gli stessi standard. Cambio? Un
               commit e tutti sono allineati.</p>
@@ -586,7 +740,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -598,19 +753,32 @@
         del codebase. Come un senior engineer che conosce tutto il progetto — disponibile dal giorno 1.</p>
       <div class="card-grid anim d3">
         <div class="card">
-          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+            </svg></div>
           <h3>WHY — Scopo del progetto</h3>
           <p>Perché esiste questo repo? Quali problemi risolve? Quali sono i vincoli di business? Claude comprende il
             contesto strategico.</p>
         </div>
         <div class="card">
-          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+              <line x1="8" y1="2" x2="8" y2="18" />
+              <line x1="16" y1="6" x2="16" y2="22" />
+            </svg></div>
           <h3>WHAT — Mappa del codebase</h3>
           <p>Struttura directory, tech stack, dipendenze, architettura. Claude sa dove cercare e come navigare il
             progetto.</p>
         </div>
         <div class="card">
-          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg></div>
           <h3>HOW — Come lavorare</h3>
           <p>Comandi di build/test, convenzioni di naming, git workflow, deploy. Claude lavora come farebbe un membro
             del team.</p>
@@ -622,7 +790,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -630,46 +799,85 @@
     <!-- SLIDE 11: ENTERPRISE WORKFLOW -->
     <div class="slide content-slide slide-dense" data-slide="11">
       <h2 class="slide-title anim d1">Il workflow Enterprise con l'ecosistema Claude</h2>
-      <p class="section-desc anim d2">Dalla pianificazione alla chiusura progetto — come una società di consulenza enterprise gestisce l'intero ciclo di vita, incluse change request e ticketing AM, con Claude.</p>
+      <p class="section-desc anim d2">Dalla pianificazione alla chiusura progetto — come una società di consulenza
+        enterprise gestisce l'intero ciclo di vita, incluse change request e ticketing AM, con Claude.</p>
 
       <div class="flow anim d3" style="margin-top:.75rem;gap:.5rem">
         <div class="flow-node" style="border-color:var(--accent);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="16" y1="11" x2="8" y2="11"/><line x1="16" y1="15" x2="8" y2="15"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              <line x1="16" y1="11" x2="8" y2="11" />
+              <line x1="16" y1="15" x2="8" y2="15" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Plan</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:var(--purple);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l7-7 3 3-7 7-3-3z" />
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+              <path d="M2 2l7.586 7.586" />
+              <circle cx="11" cy="11" r="2" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Design</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:var(--blue);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Code</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:var(--green);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Test & Review</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:var(--orange);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+              <line x1="5" y1="19" x2="19" y2="19" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Deploy</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:var(--muted);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Monitor & AM</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:#b45309;min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Change Req</div>
         </div>
         <div class="flow-arrow" style="font-size:1rem">&#x2192;</div>
         <div class="flow-node" style="border-color:var(--accent);min-width:6.875rem;padding:.6rem .8rem">
-          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <div class="fn-icon" style="font-size:1.1rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+              <line x1="4" y1="22" x2="4" y2="15" />
+            </svg></div>
           <div class="fn-label" style="font-size:.75rem">Chiusura</div>
         </div>
       </div>
@@ -682,67 +890,130 @@
           <div class="compare-cell">Integrazione</div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="16" y1="11" x2="8" y2="11"/><line x1="16" y1="15" x2="8" y2="15"/></svg>Plan</div>
-          <div class="compare-cell" style="font-size:.72rem">PM crea epic su Jira. Claude analizza i requisiti e genera story strutturate con criteri di accettazione.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              <line x1="16" y1="11" x2="8" y2="11" />
+              <line x1="16" y1="15" x2="8" y2="15" />
+            </svg>Plan</div>
+          <div class="compare-cell" style="font-size:.72rem">PM crea epic su Jira. Claude analizza i requisiti e genera
+            story strutturate con criteri di accettazione.</div>
           <div class="compare-cell"><span class="badge mid">Claude Desktop</span></div>
           <div class="compare-cell"><span class="badge good">Jira MCP</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>Design</div>
-          <div class="compare-cell" style="font-size:.72rem">Da wireframe o descrizione, Claude genera un mockup interattivo funzionante (HTML/JS) come Artifact.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <path d="M12 19l7-7 3 3-7 7-3-3z" />
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+              <path d="M2 2l7.586 7.586" />
+              <circle cx="11" cy="11" r="2" />
+            </svg>Design</div>
+          <div class="compare-cell" style="font-size:.72rem">Da wireframe o descrizione, Claude genera un mockup
+            interattivo funzionante (HTML/JS) come Artifact.</div>
           <div class="compare-cell"><span class="badge mid">Artifacts</span></div>
           <div class="compare-cell"><span class="badge good">Figma MCP</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</div>
-          <div class="compare-cell" style="font-size:.72rem">Dev chiede a Claude Code di implementare la feature. Sub-agent paralleli su worktree isolati. Rispetta CLAUDE.md e Skills.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>Code</div>
+          <div class="compare-cell" style="font-size:.72rem">Dev chiede a Claude Code di implementare la feature.
+            Sub-agent paralleli su worktree isolati. Rispetta CLAUDE.md e Skills.</div>
           <div class="compare-cell"><span class="badge mid">Claude Code CLI</span></div>
           <div class="compare-cell"><span class="badge good">Skills + CLAUDE.md</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Test & Review</div>
-          <div class="compare-cell" style="font-size:.72rem">Claude genera test, esegue la suite, apre la PR. Code Review multi-agente analizza il diff e commenta inline.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>Test & Review</div>
+          <div class="compare-cell" style="font-size:.72rem">Claude genera test, esegue la suite, apre la PR. Code
+            Review multi-agente analizza il diff e commenta inline.</div>
           <div class="compare-cell"><span class="badge mid">Code Review</span></div>
           <div class="compare-cell"><span class="badge good">GitHub Actions</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/><line x1="5" y1="19" x2="19" y2="19"/></svg>Deploy</div>
-          <div class="compare-cell" style="font-size:.72rem">CI/CD in headless mode: changelog automatico, migration check, deploy. Hook post-commit per notifiche Slack.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+              <line x1="5" y1="19" x2="19" y2="19" />
+            </svg>Deploy</div>
+          <div class="compare-cell" style="font-size:.72rem">CI/CD in headless mode: changelog automatico, migration
+            check, deploy. Hook post-commit per notifiche Slack.</div>
           <div class="compare-cell"><span class="badge mid">Headless CI/CD</span></div>
           <div class="compare-cell"><span class="badge good">Hooks + Slack</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Monitor & AM</div>
-          <div class="compare-cell" style="font-size:.72rem">Splunk per threat hunting, Sentry per errori prod. Ticket AM gestiti via Jira MCP: triage, assegnazione e SLA tracking automatizzati.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>Monitor & AM</div>
+          <div class="compare-cell" style="font-size:.72rem">Splunk per threat hunting, Sentry per errori prod. Ticket
+            AM gestiti via Jira MCP: triage, assegnazione e SLA tracking automatizzati.</div>
           <div class="compare-cell"><span class="badge mid">Claude Code CLI / Claude MCP</span></div>
           <div class="compare-cell"><span class="badge good">Splunk + Sentry + Jira MCP</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Change Request</div>
-          <div class="compare-cell" style="font-size:.72rem">CR ricevuta dal cliente: Claude analizza l'impatto sul codebase, stima effort, genera le story su Jira e avvia l'implementazione. Ciclo Code → Review → Deploy integrato.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+            </svg>Change Request</div>
+          <div class="compare-cell" style="font-size:.72rem">CR ricevuta dal cliente: Claude analizza l'impatto sul
+            codebase, stima effort, genera le story su Jira e avvia l'implementazione. Ciclo Code → Review → Deploy
+            integrato.</div>
           <div class="compare-cell"><span class="badge mid">Claude Code CLI</span></div>
           <div class="compare-cell"><span class="badge good">Jira + GitHub MCP</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Chiusura</div>
-          <div class="compare-cell" style="font-size:.72rem">Claude genera il report di completamento: summary delle PR, copertura test, metriche di qualità. Chiude le epic su Jira, archivia la documentazione su Confluence e consegna il deliverable al PM.</div>
+          <div class="compare-cell feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="vertical-align:-2px;margin-right:3px">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+              <line x1="4" y1="22" x2="4" y2="15" />
+            </svg>Chiusura</div>
+          <div class="compare-cell" style="font-size:.72rem">Claude genera il report di completamento: summary delle PR,
+            copertura test, metriche di qualità. Chiude le epic su Jira, archivia la documentazione su Confluence e
+            consegna il deliverable al PM.</div>
           <div class="compare-cell"><span class="badge mid">Claude Desktop</span></div>
           <div class="compare-cell"><span class="badge good">Jira + Confluence MCP</span></div>
         </div>
       </div>
 
       <div class="bench-note anim d5">
-        Fonti: <a href="https://code.claude.com/docs/en/overview" style="color:var(--accent)" target="_blank" rel="noopener">Claude Code Overview</a> ·
-        <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank" rel="noopener">GitHub Actions</a> ·
-        <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank" rel="noopener">Code Review</a> ·
-        <a href="https://code.claude.com/docs/en/hooks-guide" style="color:var(--accent)" target="_blank" rel="noopener">Hooks</a> ·
-        <a href="https://code.claude.com/docs/en/sub-agents" style="color:var(--accent)" target="_blank" rel="noopener">Sub-agents</a> ·
-        <a href="https://code.claude.com/docs/en/headless" style="color:var(--accent)" target="_blank" rel="noopener">Headless CI/CD</a>
+        Fonti: <a href="https://code.claude.com/docs/en/overview" style="color:var(--accent)" target="_blank"
+          rel="noopener">Claude Code Overview</a> ·
+        <a href="https://code.claude.com/docs/en/github-actions" style="color:var(--accent)" target="_blank"
+          rel="noopener">GitHub Actions</a> ·
+        <a href="https://code.claude.com/docs/en/code-review" style="color:var(--accent)" target="_blank"
+          rel="noopener">Code Review</a> ·
+        <a href="https://code.claude.com/docs/en/hooks-guide" style="color:var(--accent)" target="_blank"
+          rel="noopener">Hooks</a> ·
+        <a href="https://code.claude.com/docs/en/sub-agents" style="color:var(--accent)" target="_blank"
+          rel="noopener">Sub-agents</a> ·
+        <a href="https://code.claude.com/docs/en/headless" style="color:var(--accent)" target="_blank"
+          rel="noopener">Headless CI/CD</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -750,7 +1021,8 @@
     <!-- SLIDE 12: ROI -->
     <div class="slide content-slide" data-slide="12">
       <h2 class="slide-title anim d1">ROI concreto: anatomia di una feature</h2>
-      <p class="section-desc anim d2">Feature da 20 giorni di solo sviluppo (160h) — senior dev + Claude Code agentico al 100%, sub-agent paralleli su worktree isolati.</p>
+      <p class="section-desc anim d2">Feature da 20 giorni di solo sviluppo (160h) — senior dev + Claude Code agentico
+        al 100%, sub-agent paralleli su worktree isolati.</p>
 
       <div class="compare roi anim d3" style="max-width:68.75rem">
         <div class="compare-row header">
@@ -761,63 +1033,115 @@
           <div class="compare-cell">Saved</div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Boilerplate &amp; scaffolding <button class="diff-btn" onclick="openDiff('roi_boilerplate')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Boilerplate &amp; scaffolding <button class="diff-btn"
+              onclick="openDiff('roi_boilerplate')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">32h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">5-10x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">5-10x</span></div>
           <div class="compare-cell"><span class="badge good">~4h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">87%</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Refactoring larga scala <button class="diff-btn" onclick="openDiff('roi_refactoring')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Refactoring larga scala <button class="diff-btn"
+              onclick="openDiff('roi_refactoring')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">16h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">3-6x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">3-6x</span></div>
           <div class="compare-cell"><span class="badge good">~3.5h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">78%</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Debug complesso <button class="diff-btn" onclick="openDiff('roi_debug')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Debug complesso <button class="diff-btn"
+              onclick="openDiff('roi_debug')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">24h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
           <div class="compare-cell"><span class="badge good">~8h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">67%</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Test unit / integration <button class="diff-btn" onclick="openDiff('roi_test')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Test unit / integration <button class="diff-btn"
+              onclick="openDiff('roi_test')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">32h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
           <div class="compare-cell"><span class="badge good">~10h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">69%</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Code review &amp; doc <button class="diff-btn" onclick="openDiff('roi_review')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Code review &amp; doc <button class="diff-btn"
+              onclick="openDiff('roi_review')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">16h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">3-5x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">3-5x</span></div>
           <div class="compare-cell"><span class="badge good">~4h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">75%</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Architettura &amp; design <button class="diff-btn" onclick="openDiff('roi_arch')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Architettura &amp; design <button class="diff-btn"
+              onclick="openDiff('roi_arch')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">16h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">2-4x</span></div>
           <div class="compare-cell"><span class="badge good">~6h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">62%</span></div>
         </div>
         <div class="compare-row">
-          <div class="compare-cell feature">Logica business critica <button class="diff-btn" onclick="openDiff('roi_business')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell feature">Logica business critica <button class="diff-btn"
+              onclick="openDiff('roi_business')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
           <div class="compare-cell"><span class="badge bad">24h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:800">1.5-2.5x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:800">1.5-2.5x</span></div>
           <div class="compare-cell"><span class="badge good">~12h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:800">50%</span></div>
         </div>
         <div class="compare-row" style="background:var(--surface);border-top:2px solid var(--accent)">
           <div class="compare-cell feature" style="font-weight:900;color:var(--text)">TOTALE SVILUPPO</div>
           <div class="compare-cell"><span class="badge bad" style="font-weight:800">160h</span></div>
-          <div class="compare-cell"><span class="badge" style="background:var(--accent);color:#fff;font-weight:900">~3.4x</span></div>
+          <div class="compare-cell"><span class="badge"
+              style="background:var(--accent);color:#fff;font-weight:900">~3.4x</span></div>
           <div class="compare-cell"><span class="badge good" style="font-weight:800">~48h</span></div>
           <div class="compare-cell"><span class="badge best" style="font-weight:900">70%</span></div>
         </div>
       </div>
-      <div class="bench-note" style="margin-top:.25rem;font-style:italic">Fonti: GitHub Research (Copilot +55% task speed) · McKinsey GenAI Developer Productivity (~50% new code, ~66% optimization) · Anthropic Internal Data (+67% PR/giorno, 70-90% codice AI-produced) · BCG/Harvard AI Study (+25% task speed)</div>
+      <div class="bench-note" style="margin-top:.25rem;font-style:italic">Fonti: GitHub Research (Copilot +55% task
+        speed) · McKinsey GenAI Developer Productivity (~50% new code, ~66% optimization) · Anthropic Internal Data
+        (+67% PR/giorno, 70-90% codice AI-produced) · BCG/Harvard AI Study (+25% task speed)</div>
 
       <div style="display:flex;gap:1.2rem;margin-top:.7rem;align-items:center;flex-wrap:wrap" class="anim d4">
         <div class="metric">
@@ -835,19 +1159,27 @@
       </div>
 
       <div style="display:flex;gap:.8rem;margin-top:.6rem;flex-wrap:wrap" class="anim d5">
-        <div style="flex:1;min-width:15rem;background:var(--surface);border-left:3px solid var(--accent);border-radius:0.5rem;padding:.5rem .7rem">
-          <div style="font-weight:800;font-size:.78rem;color:var(--accent);margin-bottom:.2rem">Dove il senior resta insostituibile</div>
-          <div style="font-size:.73rem;color:var(--muted);line-height:1.45">Architettura e logica di business critica hanno lo speedup pi&ugrave; basso (1.5-2.5x) — richiedono giudizio e supervisione. Il vantaggio massimo &egrave; sul codice meccanico e ripetitivo (5-10x).</div>
+        <div
+          style="flex:1;min-width:15rem;background:var(--surface);border-left:3px solid var(--accent);border-radius:0.5rem;padding:.5rem .7rem">
+          <div style="font-weight:800;font-size:.78rem;color:var(--accent);margin-bottom:.2rem">Dove il senior resta
+            insostituibile</div>
+          <div style="font-size:.73rem;color:var(--muted);line-height:1.45">Architettura e logica di business critica
+            hanno lo speedup pi&ugrave; basso (1.5-2.5x) — richiedono giudizio e supervisione. Il vantaggio massimo
+            &egrave; sul codice meccanico e ripetitivo (5-10x).</div>
         </div>
-        <div style="flex:1;min-width:15rem;background:var(--surface);border-left:3px solid var(--accent);border-radius:0.5rem;padding:.5rem .7rem">
+        <div
+          style="flex:1;min-width:15rem;background:var(--surface);border-left:3px solid var(--accent);border-radius:0.5rem;padding:.5rem .7rem">
           <div style="font-weight:800;font-size:.78rem;color:var(--accent);margin-bottom:.2rem">Nuova feature?</div>
-          <div style="font-size:.73rem;color:var(--muted);line-height:1.45">Lo sviluppo &egrave; trasversale: ~40% boilerplate (5-10x) + ~60% logica/architettura (1.5-2.5x). Feature CRUD semplice &rarr; vicina al 5-10x. Logica complessa &rarr; vicina al 2x.</div>
+          <div style="font-size:.73rem;color:var(--muted);line-height:1.45">Lo sviluppo &egrave; trasversale: ~40%
+            boilerplate (5-10x) + ~60% logica/architettura (1.5-2.5x). Feature CRUD semplice &rarr; vicina al 5-10x.
+            Logica complessa &rarr; vicina al 2x.</div>
         </div>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -855,7 +1187,8 @@
     <!-- SLIDE 13: COMPARISON -->
     <div class="slide content-slide" data-slide="13">
       <h2 class="slide-title anim d1">Claude Code vs Copilot vs Gemini</h2>
-      <p class="section-desc anim d2">I competitor hanno recuperato terreno nel 2025, ma restano gap strutturali nell'ecosistema enterprise.</p>
+      <p class="section-desc anim d2">I competitor hanno recuperato terreno nel 2025, ma restano gap strutturali
+        nell'ecosistema enterprise.</p>
       <div class="compare anim d3" style="max-width:68.75rem">
         <div class="compare-row header">
           <div class="compare-cell">Capacità</div>
@@ -907,17 +1240,24 @@
         </div>
       </div>
       <div class="bench-note anim d4" style="margin-top:.75rem">
-        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank" rel="noopener">Claude Code MCP</a> ·
-        <a href="https://github.blog/changelog/2024-12-06-copilot-chat-now-has-a-64k-context-window-with-openai-gpt-4o/" style="color:var(--accent)" target="_blank" rel="noopener">Copilot 64K context</a> ·
-        <a href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp" style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP</a> ·
-        <a href="https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot" style="color:var(--accent)" target="_blank" rel="noopener">Copilot instructions</a> ·
-        <a href="https://developers.google.com/gemini-code-assist/docs/overview" style="color:var(--accent)" target="_blank" rel="noopener">Gemini Code Assist</a> ·
-        <a href="https://code.claude.com/docs/en/settings" style="color:var(--accent)" target="_blank" rel="noopener">Claude Settings (4 livelli)</a>
+        Fonti: <a href="https://code.claude.com/docs/en/mcp" style="color:var(--accent)" target="_blank"
+          rel="noopener">Claude Code MCP</a> ·
+        <a href="https://github.blog/changelog/2024-12-06-copilot-chat-now-has-a-64k-context-window-with-openai-gpt-4o/"
+          style="color:var(--accent)" target="_blank" rel="noopener">Copilot 64K context</a> ·
+        <a href="https://docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp"
+          style="color:var(--accent)" target="_blank" rel="noopener">Copilot MCP</a> ·
+        <a href="https://docs.github.com/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot"
+          style="color:var(--accent)" target="_blank" rel="noopener">Copilot instructions</a> ·
+        <a href="https://developers.google.com/gemini-code-assist/docs/overview" style="color:var(--accent)"
+          target="_blank" rel="noopener">Gemini Code Assist</a> ·
+        <a href="https://code.claude.com/docs/en/settings" style="color:var(--accent)" target="_blank"
+          rel="noopener">Claude Settings (4 livelli)</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -925,37 +1265,66 @@
     <!-- SLIDE 14: CONTEXT ROT -->
     <div class="slide content-slide" data-slide="14">
       <h2 class="slide-title anim d1">1M di contesto, senza perdere il filo</h2>
-      <p class="section-desc anim d2">Il <strong>context rot</strong> è il degrado delle prestazioni all'aumentare del contesto. A 1M di token, Opus 4.6 mantiene il <strong>78.3%</strong> di accuratezza — GPT-5.4 crolla al 36.6%, Gemini 3.1 Pro al 25.9%.</p>
+      <p class="section-desc anim d2">Il <strong>context rot</strong> è il degrado delle prestazioni all'aumentare del
+        contesto. A 1M di token, Opus 4.6 mantiene il <strong>78.3%</strong> di accuratezza — GPT-5.4 crolla al 36.6%,
+        Gemini 3.1 Pro al 25.9%.</p>
       <div class="slide-body anim d3" style="align-items:center">
         <div class="card-grid" style="flex:0 0 20rem">
           <div class="card">
-            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <line x1="9" y1="1" x2="9" y2="4" />
+                <line x1="15" y1="1" x2="15" y2="4" />
+                <line x1="9" y1="20" x2="9" y2="23" />
+                <line x1="15" y1="20" x2="15" y2="23" />
+                <line x1="20" y1="9" x2="23" y2="9" />
+                <line x1="20" y1="14" x2="23" y2="14" />
+                <line x1="1" y1="9" x2="4" y2="9" />
+                <line x1="1" y1="14" x2="4" y2="14" />
+              </svg></div>
             <h3>Retrieval a 1M token</h3>
-            <p>Sul benchmark MRCR v2 (8-needle), Opus 4.6 recupera informazioni distribuite in tutto il contesto con il <strong>78.3%</strong> di match ratio — il doppio di GPT-5.4.</p>
+            <p>Sul benchmark MRCR v2 (8-needle), Opus 4.6 recupera informazioni distribuite in tutto il contesto con il
+              <strong>78.3%</strong> di match ratio — il doppio di GPT-5.4.</p>
           </div>
           <div class="card">
-            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+            <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 18 13.5 8.5 8.5 13.5 1 6" />
+                <polyline points="17 18 23 18 23 12" />
+              </svg></div>
             <h3>Il problema dei competitor</h3>
-            <p>GPT-5.4 parte da ~80% a 128K ma crolla a <strong>36.6%</strong> a 1M. Gemini 3.1 Pro scende a <strong>25.9%</strong>. Sonnet 4.5 è inutilizzabile (18.5%).</p>
+            <p>GPT-5.4 parte da ~80% a 128K ma crolla a <strong>36.6%</strong> a 1M. Gemini 3.1 Pro scende a
+              <strong>25.9%</strong>. Sonnet 4.5 è inutilizzabile (18.5%).</p>
           </div>
           <div class="card">
-            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="icon purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg></div>
             <h3>Impatto pratico</h3>
-            <p>Codebase grandi, log estesi, documentazione complessa — Claude mantiene coerenza dove gli altri "dimenticano" le informazioni iniziali.</p>
+            <p>Codebase grandi, log estesi, documentazione complessa — Claude mantiene coerenza dove gli altri
+              "dimenticano" le informazioni iniziali.</p>
           </div>
         </div>
         <div style="flex:1;display:flex;align-items:center;justify-content:center">
-          <img src="public/context_rot.webp" alt="MRCR v2 benchmark — Long context retrieval" style="width:100%;max-width:40rem;border-radius:0.625rem;border:1px solid var(--border);box-shadow:0 2px 0.75rem rgba(0,0,0,.06)">
+          <img src="public/context_rot.webp" alt="MRCR v2 benchmark — Long context retrieval"
+            style="width:100%;max-width:40rem;border-radius:0.625rem;border:1px solid var(--border);box-shadow:0 2px 0.75rem rgba(0,0,0,.06)">
         </div>
       </div>
       <div class="bench-note anim d4">
-        Benchmark: MRCR v2, 8-needle. Gemini misurato da Context Arena sullo stesso benchmark, non self-report Google. Score OpenAI è media 128K–256K.<br>
-        Fonte: <a href="https://www.anthropic.com/news/claude-model-spec-spec" style="color:var(--accent)" target="_blank" rel="noopener">Anthropic — Claude 4.6 Model Card</a>
+        Benchmark: MRCR v2, 8-needle. Gemini misurato da Context Arena sullo stesso benchmark, non self-report Google.
+        Score OpenAI è media 128K–256K.<br>
+        Fonte: <a href="https://www.anthropic.com/news/claude-model-spec-spec" style="color:var(--accent)"
+          target="_blank" rel="noopener">Anthropic — Claude 4.6 Model Card</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -964,11 +1333,16 @@
     <div class="slide content-slide" data-slide="15">
       <h2 class="slide-title anim d1">Non solo DEV! Mockup interattivi, non immagini statiche</h2>
       <p class="section-desc anim d2">Claude Desktop genera <strong>artifacts interattivi</strong> — vero codice HTML,
-        CSS e JavaScript eseguito live nel browser. Gemini genera codice ma senza ambiente di esecuzione integrato nella chat.</p>
+        CSS e JavaScript eseguito live nel browser. Gemini genera codice ma senza ambiente di esecuzione integrato nella
+        chat.</p>
       <div class="slide-body anim d3">
         <div class="card-grid" style="flex:1">
           <div class="card" style="border-color:var(--green);border-width:2px">
-            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg></div>
             <h3 style="color:var(--green)">Claude Desktop — Artifact</h3>
             <p>Genera <strong>codice reale</strong> (HTML + JS) che gira dentro la chat. Mockup interattivo:
               cliccabile, navigabile, con stato e animazioni. Iterabile e scaricabile.</p>
@@ -980,9 +1354,15 @@
             </ul>
           </div>
           <div class="card" style="border-color:var(--red);border-width:2px">
-            <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+            <div class="icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
+              </svg></div>
             <h3 style="color:var(--red)">Gemini — Senza ambiente di esecuzione</h3>
-            <p>Gemini genera <strong>codice HTML/CSS</strong>, ma senza un ambiente di esecuzione integrato nella chat. Manca il preview interattivo live paragonabile agli Artifacts.</p>
+            <p>Gemini genera <strong>codice HTML/CSS</strong>, ma senza un ambiente di esecuzione integrato nella chat.
+              Manca il preview interattivo live paragonabile agli Artifacts.</p>
             <ul style="margin-top:.3rem;font-size:.75rem;color:var(--muted);line-height:1.45;padding-left:1.1rem">
               <li>Nessun preview live nella conversazione</li>
               <li>Richiede copia/incolla per testare il codice</li>
@@ -1013,7 +1393,12 @@
               Gemini</div>
             <div
               style="background:#fff;border:1px solid var(--border);border-radius:0.5rem;padding:.7rem;display:flex;align-items:center;justify-content:center;min-height:2.8125rem">
-              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>codice senza preview live</span>
+              <span style="font-size:.7rem;color:var(--muted);font-style:italic"><svg width="14" height="14"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" style="vertical-align:-2px;margin-right:3px">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>codice senza preview live</span>
             </div>
           </div>
         </div>
@@ -1026,7 +1411,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -1034,7 +1420,8 @@
     <!-- SLIDE 16: PRICING COMPARISON -->
     <div class="slide content-slide" data-slide="16">
       <h2 class="slide-title anim d1">Costi a confronto: Claude vs competitor</h2>
-      <p class="section-desc anim d2">Prezzi per utente/mese dei principali piani. Claude offre Claude Code incluso dal piano Pro; i competitor richiedono add-on o tier separati per funzionalità equivalenti.</p>
+      <p class="section-desc anim d2">Prezzi per utente/mese dei principali piani. Claude offre Claude Code incluso dal
+        piano Pro; i competitor richiedono add-on o tier separati per funzionalità equivalenti.</p>
       <div class="compare pricing anim d3">
         <div class="compare-row header">
           <div class="compare-cell">Piano</div>
@@ -1050,7 +1437,13 @@
           <div class="compare-cell"><span class="badge good">€0</span></div>
           <div class="compare-cell"><span class="badge good">€0</span></div>
           <div class="compare-cell"><span class="badge good">€0</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('free')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('free')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Personal base</div>
@@ -1058,7 +1451,13 @@
           <div class="compare-cell"><span class="badge good">~€17 Plus</span></div>
           <div class="compare-cell"><span class="badge good">~€8 Pro</span></div>
           <div class="compare-cell"><span class="badge mid">~€19 AI Pro</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('base')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('base')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Personal premium</div>
@@ -1066,7 +1465,13 @@
           <div class="compare-cell"><span class="badge bad">~€168 Pro</span></div>
           <div class="compare-cell"><span class="badge mid">~€33 Pro+</span></div>
           <div class="compare-cell"><span class="badge bad">~€231 AI Ultra</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('premium')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('premium')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Team / Business</div>
@@ -1074,7 +1479,13 @@
           <div class="compare-cell"><span class="badge mid">~€21–25</span></div>
           <div class="compare-cell"><span class="badge good">~€16</span></div>
           <div class="compare-cell"><span class="badge mid">In Workspace</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('team')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('team')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Enterprise</div>
@@ -1082,7 +1493,13 @@
           <div class="compare-cell"><span class="badge bad">~€50 (min 150)</span></div>
           <div class="compare-cell"><span class="badge mid">€33+€18 GH</span></div>
           <div class="compare-cell"><span class="badge mid">Custom</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('enterprise')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('enterprise')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Coding agent</div>
@@ -1090,7 +1507,13 @@
           <div class="compare-cell"><span class="badge bad">Solo API</span></div>
           <div class="compare-cell"><span class="badge good">Da Pro</span></div>
           <div class="compare-cell"><span class="badge mid">Da AI Pro</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('agent')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('agent')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell feature">Code Review PR</div>
@@ -1098,21 +1521,32 @@
           <div class="compare-cell"><span class="badge bad">No</span></div>
           <div class="compare-cell"><span class="badge good">Da Pro</span></div>
           <div class="compare-cell"><span class="badge bad">No</span></div>
-          <div class="compare-cell" style="justify-content:center"><button class="diff-btn" onclick="openDiff('review')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button></div>
+          <div class="compare-cell" style="justify-content:center"><button class="diff-btn"
+              onclick="openDiff('review')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg></button></div>
         </div>
       </div>
 
       <div class="bench-note anim d4">
         Prezzi in EUR, aggiornati a Marzo 2026. Workspace include ora Gemini senza add-on separato.<br>
-        Fonti: <a href="https://claude.com/pricing" style="color:var(--accent)" target="_blank" rel="noopener">claude.com/pricing</a> ·
-        <a href="https://chatgpt.com/pricing/" style="color:var(--accent)" target="_blank" rel="noopener">chatgpt.com/pricing</a> ·
-        <a href="https://github.com/features/copilot/plans" style="color:var(--accent)" target="_blank" rel="noopener">github.com/copilot/plans</a> ·
-        <a href="https://gemini.google/subscriptions/" style="color:var(--accent)" target="_blank" rel="noopener">gemini.google/subscriptions</a>
+        Fonti: <a href="https://claude.com/pricing" style="color:var(--accent)" target="_blank"
+          rel="noopener">claude.com/pricing</a> ·
+        <a href="https://chatgpt.com/pricing/" style="color:var(--accent)" target="_blank"
+          rel="noopener">chatgpt.com/pricing</a> ·
+        <a href="https://github.com/features/copilot/plans" style="color:var(--accent)" target="_blank"
+          rel="noopener">github.com/copilot/plans</a> ·
+        <a href="https://gemini.google/subscriptions/" style="color:var(--accent)" target="_blank"
+          rel="noopener">gemini.google/subscriptions</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -1120,7 +1554,8 @@
     <!-- SLIDE 17: CLAUDE PRICING DETAIL -->
     <div class="slide content-slide" data-slide="17">
       <h2 class="slide-title anim d1">Piani Claude: prezzi e funzionalità</h2>
-      <p class="section-desc anim d2">Dettaglio dei piani Claude per uso personale, team ed enterprise. Prezzi per utente/mese in EUR.</p>
+      <p class="section-desc anim d2">Dettaglio dei piani Claude per uso personale, team ed enterprise. Prezzi per
+        utente/mese in EUR.</p>
 
       <div class="claude-plans anim d3">
 
@@ -1141,7 +1576,12 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag green">Gratuito</span>
-                <button class="diff-btn" onclick="openDiff('c_free')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_free')"><svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1159,7 +1599,12 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag">Consigliato dev</span>
-                <button class="diff-btn" onclick="openDiff('c_pro')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_pro')"><svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1176,7 +1621,12 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag blue">Heavy user</span>
-                <button class="diff-btn" onclick="openDiff('c_max100')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_max100')"><svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1193,7 +1643,12 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag blue">Power user</span>
-                <button class="diff-btn" onclick="openDiff('c_max200')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_max200')"><svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1204,7 +1659,13 @@
         <div class="plans-group">
           <div style="display:flex;align-items:center;gap:.5rem">
             <span class="plans-group-label">Business</span>
-            <button class="diff-btn" onclick="openImgModal()" title="Prezzi ufficiali claude.ai/pricing" style="opacity:.8"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg></button>
+            <button class="diff-btn" onclick="openImgModal()" title="Prezzi ufficiali claude.ai/pricing"
+              style="opacity:.8"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <polyline points="8 12 12 8 16 12" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+              </svg></button>
           </div>
           <div class="plans-row">
 
@@ -1223,7 +1684,13 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag green">Da 5 utenti</span>
-                <button class="diff-btn" onclick="openDiff('c_team_std')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_team_std')"><svg width="14" height="14"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1242,7 +1709,13 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag">Dev teams</span>
-                <button class="diff-btn" onclick="openDiff('c_team_prem')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_team_prem')"><svg width="14" height="14"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1261,7 +1734,13 @@
               </ul>
               <div class="plan-card-foot">
                 <span class="plan-tag blue">Via sales</span>
-                <button class="diff-btn" onclick="openDiff('c_enterprise')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></button>
+                <button class="diff-btn" onclick="openDiff('c_enterprise')"><svg width="14" height="14"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg></button>
               </div>
             </div>
 
@@ -1271,13 +1750,18 @@
       </div>
 
       <div class="bench-note anim d4">
-        Prezzi EUR, aggiornati a Marzo 2026. Team Premium: seat separato dal Standard, non upgrade. Enterprise: pricing custom tramite <a href="https://www.anthropic.com/contact-sales" style="color:var(--accent)" target="_blank" rel="noopener">anthropic.com/contact-sales</a>.<br>
-        Fonte: <a href="https://claude.ai/pricing" style="color:var(--accent)" target="_blank" rel="noopener">claude.ai/pricing</a> · <a href="https://www.anthropic.com/pricing" style="color:var(--accent)" target="_blank" rel="noopener">anthropic.com/pricing</a>
+        Prezzi EUR, aggiornati a Marzo 2026. Team Premium: seat separato dal Standard, non upgrade. Enterprise: pricing
+        custom tramite <a href="https://www.anthropic.com/contact-sales" style="color:var(--accent)" target="_blank"
+          rel="noopener">anthropic.com/contact-sales</a>.<br>
+        Fonte: <a href="https://claude.ai/pricing" style="color:var(--accent)" target="_blank"
+          rel="noopener">claude.ai/pricing</a> · <a href="https://www.anthropic.com/pricing" style="color:var(--accent)"
+          target="_blank" rel="noopener">anthropic.com/pricing</a>
       </div>
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -1286,22 +1770,37 @@
     <div class="slide content-slide" data-slide="18">
       <h2 class="slide-title anim d1">Formazione & Certificazione</h2>
       <p class="section-desc anim d2">13 corsi gratuiti su Skilljar per tutti, più la certificazione ufficiale Claude
-        Certified Architect per le aziende nel Partner Network. $100M investiti da Anthropic nel Claude Partner Network nel 2026.</p>
+        Certified Architect per le aziende nel Partner Network. $100M investiti da Anthropic nel Claude Partner Network
+        nel 2026.</p>
       <div class="card-grid anim d3" style="max-width:62.5rem">
         <div class="card">
-          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div class="icon blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg></div>
           <h3>Anthropic Academy (gratuita)</h3>
           <p>13 corsi self-paced su <strong>anthropic.skilljar.com</strong> — da Claude 101 alla costruzione di server
             MCP avanzati in Python. Certificati di completamento per LinkedIn. Nessun paywall.</p>
         </div>
         <div class="card">
-          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <div class="icon orange"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+            </svg></div>
           <h3>Claude Certified Architect</h3>
           <p>Esame proctored da 60 domande su architettura agentica, MCP, Claude Code e design di sistemi AI in
             produzione. Gratuito per i primi 5.000 dipendenti partner, poi €99.</p>
         </div>
         <div class="card">
-          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg></div>
           <h3>Claude Partner Network</h3>
           <p>Adesione gratuita per qualsiasi azienda. Include: accesso prioritario a certificazioni, Applied AI engineer
             dedicati, co-marketing e sales playbook. OT Consulting può aderire subito.</p>
@@ -1336,7 +1835,8 @@
       <div class="slide-footer">
         <span class="copyright">&copy;OT Consulting. All rights reserved</span>
         <div class="ot-logo">
-          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small class="ot-division">SYS-FASHION</small></span>
+          <div class="ot-circle"><img src="public/OT.png" alt="OT"></div><span class="ot-name">OT Consulting<br><small
+              class="ot-division">SYS-FASHION</small></span>
         </div>
       </div>
     </div>
@@ -1374,10 +1874,11 @@
 
   <!-- Download PPTX button -->
   <button id="pptxBtn" onclick="downloadPptx()" title="Scarica presentazione in formato PPTX">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-      <polyline points="7 10 12 15 17 10"/>
-      <line x1="12" y1="15" x2="12" y2="3"/>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
     </svg>
     PPTX
   </button>
@@ -1395,8 +1896,10 @@
   <div class="modal-overlay" id="imgModal" onclick="closeImgModal(event)">
     <div class="modal-box" style="position:relative;max-width:47.5rem;padding:1.25rem 1.5rem">
       <button class="modal-close" onclick="closeImgModal()">&times;</button>
-      <p style="font-size:.65rem;color:var(--muted);margin-bottom:.75rem">Prezzi ufficiali claude.ai/pricing — Team &amp; Enterprise (fatturazione annuale / mensile)</p>
-      <img src="public/claude-pricing-team-enterprise.png" alt="Claude Team & Enterprise pricing" style="width:100%;border-radius:0.5rem;display:block">
+      <p style="font-size:.65rem;color:var(--muted);margin-bottom:.75rem">Prezzi ufficiali claude.ai/pricing — Team
+        &amp; Enterprise (fatturazione annuale / mensile)</p>
+      <img src="public/claude-pricing-team-enterprise.png" alt="Claude Team & Enterprise pricing"
+        style="width:100%;border-radius:0.5rem;display:block">
     </div>
   </div>
 
