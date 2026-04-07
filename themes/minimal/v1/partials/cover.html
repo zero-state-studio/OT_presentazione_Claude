@@ -1,0 +1,21 @@
+<!-- PARTIAL: cover — tema minimal/v1
+     Placeholder guide:
+     {{TITOLO_HERO}}     = prima parte del titolo (senza parola accent)
+     {{PAROLA_ACCENT}}   = parola in evidenza (span.highlight)
+     {{SOTTOTITOLO}}     = sottotitolo
+     {{METRICS_HTML}}    = blocco .metrics con anim d3, oppure stringa vuota
+     {{COVER_TEAM_HTML}} = blocco .cover-team con anim d4, oppure stringa vuota
+     {{TEAM_NAME_FRAG}}  = <br><small class="ot-division">NOME</small> oppure stringa vuota
+     NOTE: logo-bar usa sempre anim d5. Se d3/d4 sono vuoti il gap animazione è intenzionale.
+     NOTE minimal: nessun z-index:2 necessario — nessun elemento assoluto nella cover.
+-->
+<div class="slide active" data-slide="0" style="align-items:flex-start;justify-content:center;padding:4rem">
+  <h1 class="hero-title anim d1">{{TITOLO_HERO}} <span class="highlight">{{PAROLA_ACCENT}}</span></h1>
+  <p class="subtitle anim d2">{{SOTTOTITOLO}}</p>
+  {{METRICS_HTML}}
+  {{COVER_TEAM_HTML}}
+  <div class="logo-bar anim d5">
+    <div class="ot-mark"><img src="../../shared/assets/OT.png" alt="OT"></div>
+    <div class="ot-company">OT Consulting{{TEAM_NAME_FRAG}}</div>
+  </div>
+</div>
