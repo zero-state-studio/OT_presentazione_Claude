@@ -14,6 +14,34 @@ Quando l'utente invoca `/presentazione-ot <nome-presentazione>`.
 
 ## Flusso
 
+### Step 0: Seleziona il tema
+
+Controlla se l'utente ha passato `--tema <nome>-<versione>` nell'invocazione (es. `/presentazione-ot mia-pres --tema minimal-v1`).
+
+**Se `--tema` è presente nel comando:**
+- Estrai nome e versione: `minimal-v1` → nome=`minimal`, versione=`v1`
+- Verifica che esista `themes/<nome>/<versione>/meta.json`. Se non esiste, informa l'utente e mostra i temi disponibili.
+- Memorizza il percorso tema: `TEMA_PATH = <nome>/<versione>` (es. `minimal/v1`)
+
+**Se `--tema` è assente:**
+- Usa il tool Glob su `themes/*/` per trovare tutti i `meta.json` disponibili
+- Leggi ogni `meta.json` trovato e costruisci la lista: nome, versione, description
+- Presenta la selezione:
+
+> **Quale tema grafico vuoi usare?**
+> 1. Standard v1 — Tema OT Consulting attuale (cerchi decorativi, barra rossa)
+> 2. Minimal v1 — Layout pulito, tipografia dominante, nessuna decorazione
+> _(aggiungi voci per ogni meta.json trovato, ordinati per nome+versione)_
+
+Attendi la risposta numerica. Memorizza `TEMA_PATH` (es. `standard/v1` o `minimal/v1`).
+
+**Variante di divisione:**
+Se l'utente ha passato `--variante <nome>` (es. `--variante sys-fashion`):
+- Verifica che esista `themes/{{TEMA_PATH}}/variants/<nome>.css`
+- Memorizza `VARIANTE = <nome>`
+
+In assenza di `--variante`, non caricare nessuna variante CSS (lascia `VARIANTE` vuoto).
+
 ### Step 1: Chiedi il team
 
 Prima di creare qualsiasi file, chiedi all'utente:
@@ -70,7 +98,46 @@ presentazioni/<nome-presentazione>/
 
 ### Step 4: Genera index.html
 
-Il file HTML DEVE seguire questa struttura esatta. Non improvvisare — usa il template sotto.
+Il file HTML si costruisce così:
+
+**1. Leggi i partial** del tema scelto usando il tool Read:
+   - `themes/{{TEMA_PATH}}/partials/cover.html` — sempre incluso come slide 0
+   - `themes/{{TEMA_PATH}}/partials/team.html` — incluso solo se ci sono autori E l'utente ha scelto "Slide ad hoc"
+   - `themes/{{TEMA_PATH}}/partials/content-slide.html` — incluso una volta per ogni slide di contenuto
+   - `themes/{{TEMA_PATH}}/partials/closing.html` — sempre incluso come ultima slide
+
+**2. Sostituisci i placeholder** `{{VAR}}` con i valori raccolti.
+
+**Placeholder opzionali nel partial cover.html:**
+- `{{METRICS_HTML}}`: se non ci sono statistiche → stringa vuota. Se sì, generare:
+  ```html
+  <div class="metrics anim d3" style="justify-content:flex-start;margin-top:2rem;position:relative;z-index:2">
+    <div class="metric"><div class="value">VAL</div><div class="label">LABEL</div></div>
+  </div>
+  ```
+- `{{COVER_TEAM_HTML}}`: se team è su "Slide ad hoc" o nessun autore → stringa vuota. Se "Home", generare:
+  ```html
+  <div class="cover-team anim d4" style="position:relative;z-index:2">
+    <div class="cover-team-member">
+      <img src="../../shared/assets/foto/{{FILENAME}}.{{EXT}}" alt="{{INIZIALI}}">
+      <div class="cover-team-member-name"><span>{{NOME}}</span><span>{{COGNOME}}</span></div>
+    </div>
+  </div>
+  ```
+- `{{TEAM_NAME_FRAG}}`: se TEAM_NAME è vuoto → stringa vuota. Se sì → `<br><small class="ot-division">{{TEAM_NAME}}</small>`
+
+**`{{SLIDE_FOOTER}}` nei partial content-slide e team:**
+```html
+<div class="slide-footer">
+  <span class="copyright">&copy;OT Consulting. All rights reserved</span>
+  <div class="ot-logo">
+    <div class="ot-circle"><img src="../../shared/assets/OT.png" alt="OT"></div>
+    <span class="ot-name">OT Consulting{{TEAM_NAME_FRAG}}</span>
+  </div>
+</div>
+```
+
+**3. Costruisci l'HTML completo** con questa struttura shell:
 
 ```html
 <!DOCTYPE html>
@@ -81,6 +148,8 @@ Il file HTML DEVE seguire questa struttura esatta. Non improvvisare — usa il t
 <title>{{TITOLO}} — OT Consulting</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/style.css">
+<link rel="stylesheet" href="../../themes/{{TEMA_PATH}}/theme.css">
+{{VARIANT_LINK}}
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -88,103 +157,10 @@ Il file HTML DEVE seguire questa struttura esatta. Non improvvisare — usa il t
 <div class="progress" id="progress"></div>
 <div class="deck" id="deck">
 
-  <!-- SLIDE 0: Cover -->
-  <!-- Standard cover: 1) Title  2) Subtitle  3) Stats (optional)  4) Logo-bar  5) Team members (optional) -->
-  <div class="slide active" data-slide="0" style="align-items:flex-start;justify-content:center;padding:4rem">
-    <div class="cover-deco-tl"></div>
-    <div class="cover-deco-br"></div>
-    <div class="cover-dot-grid">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <!-- 1) Title — always present. Use <br> for multi-line. Accent word in <span class="highlight"> -->
-    <h1 class="hero-title anim d1">{{TITOLO_HERO}} <span class="highlight">{{PAROLA_ACCENT}}</span></h1>
-
-    <!-- 2) Subtitle — always present -->
-    <p class="subtitle anim d2">{{SOTTOTITOLO}}</p>
-
-    <!-- 3) Statistics — OPTIONAL. Remove entire block if not needed.
-         Use class="metrics" with justify-content:flex-start to left-align.
-         Each stat: <div class="metric"><div class="value">X</div><div class="label">Label</div></div> -->
-    <div class="metrics anim d3" style="justify-content:flex-start;margin-top:2rem">
-      <div class="metric"><div class="value">{{VAL1}}</div><div class="label">{{LABEL1}}</div></div>
-      <div class="metric"><div class="value">{{VAL2}}</div><div class="label">{{LABEL2}}</div></div>
-      <!-- add/remove metric items as needed -->
-    </div>
-
-    <!-- 4) Team members in cover — OPTIONAL (only if user chose "1 - Home").
-         Goes BEFORE the logo-bar. Remove entire block if team is on a separate slide.
-         Photo files live in shared/assets/foto/<nomecognome>.(png|webp|jpg) -->
-    <div class="cover-team anim d4">
-      <div class="cover-team-member">
-        <img src="../../shared/assets/foto/{{FILENAME}}.{{EXT}}" alt="{{INIZIALI}}">
-        <div class="cover-team-member-name"><span>{{NOME}}</span><span>{{COGNOME}}</span></div>
-      </div>
-      <!-- repeat cover-team-member for each person -->
-    </div>
-
-    <!-- 5) OT Consulting logo bar — always present, always last.
-         Omit <small class="ot-division"> if no team/division name.
-         margin-top:auto (via CSS) anchors it to the bottom of the slide. -->
-    <div class="logo-bar anim d5">
-      <div class="ot-mark"><img src="../../shared/assets/OT.png" alt="OT"></div>
-      <div class="ot-company">OT Consulting<br><small class="ot-division">{{TEAM_NAME}}</small></div>
-    </div>
-
-  </div>
-
-  <!-- SLIDE Team (opzionale — solo se sono state fornite email autori) -->
-  <!-- Inserire PRIMA delle slide di contenuto, subito dopo la cover -->
-  <!--
-  <div class="slide content-slide" data-slide="1">
-    <h2 class="slide-title">Il team</h2>
-    <p class="section-desc">Gli autori di questa presentazione.</p>
-    <div class="ambassadors">
-      {{PER OGNI AUTORE:}}
-      <div class="ambassador">
-        <div class="avatar">
-          <img class="avatar-inner" src="../../shared/assets/foto/{{FILENAME}}.{{EXT}}" alt="{{INIZIALI}}">
-        </div>
-        <div class="ch-name">{{COGNOME}} {{NOME}}</div>
-        <div class="ch-role">{{EMAIL}}</div>
-        <div class="ch-badge">{{RUOLO_O_BADGE}}</div>
-      </div>
-      {{/PER OGNI AUTORE}}
-    </div>
-    {{SLIDE_FOOTER}}
-  </div>
-  -->
-
-  <!-- SLIDE di contenuto (solo se è stata fornita una descrizione) -->
-  <div class="slide content-slide" data-slide="{{N}}">
-    <div class="slide-label">{{SEZIONE}}</div>
-    <h2 class="slide-title">{{TITOLO_SLIDE}}</h2>
-    <p class="section-desc">{{DESCRIZIONE}}</p>
-    <!-- Contenuto: card-grid, two-col, timeline-vertical, ecc. -->
-    {{SLIDE_FOOTER}}
-  </div>
-
-  <!-- SLIDE N: Closing -->
-  <div class="slide" data-slide="{{N}}" style="align-items:flex-start;justify-content:center;padding:4rem">
-    <div class="cover-deco-tl"></div>
-    <div class="cover-deco-br"></div>
-    <div class="slide-label" style="position:relative;z-index:2">{{CLOSING_LABEL}}</div>
-    <h1 class="hero-title" style="position:relative;z-index:2">{{CLOSING_TITLE}} <span class="highlight">{{CLOSING_ACCENT}}</span></h1>
-    <p class="subtitle" style="position:relative;z-index:2">{{CLOSING_SUBTITLE}}</p>
-    <div class="logo-bar" style="position:relative;z-index:2;margin-top:2rem">
-      <div class="ot-mark"><img src="../../shared/assets/OT.png" alt="OT"></div>
-      <div class="ot-company">OT Consulting<br><small class="ot-division">{{TEAM_NAME}}</small></div>
-    </div>
-  </div>
+  [QUI: cover partial + team partial opzionale + N content-slide partials + closing partial]
 
 </div>
 
-<!-- Navigation -->
 <div class="nav">
   <button id="prev" onclick="go(-1)">&#x2039;</button>
   <div class="dots" id="dots"></div>
@@ -195,11 +171,16 @@ Il file HTML DEVE seguire questa struttura esatta. Non improvvisare — usa il t
 <div class="kbd-hint"><kbd>←</kbd> <kbd>→</kbd> per navigare</div>
 
 <script src="../../shared/nav.js"></script>
+{{THEME_JS}}
 <script src="../../shared/pptx.js"></script>
 
 </body>
 </html>
 ```
+
+Dove:
+- `{{VARIANT_LINK}}` = `<link rel="stylesheet" href="../../themes/{{TEMA_PATH}}/variants/{{VARIANTE}}.css">` se VARIANTE è impostato, altrimenti stringa vuota
+- `{{THEME_JS}}` = `<script src="../../themes/{{TEMA_PATH}}/theme.js"></script>` se il file esiste (verificare con Glob), altrimenti stringa vuota
 
 ### Step 5: Footer template
 
@@ -349,3 +330,17 @@ La griglia `.ambassadors` usa `repeat(auto-fit, minmax(14rem, 1fr))` quindi si a
 > Breve descrizione? (Invio)
 ```
 → Genera: cover + closing (solo 2 slide)
+
+## Migrazione di una presentazione esistente
+
+Per applicare un nuovo tema a una presentazione già creata:
+
+```
+/presentazione-ot nome-presentazione --migra --tema minimal-v1
+```
+
+Prima di sovrascrivere, la skill DEVE:
+1. Avvisare l'utente che `index.html` verrà sovrascritto
+2. Chiedere conferma esplicita: **"Sei sicuro di voler sovrascrivere index.html? (s/n)"**
+3. Se confermato: rigenerare `index.html` usando i partial del nuovo tema
+4. `style.css` e `assets/` NON vengono mai toccati dalla migrazione
