@@ -160,6 +160,8 @@ Use `/presentazione-ot <folder-name>` — the skill handles interactive prompts 
 
 Team photo lookup convention: `mario.rossi@company.com` → `shared/assets/foto/mariorossi.(png|webp|jpg)`.
 
+**After creating a new presentation**, add an entry to `presentations.json` at the project root so it appears in the launcher app (`index.html`). Fields: `folder`, `title`, `subtitle`, `category`, `division`, `slideCount`, `authors`, `createdAt`, `updatedAt` (dates in `YYYY-MM-DD` format).
+
 ## Theme system
 
 Themes live in `themes/<name>/<version>/` and contain:

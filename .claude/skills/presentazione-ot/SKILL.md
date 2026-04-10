@@ -261,6 +261,24 @@ img.avatar-inner { object-fit: cover; }
 
 Crea la cartella vuota `assets/` per immagini specifiche della presentazione.
 
+### Step 8: Aggiorna presentations.json
+
+Aggiungi un nuovo oggetto all'array in `presentations.json` nella root del progetto. Senza questo step la presentazione non sarà visibile nel launcher (`index.html`).
+
+```json
+{
+  "folder": "presentazioni/<folder-name>",
+  "title": "<titolo della cover>",
+  "subtitle": "<sottotitolo della cover>",
+  "category": "<categoria, es. Enterprise / Formazione / Demo>",
+  "division": "<divisione OT, es. SYS-FASHION>",
+  "slideCount": <numero di slide>,
+  "authors": ["Nome Cognome"],
+  "createdAt": "<YYYY-MM-DD>",
+  "updatedAt": "<YYYY-MM-DD>"
+}
+```
+
 ## Regole di design
 
 ### Slide di contenuto — OBBLIGATORIO
