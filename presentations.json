@@ -20,16 +20,5 @@
     "authors": [],
     "createdAt": "2026-04-03",
     "updatedAt": "2026-04-07"
-  },
-  {
-    "folder": "presentazioni/test-minimal",
-    "title": "Gemini CLI",
-    "subtitle": "Scopri le funzionalità di Gemini CLI e come integrarle nel tuo workflow quotidiano.",
-    "category": "Demo",
-    "division": "SYS-FASHION",
-    "slideCount": 7,
-    "authors": [],
-    "createdAt": "2026-04-07",
-    "updatedAt": "2026-04-07"
   }
 ]
