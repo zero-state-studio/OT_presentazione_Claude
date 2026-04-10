@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OT Consulting — Presentazioni</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* HEADER */
+  .launcher-header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .ot-logo-mark {
+    width: 40px; height: 40px;
+    background: #E60000;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .header-text h1 { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .header-text p { font-size: 12px; color: #888; margin-top: 2px; }
+  .header-divider { width: 1px; height: 32px; background: #eee; margin: 0 6px; }
+  .header-count { font-size: 12px; color: #aaa; }
+
+  /* MAIN */
+  .launcher-main {
+    padding: 36px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+  }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: #999; margin-bottom: 20px;
+  }
+
+  /* GRID */
+  .pres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  /* CARD */
+  .pres-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .pres-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    transform: translateY(-2px);
+  }
+  .card-accent { height: 4px; background: #E60000; }
+  .card-body {
+    padding: 18px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-meta-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .card-category {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #E60000;
+  }
+  .card-slides {
+    font-size: 10px; background: #f5f5f5; border-radius: 10px;
+    padding: 2px 8px; color: #666;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 700; line-height: 1.35;
+    color: #1a1a1a; margin-bottom: 8px;
+  }
+  .card-subtitle {
+    font-size: 12px; color: #666; line-height: 1.5;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tag-division {
+    font-size: 10px; background: #fff0f0; color: #E60000;
+    border: 1px solid #fdd; border-radius: 10px; padding: 2px 9px;
+  }
+  .tag-author {
+    font-size: 10px; background: #f5f5f5; color: #555;
+    border: 1px solid #eee; border-radius: 10px; padding: 2px 9px;
+  }
+  .card-dates {
+    display: flex; justify-content: space-between; margin-bottom: 16px;
+    padding-top: 10px; border-top: 1px solid #f0f0f0;
+  }
+  .card-date-item { display: flex; flex-direction: column; gap: 2px; }
+  .card-date-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #bbb; font-weight: 600; }
+  .card-date-value { font-size: 11px; color: #888; }
+  .card-date-item:last-child { text-align: right; }
+  .card-cta {
+    display: block; background: #E60000; color: #fff;
+    border-radius: 5px; padding: 9px 16px;
+    font-size: 12px; font-weight: 600; text-align: center;
+    margin-top: auto;
+  }
+
+  /* ERROR */
+  .error-msg {
+    text-align: center; padding: 60px 20px; color: #888;
+  }
+  .error-msg strong { display: block; font-size: 16px; color: #555; margin-bottom: 8px; }
+
+  /* FOOTER */
+  .launcher-footer {
+    text-align: center; padding: 24px;
+    font-size: 11px; color: #bbb;
+    border-top: 1px solid #eee; background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header class="launcher-header">
+  <div class="ot-logo-mark">
+    <img src="shared/assets/OT.png" alt="OT" style="width:26px;height:26px;object-fit:contain;filter:brightness(0) invert(1)">
+  </div>
+  <div class="header-text">
+    <h1>OT Consulting</h1>
+    <p>Presentazioni</p>
+  </div>
+  <div class="header-divider"></div>
+  <span class="header-count" id="pres-count"></span>
+</header>
+
+<main class="launcher-main">
+  <div class="section-label">Tutte le presentazioni</div>
+  <div class="pres-grid" id="pres-grid"></div>
+</main>
+
+<footer class="launcher-footer">
+  &copy; OT Consulting &mdash; le presentazioni si aprono in una nuova scheda
+</footer>
+
+<script>
+  const MONTHS = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+
+  function formatDate(iso) {
+    if (!iso) return '—';
+    const [y, m, d] = iso.split('-');
+    return `${parseInt(d)} ${MONTHS[parseInt(m) - 1]} ${y}`;
+  }
+
+  function renderCard(p) {
+    const tags = `<span class="tag-division">${p.division}</span>`;
+
+    return `
+      <a class="pres-card" href="${p.folder}/" target="_blank" rel="noopener">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-meta-top">
+            <span class="card-category">${p.category}</span>
+            <span class="card-slides">${p.slideCount} slide</span>
+          </div>
+          <div class="card-title">${p.title}</div>
+          <div class="card-subtitle">${p.subtitle}</div>
+          <div class="card-tags">${tags}</div>
+          <div class="card-dates">
+            <div class="card-date-item">
+              <span class="card-date-label">Creata</span>
+              <span class="card-date-value">${formatDate(p.createdAt)}</span>
+            </div>
+            <div class="card-date-item">
+              <span class="card-date-label">Modificata</span>
+              <span class="card-date-value">${formatDate(p.updatedAt)}</span>
+            </div>
+          </div>
+          <div class="card-cta">Apri presentazione &rarr;</div>
+        </div>
+      </a>`;
+  }
+
+  fetch('./presentations.json')
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('pres-count').textContent = `${data.length} presentazion${data.length === 1 ? 'e' : 'i'}`;
+      document.getElementById('pres-grid').innerHTML = data.map(renderCard).join('');
+    })
+    .catch(() => {
+      document.getElementById('pres-grid').innerHTML =
+        '<div class="error-msg"><strong>Impossibile caricare presentations.json</strong>Avvia il server con <code>bash launch.sh</code></div>';
+    });
+</script>
+</body>
+</html>

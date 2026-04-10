@@ -1,0 +1,35 @@
+[
+  {
+    "folder": "presentazioni/claude-for-ot",
+    "title": "L'ecosistema Claude per accelerare lo sviluppo",
+    "subtitle": "Proposta di adozione enterprise — perché Claude Code e il protocollo MCP rappresentano un salto qualitativo rispetto a Copilot e Gemini.",
+    "category": "Enterprise",
+    "division": "SYS-FASHION",
+    "slideCount": 19,
+    "authors": ["Gianluca Ricaldone"],
+    "createdAt": "2026-04-03",
+    "updatedAt": "2026-04-07"
+  },
+  {
+    "folder": "presentazioni/claude-formazione",
+    "title": "Sviluppare con Claude",
+    "subtitle": "Corso pratico di 3 giorni per imparare a integrare l'AI nel workflow di sviluppo quotidiano.",
+    "category": "Formazione",
+    "division": "SYS-FASHION",
+    "slideCount": 12,
+    "authors": [],
+    "createdAt": "2026-04-03",
+    "updatedAt": "2026-04-07"
+  },
+  {
+    "folder": "presentazioni/test-minimal",
+    "title": "Gemini CLI",
+    "subtitle": "Scopri le funzionalità di Gemini CLI e come integrarle nel tuo workflow quotidiano.",
+    "category": "Demo",
+    "division": "SYS-FASHION",
+    "slideCount": 7,
+    "authors": [],
+    "createdAt": "2026-04-07",
+    "updatedAt": "2026-04-07"
+  }
+]

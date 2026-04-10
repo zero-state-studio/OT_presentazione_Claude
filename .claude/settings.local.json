@@ -61,7 +61,10 @@
       "Bash(git -c commit.gpgsign=false commit -m \"fix: improve standard/v1 partials \\(z-index guide, closing anchor, team sub-template\\)\")",
       "Bash(git:*)",
       "Bash(node:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(/Users/gianlucaricaldone/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.7/skills/brainstorming/scripts/start-server.sh:*)",
+      "Bash(grep -h \"cover-team-member-name\\\\|ot-division\" presentazioni/*/index.html)",
+      "Bash(chmod +x:*)"
     ]
   }
 }
